@@ -11,7 +11,9 @@
 |
 */
 
+
 $app->get('/', function () use ($app) {
+    echo phpinfo();
     return $app->version();
 });
 
@@ -26,8 +28,13 @@ $app->group(['middleware' => 'auth:api'], function($app)
     });
 });
 
+$app->group(['prefix'=> 'app/v1'], function ($app){
+    $app->get('/index', 'QuoteController@index');
+} );
+
 $app->get('memcached', function (){
-    $memcache = new \Memcache;
-    $memcache->connect('127.0.0.1', 11211);
-    echo 'Memcached ver: ' . $memcache->getVersion();
+    /*$memcache = new \Memcached;
+    $memcache->connect('127.0.0.1', 11211);*/
+    \Illuminate\Support\Facades\Cache::put("xx", "trte", 30);
+    var_dump(\Illuminate\Support\Facades\Cache::get("xx"));
 });
