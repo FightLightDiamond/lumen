@@ -10,8 +10,6 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-
 $app->get('/', function () use ($app) {
     echo phpinfo();
     return $app->version();
@@ -35,12 +33,15 @@ $app->get('/token', function (){
     $user = \App\User::first();
     return $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 });
+
 $app->get('/get-token', function (){
     return \Tymon\JWTAuth\Facades\JWTAuth::getToken();
 });
+
 $app->get('/user', function (){
     return $user = \Tymon\JWTAuth\Facades\JWTAuth::parseToken()->authenticate();
 });
+
 $app->group(['prefix'=> 'app/v1'], function ($app){
     $app->get('/quote', 'QuoteController@index');
     $app->get('/quote/{id}', 'QuoteController@show');
