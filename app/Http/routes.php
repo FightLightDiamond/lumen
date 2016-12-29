@@ -26,6 +26,9 @@ $app->group(['middleware' => 'auth:api'], function($app)
             'message' => 'Hello World!',
         ]);
     });
+    $app->get('/logout', function (){
+        \Tymon\JWTAuth\Facades\JWTAuth::invalidate(\Tymon\JWTAuth\Facades\JWTAuth::getToken());
+    });
 });
 
 $app->get('/token', function (){
@@ -35,7 +38,9 @@ $app->get('/token', function (){
 $app->get('/get-token', function (){
     return \Tymon\JWTAuth\Facades\JWTAuth::getToken();
 });
-
+$app->get('/user', function (){
+    return $user = \Tymon\JWTAuth\Facades\JWTAuth::parseToken()->authenticate();
+});
 $app->group(['prefix'=> 'app/v1'], function ($app){
     $app->get('/quote', 'QuoteController@index');
     $app->get('/quote/{id}', 'QuoteController@show');

@@ -84,11 +84,7 @@
         var urlLogin = "http://localhost:8080/auth/login";
 
         $('#btnLogin').click(function () {
-
-            if (getCookie('token')) {
-                alert(getCookie('token'));
-            }
-
+            checkLogin();
             var data = formLogin.serialize();
             $.ajax({
                 url: urlLogin,
@@ -99,7 +95,6 @@
                     header = { Authorization: auth };
                     console.log(data.token);
                     document.cookie = "token="+data.token;
-                    //checkLogin()
                 },
                 error: function (err) {
                     console.log(err)
@@ -110,13 +105,9 @@
         checkLogin();
 
         function checkLogin() {
-           if(header!=null){
-               formLogin.html('You has login');
-               location.href = "http://localhost:8080/client/pages";
-               writeTextFile(filepath, output);
-           }else {
-               //location.href = "http://localhost:8080/client/pages/login.html"
-           }
+            if (getCookie('token')) {
+                location.href = "http://localhost:8080/client/pages";
+            }
         }
 
         function getCookie(cname) {
