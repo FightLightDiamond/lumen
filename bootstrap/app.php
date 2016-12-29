@@ -62,7 +62,9 @@ $app->singleton(
 */
 
  $app->middleware([
-    App\Http\Middleware\ExampleMiddleware::class
+    App\Http\Middleware\ExampleMiddleware::class,
+    //'jwt.auth'    => Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+    //'jwt.refresh' => Tymon\JWTAuth\Middleware\RefreshToken::class,
  ]);
 
  $app->routeMiddleware([
@@ -83,6 +85,8 @@ $app->singleton(
  $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
  $app->register(App\Providers\EventServiceProvider::class);
+ //$app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
+ //$app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -98,5 +102,7 @@ $app->singleton(
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
 });
+
+//$app->configure('jwt');
 
 return $app;
