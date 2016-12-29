@@ -29,8 +29,12 @@ $app->group(['middleware' => 'auth:api'], function($app)
 });
 
 $app->group(['prefix'=> 'app/v1'], function ($app){
-    $app->get('/index', 'QuoteController@index');
-} );
+    $app->get('/quote', 'QuoteController@index');
+    $app->get('/quote/{id}', 'QuoteController@show');
+    $app->post('/quote', 'QuoteController@store');
+    $app->put('/quote/{id}', 'QuoteController@update');
+    $app->delete('/quote/{id}', 'QuoteController@destroy');
+});
 
 $app->get('memcached', function (){
     /*$memcache = new \Memcached;

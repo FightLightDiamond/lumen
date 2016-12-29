@@ -13,26 +13,33 @@ use App\Quote;
 
 class QuoteController
 {
-    public function index(){
-        Quote::create(['name']);
-        return "Index";
+    public function index() {
+        Quote::create(['name' => str_random(10), 'quote' => str_random(10)]);
+        $data = Quote::all();
+        return response()->json($data);
     }
-    public function create(){
+    public function show($id) {
+        $quote = Quote::find($id);
+        if(!$quote) {
+            return response()->json(['error' => 'Can`t find that quote'], 400);
+        }else {
+            return response()->json($quote);
+        }
+        
+    }
+    public function create() {
 
     }
-    public function store(){
+    public function store() {
 
     }
-    public function edit(){
+    public function edit() {
 
     }
-    public function update(){
+    public function update() {
 
     }
-    public function show(){
-
-    }
-    public function destroy(){
+    public function destroy() {
 
     }
 }
