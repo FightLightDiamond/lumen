@@ -28,6 +28,14 @@ $app->group(['middleware' => 'auth:api'], function($app)
     });
 });
 
+$app->get('/token', function (){
+    $user = \App\User::first();
+    return $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
+});
+$app->get('/get-token', function (){
+    return \Tymon\JWTAuth\Facades\JWTAuth::getToken();
+});
+
 $app->group(['prefix'=> 'app/v1'], function ($app){
     $app->get('/quote', 'QuoteController@index');
     $app->get('/quote/{id}', 'QuoteController@show');

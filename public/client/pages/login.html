@@ -84,6 +84,11 @@
         var urlLogin = "http://localhost:8080/auth/login";
 
         $('#btnLogin').click(function () {
+
+            if (getCookie('token')) {
+                alert(getCookie('token'));
+            }
+
             var data = formLogin.serialize();
             $.ajax({
                 url: urlLogin,
@@ -93,7 +98,8 @@
                     auth += data.token;
                     header = { Authorization: auth };
                     console.log(data.token);
-                    checkLogin()
+                    document.cookie = "token="+data.token;
+                    //checkLogin()
                 },
                 error: function (err) {
                     console.log(err)
@@ -113,28 +119,19 @@
            }
         }
 
-        function writeTextFile(filepath, output) {
-            var txtFile = new File(filepath);
-            txtFile.open("w"); //
-            txtFile.writeln(output);
-            txtFile.close();
-        }
-
-        ////////////////////////////////////////////////////
-        /**
-         * readTextFile read data from file
-         * @param  string   filepath   Path to file on hard drive
-         * @return string              String with file data
-         */
-        function readTextFile(filepath) {
-            var str = "";
-            var txtFile = new File(filepath);
-            txtFile.open("r");
-            while (!txtFile.eof) {
-                // read each line of text
-                str += txtFile.readln() + "\n";
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
             }
-            return str;
+            return "";
         }
     </script>
 
