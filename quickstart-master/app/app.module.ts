@@ -1,21 +1,11 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent }  from './app.component';
-
-import { MaterialModule } from '@angular/material';
-import 'hammerjs';
+import { TutorialComponent } from './tutorial.component';
 
 @NgModule({
   imports:      [ BrowserModule ],
-  declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ],
-
-  imports: [MaterialModule.forRoot()],
+  declarations: [ AppComponent, TutorialComponent ], //Add information into this class
+  bootstrap:    [ AppComponent ]
 })
-
-
-
 export class AppModule { }
-
-export class PizzaPartyAppModule { }
