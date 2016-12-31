@@ -2,20 +2,11 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
-
-import { MaterialModule } from '@angular/material';
-import 'hammerjs';
+import { u10Component } from  './u10.component'
 
 @NgModule({
   imports:      [ BrowserModule ],
-  declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ],
-
-  imports: [MaterialModule.forRoot()],
+  declarations: [ AppComponent, u10Component ],
+  bootstrap:    [ AppComponent ]
 })
-
-
-
 export class AppModule { }
-
-export class PizzaPartyAppModule { }
