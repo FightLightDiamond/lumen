@@ -1,0 +1,19 @@
+<h1>Hello {{title | uppercase}}</h1>
+<u10  ></u10>
+<input type="text" #textName (keyup)="0">
+<hr>
+<h2>U11</h2>
+<button (click)="changeName()" >Change Name</button>
+<div>
+    Agree: {{agree}} -
+    Disagree: {{disagree}}
+</div>
+<u11
+        *ngFor="let person of names"
+        [name]="person"
+        (onVote)="parentVote($event)"
+></u11>
+<hr>
+<h2>U14</h2>
+<u14></u14>
+<u15></u15>

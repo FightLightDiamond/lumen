@@ -1,23 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { u10Component } from './u10.component';
+import { u11Component } from './components/u11.component';
+
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello {{title}}</h1>
-  <input type="text" #textName (keyup)="0">
-  
-   Agree: {{agree}}
-   <br>
-   Disagree: {{disagree}}
-   <button (click)="changeName()" >Change Name</button>
-  
-   <u10 
-   *ngFor="let person of names" 
-   [name]="person" 
-   (onVote)="parentVote($event)" 
-   ></u10>
-  
-`,
+  templateUrl: 'app/templates/app.component.html',
 })
 
 export class AppComponent {
@@ -32,11 +19,11 @@ export class AppComponent {
       this.disagree++;
     }
   }
-  @ViewChild(u10Component)
-  private u10cpnt: u10Component;
+  @ViewChild(u11Component)
+  private u11cpnt: u11Component;
 
   changeName(){
-    this.u10cpnt.setName('Change name in Parent');
+    this.u11cpnt.setName('Change name in Parent');
   }
 
 }
