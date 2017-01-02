@@ -10,7 +10,11 @@ import { Component } from '@angular/core';
 })
 
 export class u15Component {
-    onSubmit(form){
+    onSubmit(form: any){
         console.log(form);
     }
+    public cities: any = [
+        {Id: 1, Name: "Ha Noi"},
+        {Id: 2, Name: "HCM"}
+    ];
 }

@@ -1,0 +1,22 @@
+<h2>Services(u18)</h2>
+<ul>
+    <!--<li *ngFor="let employee of employees">{{employee.name}}</li>-->
+</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Status</th>
+            <th>CreateAt</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <td>{{employee.name}}</td>
+            <td>{{employee.age}}</td>
+            <td>{{employee.status}}</td>
+            <td>{{employee.createdAt}}</td>
+        </tr>
+    </tbody>
+</table>
