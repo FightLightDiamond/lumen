@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { u11Component } from './components/u11.component';
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello {{name}} - {{year}}!!!</h1>
-            <my-tutorial></my-tutorial>
-            <img [src]="image" alt="">
-            <input type="text" [value]="welcomeText"> {{welcomeText}}
-            <h4 [style.color]="blueColor?'blue':'green'">You are victory</h4>
-`,
-
+  templateUrl: 'app/templates/app.component.html',
 })
-export class AppComponent  {
-  public name = 'KEENG';
-  public year = 2016;
-  //property binding
-  public image = "http://lorempixel.com/200/200";
-  public welcomeText = "Welcome KEENG";
-  public blueColor = true;
+
+export class AppComponent {
+  title = 'Angular';
+  public agree:number = 0;
+  public disagree:number = 0;
+  public names = ['Mr A', 'Mr B', 'Mr C', 'Mr D'];
+  parentVote(agree:boolean) {
+    if(agree == true) {
+      this.agree++;
+    }else {
+      this.disagree++;
+    }
+  }
+  @ViewChild(u11Component)
+  private u11cpnt: u11Component;
+
+  changeName(){
+    this.u11cpnt.setName('Change name in Parent');
+  }
 }

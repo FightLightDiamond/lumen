@@ -1,0 +1,11 @@
+<h2>{{title | lowercase}}</h2>
+<p>Date today: {{today | date:'yMd'}}</p>
+<p>Percent: {{percentNumber | percent}}</p>
+<p>e (3.1-5): {{e | number: '3.1-5'}}</p>
+<pre>{{object | json}}</pre>
+
+<ul>
+    <li *ngFor="let i of collection | slice:1:5">{{i}}</li>
+</ul>
+
+<p>3 power 5: {{ 3| exponentialStrength: 5}}</p>
