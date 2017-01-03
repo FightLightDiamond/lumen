@@ -9,8 +9,11 @@ import { u11Component } from  './components/u11.component';
 import { u14Component } from  './components/u14.component';
 import { u15Component } from  './components/u15.component';
 import { EmployeeListComponent } from './components/employee.component';
+import { EmployeeDetailComponent } from './components/employee-detail.component';
 import { HomeComponent } from './components/home.component';
 import { NotFoundComponent } from './components/notfound.component';
+import { EmployeeOverviewComponent } from './components/employee-overview.component';
+import { EmployeeProjectComponent } from './components/employee-project.component';
 
 /**
  * End Compnent
@@ -40,8 +43,13 @@ import { appRoutes } from './routes/app.route';
       u11Component,
       u14Component,
       u15Component,
+
       ExponentialStrengthPipe,
       EmployeeListComponent,
+      EmployeeOverviewComponent,
+      EmployeeProjectComponent,
+
+      EmployeeDetailComponent,
       HomeComponent,
       NotFoundComponent
   ],

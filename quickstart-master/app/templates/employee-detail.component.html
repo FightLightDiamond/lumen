@@ -1,0 +1,29 @@
+<h1>Employee detail</h1>
+
+<form *ngIf="employee">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" [value]="employee.name">
+    </div>
+    <div class="form-group">
+        <label >Age</label>
+        <input type="number" class="form-control" value={{employee.id}}>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value={{employee.status}}> Status
+        </label>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            <i class="glyphicon glyphicon-edit"></i>
+            Edit
+        </button>
+        <a class="btn btn-default" [routerLink]="['/employees']">Go back</a>
+        <a class="btn btn-info" [routerLink]="['overview']">Overview</a>
+        <a class="btn btn-success" [routerLink]="['projects']">Project</a>
+    </div>
+
+</form>
+
+<router-outlet></router-outlet>

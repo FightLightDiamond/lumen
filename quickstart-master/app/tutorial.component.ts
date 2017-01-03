@@ -28,11 +28,11 @@ export class TutorialComponent {
     public applyClass = true;
     public title = "VT - TT";
 
-    OnClick(value){
+    OnClick(value: string){
         this.title = value;
         alert('You have click ' + value);
     }
-    MouseOver(e){
+    MouseOver(e:any){
         console.log(e);
     }
 
