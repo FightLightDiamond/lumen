@@ -9,7 +9,8 @@
         "laravel/lumen-framework": "5.3.*",
         "vlucas/phpdotenv": "~2.2",
         "prettus/l5-repository": "^2.6",
-        "tymon/jwt-auth": "^1.0@dev"
+        "tymon/jwt-auth": "^1.0@dev",
+        "barryvdh/laravel-cors": "^0.8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

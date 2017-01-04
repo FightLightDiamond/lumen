@@ -23,7 +23,7 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
  $app->configure('path.storage');
-
+ $app->configure('cors');
  $app->configure('database');
 
  $app->withFacades();
@@ -70,8 +70,11 @@ $app->singleton(
 
  $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,
+     'cors' => Barryvdh\Cors\HandleCors::class,
  ]);
-
+//$app->middleware([
+//
+//]);
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers

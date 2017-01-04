@@ -20,7 +20,11 @@ export class ChartsService {
 
     GetAllWeek(): Observable<any[]> {
         var url = this.rootUrl+this.getAllWeekUrl;
-        return this._http.get(url)
+        return this._http.get(url, {
+            'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+        })
             .map(
                 (response: Response) => response.json()
             );
