@@ -11,6 +11,7 @@
 |
 */
 $app->get('/', function () use ($app) {
+    echo base_path();
     echo phpinfo();
     return $app->version();
 });
@@ -48,11 +49,16 @@ $app->group(['prefix'=> 'app/v1'], function ($app){
     $app->post('/quote', 'QuoteController@store');
     $app->put('/quote/{id}', 'QuoteController@update');
     $app->delete('/quote/{id}', 'QuoteController@destroy');
+
+    $app->group(['prefix' => 'charts'], function ($app) {
+        $app->get('/list-week', 'ChartController@getListWeek');
+        $app->get('/list-song-by-week-and-type/{week_id}/{type}', 'ChartController@getSongByWeekAndType');
+        $app->get('/list-video-by-week-and-type/{week_id}/{type}', 'ChartController@getVideoByWeekAndType');
+    });
 });
 
 $app->get('memcached', function (){
-    /*$memcache = new \Memcached;
-    $memcache->connect('127.0.0.1', 11211);*/
     \Illuminate\Support\Facades\Cache::put("xx", "trte", 30);
     var_dump(\Illuminate\Support\Facades\Cache::get("xx"));
 });
+

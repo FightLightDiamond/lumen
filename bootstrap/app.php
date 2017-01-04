@@ -22,8 +22,9 @@ try {
 $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
+ $app->configure('path.storage');
 
-//$app->configure('database');
+ $app->configure('database');
 
  $app->withFacades();
 
@@ -87,7 +88,8 @@ $app->singleton(
  $app->register(App\Providers\EventServiceProvider::class);
  //$app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
  //$app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
-
+$app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+$app->register(\App\Providers\RepositoryServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -103,6 +105,6 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
 });
 
-//$app->configure('jwt');
+$app->configure('jwt');
 
 return $app;
