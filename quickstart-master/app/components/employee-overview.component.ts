@@ -25,7 +25,7 @@ export class  EmployeeOverviewComponent implements OnInit, OnDestroy{
         this.sub = this.activatedRoute.parent.params.subscribe(
             params => {
                 this.parentRouterId = params['id'];
-                alert('child get id: '+ this.parentRouterId)
+                //alert('child get id: '+ this.parentRouterId)
             }
         );
     }

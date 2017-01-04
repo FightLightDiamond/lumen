@@ -14,7 +14,7 @@ import { HomeComponent } from './components/home.component';
 import { NotFoundComponent } from './components/notfound.component';
 import { EmployeeOverviewComponent } from './components/employee-overview.component';
 import { EmployeeProjectComponent } from './components/employee-project.component';
-
+import { LoginComponent } from './components/login.component';
 /**
  * End Compnent
  */
@@ -51,7 +51,8 @@ import { appRoutes } from './routes/app.route';
 
       EmployeeDetailComponent,
       HomeComponent,
-      NotFoundComponent
+      NotFoundComponent,
+      LoginComponent,
   ],
   providers: [ EmployeeService ],
   bootstrap:    [ AppComponent ]
