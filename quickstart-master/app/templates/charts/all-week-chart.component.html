@@ -1,6 +1,25 @@
 <h2>All Week in Chart</h2>
 <div>
+    <div class="col-lg-1">
+        <a class="btn btn-primary btn-block"><i class="glyphicon glyphicon-plus"></i></a>
+    </div>
     <div class="col-lg-1" *ngFor="let chart of charts">
-        <button class="btn btn-default btn-block">{{chart.week_id}}</button>
+        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-block">{{chart}}</button>
+        <ul class="dropdown-menu">
+            <li><a >Song</a>
+                <ul>
+                    <li><a href="{{chart}}">VN</a></li>
+                    <li><a href="{{chart}}">Asia</a></li>
+                    <li><a href="{{chart}}">US.UK</a></li>
+                </ul>
+            </li>
+            <li><a >Video</a>
+                <ul>
+                    <li><a href="{{chart}}">VN</a></li>
+                    <li><a href="{{chart}}">Asia</a></li>
+                    <li><a href="{{chart}}">US.UK</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>

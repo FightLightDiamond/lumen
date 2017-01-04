@@ -89,10 +89,14 @@ $app->singleton(
  $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
  $app->register(App\Providers\EventServiceProvider::class);
- //$app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
- //$app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
-$app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
-$app->register(\App\Providers\RepositoryServiceProvider::class);
+
+ $app->register(Barryvdh\Cors\LumenServiceProvider::class);
+
+// $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+ $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+
+
+ $app->register(\App\Providers\RepositoryServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

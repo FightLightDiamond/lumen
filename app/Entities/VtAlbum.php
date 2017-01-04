@@ -9,7 +9,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 class VtAlbum extends Model implements Transformable
 {
     use TransformableTrait;
-
+    public $table = 'vt_albums';
     protected $fillable = [];
 
 }

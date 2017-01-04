@@ -10,7 +10,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface VtChartRepository extends RepositoryInterface
 {
-    public function getListWeek();
+    public function getListWeek($type, $area);
     public function getSongByWeekAndType($week_id, $type);
     public function getVideoByWeekAndType($week_id, $type);
 }

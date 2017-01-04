@@ -11,7 +11,7 @@ class VtSong extends Model implements Transformable
 {
     use TransformableTrait;
 
-    public $table = 'vt_song';
+    public $table = 'vt_songs';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

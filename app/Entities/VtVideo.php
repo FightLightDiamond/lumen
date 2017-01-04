@@ -10,7 +10,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 class VtVideo extends Model
 {
-    public $table = 'vt_video';
+    public $table = 'vt_videos';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

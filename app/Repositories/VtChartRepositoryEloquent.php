@@ -24,10 +24,12 @@ class VtChartRepositoryEloquent extends BaseRepository implements VtChartReposit
         return VtChart::class;
     }
 
-    public function getListWeek() {
+    public function getListWeek($type, $area) {
         return $this->makeModel()
-            ->orderBy('week_id', 'desc')
-            ->distinct()->pluck('week_id');
+//            ->where('type', $type)
+//            ->where('area', $area)
+            ->orderBy('week', 'desc')
+            ->distinct()->pluck('week');
     }
 
     public function getSongByWeekAndType($week_id, $type) {

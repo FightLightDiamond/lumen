@@ -10,7 +10,7 @@ class VtChart extends Model implements Transformable
 {
     use TransformableTrait;
 
-    public $table = 'vt_bxh';
+    public $table = 'vt_charts';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

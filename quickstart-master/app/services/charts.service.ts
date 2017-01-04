@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 
 export class ChartsService {
 
-    private rootUrl = 'http://localhost:8080/app/v1/';
+    private rootUrl = 'http://127.0.0.1:8080/app/v1/';
     private getAllWeekUrl = 'charts/list-week';
     private getSongByWeekAndType = 'charts/list-video-by-week-and-type/';
     private getVideoByWeekAndType = 'list-video-by-week-and-type/';
@@ -30,7 +30,7 @@ export class ChartsService {
         var url = this.rootUrl+this.getSongByWeekAndType+week_id+'/'+type;
         return this._http.get(url).map(
             (response: Response) => response.json()
-        );
+        ).catch(this.handleError);;
     }
 
     GetVideoByWeekAndType(week_id:number, type:number): Observable<any[]> {

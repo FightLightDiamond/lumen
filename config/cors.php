@@ -17,11 +17,13 @@ return [
     | to accept any value.
     |
     */
-    'supportsCredentials' => false,
+    'supportsCredentials' => true,
     'allowedOrigins' => ['*'],
     'allowedHeaders' => ['*'], // ex : ['Content-Type', 'Accept']
     'allowedMethods' => ['*'], // ex: ['GET', 'POST', 'PUT',  'DELETE']
     'exposedHeaders' => [],
     'maxAge' => 0,
-    'hosts' => [],
+    'hosts' => [
+       // 'http://localhost:3000/'
+    ],
 ];

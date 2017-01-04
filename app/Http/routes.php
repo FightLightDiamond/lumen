@@ -44,6 +44,7 @@ $app->get('/user', function (){
 });
 
 $app->group(['prefix'=> 'app/v1'], function ($app){
+    header('HTTP/1.0 403 Forbidden', true, 403);
     $app->get('/quote', 'QuoteController@index');
     $app->get('/quote/{id}', 'QuoteController@show');
     $app->post('/quote', 'QuoteController@store');

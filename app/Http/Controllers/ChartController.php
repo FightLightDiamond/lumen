@@ -18,8 +18,8 @@ class ChartController
     {
         $this->repository = $repository;
     }
-    public function getListWeek(){
-        return $this->repository->getListWeek();
+    public function getListWeek($type = 1, $area = 1){
+        return $this->repository->getListWeek($type, $area);
     }
     public function getSongByWeekAndType($week_id, $type){
         return $this->repository->getSongByWeekAndType($week_id, $type);
