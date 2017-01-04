@@ -14,7 +14,11 @@ import { HomeComponent } from './components/home.component';
 import { NotFoundComponent } from './components/notfound.component';
 import { EmployeeOverviewComponent } from './components/employee-overview.component';
 import { EmployeeProjectComponent } from './components/employee-project.component';
-import { LoginComponent } from './components/login.component';
+
+// import { LoginComponent } from './components/login.component';
+
+import { AllWeekChartsComponent } from './components/charts/all-week.component';
+
 /**
  * End Compnent
  */
@@ -25,6 +29,7 @@ import { HttpModule } from '@angular/http';
  * Service
  */
 import { EmployeeService } from  './services/employee.service'
+import { ChartsService } from  './services/charts.service'
 /**
  * Routing
  */
@@ -48,13 +53,17 @@ import { appRoutes } from './routes/app.route';
       EmployeeListComponent,
       EmployeeOverviewComponent,
       EmployeeProjectComponent,
+      AllWeekChartsComponent,
 
       EmployeeDetailComponent,
       HomeComponent,
       NotFoundComponent,
-      LoginComponent,
+     // LoginComponent,
   ],
-  providers: [ EmployeeService ],
+  providers: [
+      EmployeeService,
+      ChartsService
+  ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

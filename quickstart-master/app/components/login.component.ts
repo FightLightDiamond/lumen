@@ -8,7 +8,7 @@ import { Router } from  '@angular/router';
     templateUrl: 'app/templates/login.component.html'
 })
 
-export class loginComponent {
+export class LoginComponent {
     constructor(private router: Router){
 
     }

@@ -11,6 +11,7 @@ import { EmployeeDetailComponent } from '../components/employee-detail.component
 import { NotFoundComponent } from '../components/notfound.component';
 import { EmployeeOverviewComponent } from '../components/employee-overview.component';
 import { EmployeeProjectComponent } from '../components/employee-project.component';
+import { AllWeekChartsComponent } from  '../components/charts/all-week.component'
 
 const routing: Routes = [
     {
@@ -37,6 +38,12 @@ const routing: Routes = [
             }
         ]
     },
+
+    {
+        path: 'charts',
+        component: AllWeekChartsComponent
+    },
+
     {
         path: '**', component: NotFoundComponent
     }

@@ -16,5 +16,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->register(LumenServiceProvider::class);
         $this->app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+        //$this->app->register(\Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
     }
 }
