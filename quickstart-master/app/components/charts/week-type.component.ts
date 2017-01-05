@@ -17,13 +17,13 @@ export class WeekTypeChartsComponent {
     public _week: number;
     public _type: number;
     public type: string;
-    public types: any[] = { 1:'song', 2: 'video', 3: 'album'};
+    public types: any = { 1:'song', 2: 'video', 3: 'album'};
     public items: any[];
-    public areas: any[] = { 1:'VN', 2: 'ASIA', 3: 'U.S.UK'};
+    public areas: any = { 1:'VN', 2: 'ASIA', 3: 'U.S.UK'};
     public area1: any[];
     public area2: any[];
     public area3: any[];
-    public id: number;
+    public _id: number;
     public songs: any[];
 
     constructor(
@@ -32,9 +32,7 @@ export class WeekTypeChartsComponent {
         private chartsService: ChartsService,
         private songService: SongService
     )
-    {
-
-    }
+    {}
     ngOnInit()
     {
         this.subscription = this.activatedRoute
@@ -54,24 +52,32 @@ export class WeekTypeChartsComponent {
                     this.area1 = data.slice(0,10);
                     this.area2 = data.slice(10,20);
                     this.area3 = data.slice(20,30);
-                    // console.log(this.area1);
+                     console.log(this.area1);
                     // console.log(this.area2);
                     // console.log(this.area3);
                 }
             );
     }
-    updateItemChart(id){
-        this.id = id;
+    getItemChart(id: number){
+        this._id = id;
     }
-    searchItem(e){
+    updateItemChart(id: number){
+        this._id = id;
+    }
+    searchItem(e: any){
+
         if(e.which == 13){
             this.songService.SearchSongWithSinger()
                 .subscribe(
                     data => {
-                        this.songs = data.data;
-                        console.log(this.songs)
+                        this.songs = data['data'];
+                        //console.log(data['data'])
                     }
                 );
         }
+    }
+    onSubmit(form: any){
+        console.log(this.id);
+        console.log(form);
     }
 }
