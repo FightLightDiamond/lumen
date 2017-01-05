@@ -52,7 +52,7 @@
                     <input type="hidden" name="id" value="{{id}}">
                     <input type="text" class="form-control" (keydown)="searchItem($event)">
 
-                    <ul class="list-group" *ngIf="songs">
+                    <ul class="list-group">
                         <li *ngFor="let song of songs" class="list-group-item">{{song.name}}</li>
                     </ul>
 

@@ -30,6 +30,7 @@ import { HttpModule } from '@angular/http';
  */
 import { EmployeeService } from  './services/employee.service'
 import { ChartsService } from  './services/charts.service'
+import { SongService } from './services/songs.service';
 /**
  * Routing
  */
@@ -64,7 +65,8 @@ import { appRoutes } from './routes/app.route';
   ],
   providers: [
       EmployeeService,
-      ChartsService
+      ChartsService,
+      SongService
   ],
   bootstrap:    [ AppComponent ]
 })

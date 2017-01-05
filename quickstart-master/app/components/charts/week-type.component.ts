@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChartsService } from '../../services/charts.service';
+import { SongService } from '../../services/songs.service';
 
 @Component({
     selector: 'week-type-charts',
@@ -28,7 +29,8 @@ export class WeekTypeChartsComponent {
     constructor(
         private route: Router,
         private activatedRoute: ActivatedRoute,
-        private service: ChartsService
+        private chartsService: ChartsService,
+        private songService: SongService
     )
     {
 
@@ -45,16 +47,16 @@ export class WeekTypeChartsComponent {
                 }
             );
 
-        this.service.GetWeekAndType(this._week, this._type)
+        this.chartsService.GetWeekAndType(this._week, this._type)
             .subscribe(
                 data => {
                     this.items = data;
                     this.area1 = data.slice(0,10);
                     this.area2 = data.slice(10,20);
                     this.area3 = data.slice(20,30);
-                    console.log(this.area1);
-                    console.log(this.area2);
-                    console.log(this.area3);
+                    // console.log(this.area1);
+                    // console.log(this.area2);
+                    // console.log(this.area3);
                 }
             );
     }
@@ -63,11 +65,11 @@ export class WeekTypeChartsComponent {
     }
     searchItem(e){
         if(e.which == 13){
-            alert('search')
-            this.service.SearchSongWithSinger()
+            this.songService.SearchSongWithSinger()
                 .subscribe(
                     data => {
-                        this.songs = data;
+                        this.songs = data.data;
+                        console.log(this.songs)
                     }
                 );
         }

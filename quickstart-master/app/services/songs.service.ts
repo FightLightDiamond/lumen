@@ -10,9 +10,9 @@ import { Observable } from 'rxjs/Observable';
 export class SongService
 {
     private rootUrl = 'http://127.0.0.1:8080/app/v1/';
-    private searchSongWithSingerUrl = 'search-with-singer';
+    private searchSongWithSingerUrl = 'songs/search-with-singer';
 
-    constructor(private _htpp: Http)
+    constructor(private _http: Http)
     {
 
     }
@@ -20,7 +20,7 @@ export class SongService
     SearchSongWithSinger(): Observable<any[]>
     {
         var url = this.rootUrl + this.searchSongWithSingerUrl;
-        return this._htpp.get(url)
+        return this._http.get(url)
             .map(
                 (response: Response) => response.json()
             )
