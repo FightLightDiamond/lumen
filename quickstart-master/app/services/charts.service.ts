@@ -10,31 +10,33 @@ import { Observable } from 'rxjs/Observable';
 export class ChartsService {
 
     private rootUrl = 'http://127.0.0.1:8080/app/v1/';
-    private getAllWeekUrl = 'charts/list-week';
-    private getSongByWeekAndType = 'charts/list-video-by-week-and-type/';
-    private getVideoByWeekAndType = 'list-video-by-week-and-type/';
+    private getAllWeekUrl = 'charts/list-week/';
+    private getWeekAndType = 'charts/list-video-by-week-and-type/';
+    private createNewWeekUrl = 'charts/';
 
     constructor(private _http: Http) {
 
     }
 
     GetAllWeek(): Observable<any[]> {
-        var url = this.rootUrl+this.getAllWeekUrl;
+        var url = this.rootUrl + this.getAllWeekUrl;
         return this._http.get(url)
             .map(
                 (response: Response) => response.json()
             );
     }
 
-    GetSongByWeekAndType(week_id:number, type:number): Observable<any[]> {
-        var url = this.rootUrl+this.getSongByWeekAndType+week_id+'/'+type;
-        return this._http.get(url).map(
-            (response: Response) => response.json()
-        ).catch(this.handleError);;
+    CreateNewWeek(): Observable<any[]>
+    {
+        var url = this.rootUrl + this.createNewWeekUrl;
+        return this._http.get(url)
+            .map(
+                (response: Response) => response.json()
+            );
     }
 
-    GetVideoByWeekAndType(week_id:number, type:number): Observable<any[]> {
-        var url = this.rootUrl+this.getVideoByWeekAndType+week_id+'/'+type;
+    GetWeekAndType(week:number, type:number): Observable<any[]> {
+        var url = this.rootUrl+this.getWeekAndType+week+'/'+type;
         return this._http.get(url).map(
             (response: Response) => response.json()
         );

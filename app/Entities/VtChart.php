@@ -21,9 +21,8 @@ class VtChart extends Model implements Transformable
         'type',
         'point',
         'rank',
-        'is_active',
-        'country_code'
-    ];
+        'is_active'
+        ];
 
     /**
      * The attributes that should be casted to native types.
@@ -32,12 +31,12 @@ class VtChart extends Model implements Transformable
      */
     protected $casts = [
         'id' => 'integer',
-        'week_id' => 'integer',
-        'year' => 'integer',
-        'type' => 'string',
+        'week' => 'integer',
+        'item_id' => 'integer',
+        'type' => 'integer',
+        'point' => 'integer',
         'rank' => 'integer',
-        'kichhoat' => 'boolean',
-        'country_code' => 'string'
+        'is_active' => 'boolean',
     ];
 
     public function item(){
@@ -52,61 +51,46 @@ class VtChart extends Model implements Transformable
         }
     }
 
-    public function video(){
-        return $this->belongsTo(VtVideo::class, 'video_id');
-    }
-
-    public function song(){
-        return $this->belongsTo(VtSong::class);
-    }
-
     public function scopeFilter($query , $input){
-        if(isset($input['week_id']) && $input['week_id']!=""){
-            $query->where($this->table.'.week_id', trim($input['week_id']));
+        if(isset($input['week']) && $input['week']!=""){
+            $query->where($this->table.'.week', trim($input['week']));
         }
-        if(isset($input['year']) && $input['year']!=""){
-            $query->where($this->table.'.year', trim($input['year']));
+        if(isset($input['area']) && $input['area']!=""){
+            $query->where($this->table.'.area', trim($input['area']));
         }
         if(isset($input['type'])) $query->where('type', $input['type']);
         return $query;
     }
 
-    public function scopeRelation($query, $song)
-    {
-        if (isset($song)) {
-            if ($song == 1)
-                $query->where('song_id', '!=', '')->where('song_id', '!=', null)->with('song');
-            else $query->where('video_id', '!=', '')->where('video_id', '!=', null)->with('video');
-        }
+    public function scopeRelation($query , $selector = '*'){
+        $query->with(['item' => function ($query) use($selector){
+            $query->select($selector);
+        }]);
         return $query;
     }
 
-    public function scopeOrder($query, $input){
+    public function scopeOrder($query, $input=NULL){
+        if($input===NULL) $query->orderBy('week', 'ASC');
         if(isset($input['order_by'])) $query->orderBy($this->table.'.'.$input['order_by'], $input['order']);
-        $query->orderBy($this->table.'.year', 'DESC');
-        $query->orderBy($this->table.'.week_id', 'DESC');
-        $query->orderBy($this->table.'.rank', 'DESC');
         return $query;
     }
 
-    public $checkbox = ['kichhoat'];
+    public $checkbox = ['is_active'];
+
 
     public function setWeekIdAttribute($value)
     {
-        $this->attributes['week_id'] = (trim($value));
+        $this->attributes['week'] = (trim($value));
     }
     public function setYearAttribute($value)
     {
         $this->attributes['year'] = (trim($value));
     }
-    public function setSongIdAttribute($value)
+    public function setItemIdAttribute($value)
     {
-        $this->attributes['song_id'] = (trim($value));
+        $this->attributes['item_id'] = (trim($value));
     }
-    public function setVideoIdAttribute($value)
-    {
-        $this->attributes['video_id'] = (trim($value));
-    }
+
     public function setTypeAttribute($value)
     {
         $this->attributes['type'] = (trim($value));
@@ -119,13 +103,8 @@ class VtChart extends Model implements Transformable
     {
         $this->attributes['rank'] = (trim($value));
     }
-    public function setKichhoatAttribute($value)
+    public function setIsActiveAttribute($value)
     {
         $this->attributes['kichhoat'] = (trim($value));
     }
-    public function setCountryCodeAttribute($value)
-    {
-        $this->attributes['country_code'] = (trim($value));
-    }
-
 }

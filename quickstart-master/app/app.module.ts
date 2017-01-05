@@ -18,7 +18,7 @@ import { EmployeeProjectComponent } from './components/employee-project.componen
 // import { LoginComponent } from './components/login.component';
 
 import { AllWeekChartsComponent } from './components/charts/all-week.component';
-
+import { WeekTypeChartsComponent } from  './components/charts/week-type.component';
 /**
  * End Compnent
  */
@@ -53,7 +53,9 @@ import { appRoutes } from './routes/app.route';
       EmployeeListComponent,
       EmployeeOverviewComponent,
       EmployeeProjectComponent,
+
       AllWeekChartsComponent,
+      WeekTypeChartsComponent,
 
       EmployeeDetailComponent,
       HomeComponent,

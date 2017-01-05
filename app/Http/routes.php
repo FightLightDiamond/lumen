@@ -53,8 +53,9 @@ $app->group(['prefix'=> 'app/v1'], function ($app){
 
     $app->group(['prefix' => 'charts', 'middleware' => 'cors'], function ($app) {
         $app->get('/list-week', 'ChartController@getListWeek');
-        $app->get('/list-song-by-week-and-type/{week_id}/{type}', 'ChartController@getSongByWeekAndType');
-        $app->get('/list-video-by-week-and-type/{week_id}/{type}', 'ChartController@getVideoByWeekAndType');
+        $app->get('/list-items-by-week-and-type/{week_id}/{type}', 'ChartController@getItemByWeekAndType');
+        $app->get('/data', 'ChartController@getData');
+        $app->get('', 'ChartController@create');
     });
 });
 

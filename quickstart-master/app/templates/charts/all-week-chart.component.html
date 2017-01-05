@@ -1,23 +1,33 @@
 <h2>All Week in Chart</h2>
 <div>
-    <div class="col-lg-1">
-        <a class="btn btn-primary btn-block"><i class="glyphicon glyphicon-plus"></i></a>
+    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-6 form-group">
+        <a (click)="ngOnCreate()" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-plus"></i></a>
     </div>
-    <div class="col-lg-1" *ngFor="let chart of charts">
-        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-default btn-block">{{chart}}</button>
+    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-6 form-group" *ngFor="let week of weeks">
+        <button class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" class="btn btn-default
+                btn-block">{{week}}</button>
         <ul class="dropdown-menu">
-            <li><a >Song</a>
+            <li><a routerLink="{{week}}/1">Song</a>
                 <ul>
-                    <li><a href="{{chart}}">VN</a></li>
-                    <li><a href="{{chart}}">Asia</a></li>
-                    <li><a href="{{chart}}">US.UK</a></li>
+                    <li><a routerLink="{{week}}/1/1">VN</a></li>
+                    <li><a routerLink="{{week}}/1/2">Asia</a></li>
+                    <li><a routerLink="{{week}}/1/3">US.UK</a></li>
                 </ul>
             </li>
-            <li><a >Video</a>
+            <li><a routerLink="{{week}}/2">Video</a>
                 <ul>
-                    <li><a href="{{chart}}">VN</a></li>
-                    <li><a href="{{chart}}">Asia</a></li>
-                    <li><a href="{{chart}}">US.UK</a></li>
+                    <li><a routerLink="{{week}}/2/1">VN</a></li>
+                    <li><a routerLink="{{week}}/2/2">Asia</a></li>
+                    <li><a routerLink="{{week}}/2/3">US.UK</a></li>
+                </ul>
+            </li>
+            <li><a routerLink="{{week}}/3">Album</a>
+                <ul>
+                    <li><a routerLink="{{week}}/3/1">VN</a></li>
+                    <li><a routerLink="{{week}}/3/2">Asia</a></li>
+                    <li><a routerLink="{{week}}/3/3">US.UK</a></li>
                 </ul>
             </li>
         </ul>

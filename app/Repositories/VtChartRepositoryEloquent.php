@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\VtChartRepository;
@@ -23,38 +24,56 @@ class VtChartRepositoryEloquent extends BaseRepository implements VtChartReposit
     {
         return VtChart::class;
     }
-
+    public function store(){
+        $maxWeek = $this->makeModel()->max('week');
+        $newWeek = ++$maxWeek;
+        return $this->renderNoItem($newWeek);
+    }
+    private function renderNoItem($newWeek){
+        $items = NULL;
+        $now = Carbon::now();
+        for ($type = 1; $type <= 3; $type++)
+        {
+            for($area = 1; $area <=3; $area++)
+            {
+                for($rank = 1; $rank <= 10; $rank++)
+                {
+                    $items[] = [
+                        'type' => $type,
+                        'area' => $area,
+                        'rank' => $rank,
+                        'week' => $newWeek,
+                        'created_at' => $now
+                    ];
+                }
+            }
+        }
+        return $this->makeModel()->insert($items);
+    }
     public function getListWeek($type, $area) {
         return $this->makeModel()
-//            ->where('type', $type)
-//            ->where('area', $area)
             ->orderBy('week', 'desc')
             ->distinct()->pluck('week');
     }
 
-    public function getSongByWeekAndType($week_id, $type) {
-        $isMedia = ['song_id', 'song'];
-        return $this->getItems($week_id, $type, $isMedia);
-    }
-
-    public function getVideoByWeekAndType($week_id, $type) {
-        $isMedia = ['video_id', 'video'];
-        return $this->getItems($week_id, $type, $isMedia);
-    }
-
-    private function getItems($week_id, $type, $isMedia){
+    public function getItemsAndType($week, $type) {
         return $this->makeModel()
-            ->where('week_id', $week_id)
+            ->where('week', $week)
             ->where('type', $type)
-            ->where($isMedia[0], '!=', NULL)
-            ->where($isMedia[0], '!=', '')
             ->orderBy('rank', 'DESC')
-            ->with([$isMedia[1] => function ($query) {
+            ->with(['item' => function ($query) {
                 $query->select('id', 'name');
             }])
             ->get();
     }
 
+    public function getData($input){
+        return $this->makeModel()
+                ->filter($input)
+                ->order($input)
+                ->relation(['id', 'name'])
+                ->get();
+    }
     /**
      * Boot up the repository, pushing criteria
      */

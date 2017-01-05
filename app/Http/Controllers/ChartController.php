@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Repositories\VtChartRepository;
+use Illuminate\Http\Request;
 
 class ChartController
 {
@@ -18,13 +19,24 @@ class ChartController
     {
         $this->repository = $repository;
     }
-    public function getListWeek($type = 1, $area = 1){
-        return $this->repository->getListWeek($type, $area);
+    public function getListWeek($type = 1, $area = 1)
+    {
+        $data = $this->repository->getListWeek($type, $area);
+        return response()->json($data);
     }
-    public function getSongByWeekAndType($week_id, $type){
-        return $this->repository->getSongByWeekAndType($week_id, $type);
+    public function getItemsAndType($week, $type)
+    {
+        $data = $this->repository->getItemsAndType($week, $type);
+        return response()->json($data);
     }
-    public function getVideoByWeekAndType($week_id, $type){
-        return $this->repository->getVideoByWeekAndType($week_id, $type);
+    public function getData(Request $request)
+    {
+        $input = $request->all();
+        $data = $this->repository->getData($input);
+        return response()->json($data);
+    }
+    public function create(){
+        $data = $this->repository->store();
+        return response()->json($data);
     }
 }

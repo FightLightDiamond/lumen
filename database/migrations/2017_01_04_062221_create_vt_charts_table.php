@@ -15,12 +15,13 @@ class CreateVtChartsTable extends Migration
 	{
 		Schema::create('vt_charts', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('item_id')->unsigned();
+            $table->integer('item_id')->unsigned()->nullable();
             $table->integer('week')->unsigned();;
             $table->tinyInteger('rank')->unsigned();;
             $table->integer('point')->unsigned();;
             $table->tinyInteger('area')->unsigned();;
             $table->tinyInteger('type')->unsigned();;
+            $table->tinyInteger('is_active')->unsigned();;
             $table->timestamps();
 		});
 	}
