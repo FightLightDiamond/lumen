@@ -7,7 +7,6 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\VtChartRepository;
 use App\Entities\VtChart;
-use App\Validators\VtChartValidator;
 
 /**
  * Class VtChartRepositoryEloquent
@@ -55,18 +54,17 @@ class VtChartRepositoryEloquent extends BaseRepository implements VtChartReposit
             ->orderBy('week', 'desc')
             ->distinct()->pluck('week');
     }
-
     public function getItemsAndType($week, $type) {
         return $this->makeModel()
             ->where('week', $week)
             ->where('type', $type)
-            ->orderBy('rank', 'DESC')
+            ->orderBy('area')
+            ->orderBy('rank')
             ->with(['item' => function ($query) {
                 $query->select('id', 'name');
             }])
             ->get();
     }
-
     public function getData($input){
         return $this->makeModel()
                 ->filter($input)

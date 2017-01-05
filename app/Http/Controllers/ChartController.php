@@ -24,7 +24,7 @@ class ChartController
         $data = $this->repository->getListWeek($type, $area);
         return response()->json($data);
     }
-    public function getItemsAndType($week, $type)
+    public function getItemByWeekAndType($week, $type)
     {
         $data = $this->repository->getItemsAndType($week, $type);
         return response()->json($data);
@@ -37,6 +37,17 @@ class ChartController
     }
     public function create(){
         $data = $this->repository->store();
+        return response()->json($data);
+    }
+    public function update($id, Request $request){
+        $data = $this->repository->update($request->all(), $id);
+        return response()->json($data);
+    }
+    public function active(Request $request){
+        $input = $request->all();
+        $data = $this->repository->makeModel()
+            ->whereIn('id', $input['id'])
+            ->update(['is_active', $input['is_active']]);
         return response()->json($data);
     }
 }

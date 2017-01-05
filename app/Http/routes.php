@@ -43,19 +43,22 @@ $app->get('/user', function (){
     return $user = \Tymon\JWTAuth\Facades\JWTAuth::parseToken()->authenticate();
 });
 
-$app->group(['prefix'=> 'app/v1'], function ($app){
-    header('HTTP/1.0 403 Forbidden', true, 403);
+$app->group(['prefix'=> 'app/v1', 'middleware' => 'cors'], function ($app){
     $app->get('/quote', 'QuoteController@index');
     $app->get('/quote/{id}', 'QuoteController@show');
     $app->post('/quote', 'QuoteController@store');
     $app->put('/quote/{id}', 'QuoteController@update');
     $app->delete('/quote/{id}', 'QuoteController@destroy');
 
-    $app->group(['prefix' => 'charts', 'middleware' => 'cors'], function ($app) {
+    $app->group(['prefix' => 'charts'], function ($app) {
         $app->get('/list-week', 'ChartController@getListWeek');
-        $app->get('/list-items-by-week-and-type/{week_id}/{type}', 'ChartController@getItemByWeekAndType');
+        $app->get('/items-by-week-and-type/{week}/{type}', 'ChartController@getItemByWeekAndType');
         $app->get('/data', 'ChartController@getData');
         $app->get('', 'ChartController@create');
+    });
+
+    $app->group(['prefix' => 'songs'], function ($app) {
+        $app->get('/search-with-singer', 'SongController@searchWithSinger');
     });
 });
 

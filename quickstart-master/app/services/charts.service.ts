@@ -11,7 +11,7 @@ export class ChartsService {
 
     private rootUrl = 'http://127.0.0.1:8080/app/v1/';
     private getAllWeekUrl = 'charts/list-week/';
-    private getWeekAndType = 'charts/list-video-by-week-and-type/';
+    private getWeekAndType = 'charts/items-by-week-and-type/';
     private createNewWeekUrl = 'charts/';
 
     constructor(private _http: Http) {

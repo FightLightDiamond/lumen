@@ -30,9 +30,11 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
                 this._id = params['id'];
             });
         this.employeeService.GetSingle(this._id)
-            .subscribe((data) => {
-                this.employee = data;
-            });
+            .subscribe(
+                (data) => {
+                    this.employee = data;
+                }
+            );
     }
     ngOnDestroy (){
         this.subscription.unsubscribe();

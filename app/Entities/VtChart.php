@@ -105,6 +105,6 @@ class VtChart extends Model implements Transformable
     }
     public function setIsActiveAttribute($value)
     {
-        $this->attributes['kichhoat'] = (trim($value));
+        $this->attributes['is_active'] = (trim($value));
     }
 }
