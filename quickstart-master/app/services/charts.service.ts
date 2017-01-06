@@ -13,7 +13,7 @@ export class ChartsService {
     private getAllWeekUrl = 'charts/list-week/';
     private getWeekAndType = 'charts/items-by-week-and-type/';
     private createNewWeekUrl = 'charts/';
-
+    private updateUrl = 'charts/';
     constructor(private _http: Http) {
 
     }
@@ -35,9 +35,18 @@ export class ChartsService {
             );
     }
 
-    GetWeekAndType(week:number, type:number): Observable<any[]> {
-        var url = this.rootUrl+this.getWeekAndType+week+'/'+type;
+    GetWeekAndType(week: number, type: number): Observable<any[]>
+    {
+        var url = this.rootUrl + this.getWeekAndType + week + '/' + type;
         return this._http.get(url).map(
+            (response: Response) => response.json()
+        );
+    }
+
+    update(id:number, data: any): Observable<any[]>
+    {
+        var url = this.rootUrl + this.updateUrl + id;
+        return this._http.put(url, data).map(
             (response: Response) => response.json()
         );
     }

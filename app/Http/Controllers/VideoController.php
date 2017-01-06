@@ -9,7 +9,17 @@
 namespace App\Http\Controllers;
 
 
+use App\Repositories\VtVideoRepository;
+
 class VideoController
 {
-
+    protected $repository;
+    public function __construct(VtVideoRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+    public function searchWithSinger(){
+        $data = $this->repository->simplePaginate(10, ['id', 'name']);
+        return response()->json($data);
+    }
 }

@@ -31,6 +31,8 @@ import { HttpModule } from '@angular/http';
 import { EmployeeService } from  './services/employee.service'
 import { ChartsService } from  './services/charts.service'
 import { SongService } from './services/songs.service';
+import { VideoService} from './services/video.service';
+import { AlbumService} from './services/album.service';
 /**
  * Routing
  */
@@ -66,7 +68,9 @@ import { appRoutes } from './routes/app.route';
   providers: [
       EmployeeService,
       ChartsService,
-      SongService
+      SongService,
+      VideoService,
+      AlbumService
   ],
   bootstrap:    [ AppComponent ]
 })

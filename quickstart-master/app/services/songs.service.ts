@@ -10,16 +10,16 @@ import { Observable } from 'rxjs/Observable';
 export class SongService
 {
     private rootUrl = 'http://127.0.0.1:8080/app/v1/';
-    private searchSongWithSingerUrl = 'songs/search-with-singer';
+    private searchWithSingerUrl = 'songs/search-with-singer';
 
     constructor(private _http: Http)
     {
 
     }
 
-    SearchSongWithSinger(): Observable<any[]>
+    SearchWithSinger(): Observable<any[]>
     {
-        var url = this.rootUrl + this.searchSongWithSingerUrl;
+        var url = this.rootUrl + this.searchWithSingerUrl;
         return this._http.get(url)
             .map(
                 (response: Response) => response.json()

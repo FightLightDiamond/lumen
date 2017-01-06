@@ -55,10 +55,17 @@ $app->group(['prefix'=> 'app/v1', 'middleware' => 'cors'], function ($app){
         $app->get('/items-by-week-and-type/{week}/{type}', 'ChartController@getItemByWeekAndType');
         $app->get('/data', 'ChartController@getData');
         $app->get('', 'ChartController@create');
+        $app->put('/{id}', 'ChartController@update');
     });
 
     $app->group(['prefix' => 'songs'], function ($app) {
         $app->get('/search-with-singer', 'SongController@searchWithSinger');
+    });
+    $app->group(['prefix' => 'videos'], function ($app) {
+        $app->get('/search-with-singer', 'VideoController@searchWithSinger');
+    });
+    $app->group(['prefix' => 'albums'], function ($app) {
+        $app->get('/search-with-singer', 'AlbumController@searchWithSinger');
     });
 });
 

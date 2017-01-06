@@ -1,0 +1,17 @@
+.list-group-item:hover{
+    background: silver;
+}
+.list-group-item.active:hover{
+    background: #2b669a;
+}
+input[type="radio"] {
+    border-radius: 10px;
+    height: 19px;
+    width: 17px;
+}
+input[type="radio"]:after {
+
+}
+input[type="radio"]:checked:after {
+
+}
