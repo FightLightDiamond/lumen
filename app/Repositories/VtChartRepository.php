@@ -12,6 +12,6 @@ interface VtChartRepository extends RepositoryInterface
 {
     public function store();
     public function getListWeek($type, $area);
-    public function getItemsAndType($week, $type);
+    public function getDataByWeekAndType($week, $type);
     public function getData($input);
 }

@@ -56,14 +56,18 @@ $app->group(['prefix'=> 'app/v1', 'middleware' => 'cors'], function ($app){
         $app->get('/data', 'ChartController@getData');
         $app->get('', 'ChartController@create');
         $app->put('/{id}', 'ChartController@update');
+        $app->get('actually', 'ChartController@getActually');
+        $app->post('active', 'ChartController@setActive');
     });
 
     $app->group(['prefix' => 'songs'], function ($app) {
         $app->get('/search-with-singer', 'SongController@searchWithSinger');
     });
+
     $app->group(['prefix' => 'videos'], function ($app) {
         $app->get('/search-with-singer', 'VideoController@searchWithSinger');
     });
+
     $app->group(['prefix' => 'albums'], function ($app) {
         $app->get('/search-with-singer', 'AlbumController@searchWithSinger');
     });

@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'u15',
     templateUrl: 'app/templates/u15.component.html',
-    styleUrls: ['app/styles/u15.component.css']
+    styleUrls : [
+        'app/styles/validate.css'
+    ]
 })
 
 export class u15Component {

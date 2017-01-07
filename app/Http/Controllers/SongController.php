@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\VtSongRepository;
+use Illuminate\Http\Request;
 
 class SongController
 {
@@ -17,8 +18,13 @@ class SongController
     {
         $this->repository = $repository;
     }
-    public function searchWithSinger(){
-        $data = $this->repository->simplePaginate(10, ['id', 'name']);
+    public function searchWithSinger(Request $request){
+        $input = $request->all();
+        $data = $this->repository
+            ->makeModel()
+            ->where('name', 'like', '%'.$input['name'].'%')
+            ->select(['id', 'name'])
+            ->simplePaginate(10);
         return response()->json($data);
     }
 }

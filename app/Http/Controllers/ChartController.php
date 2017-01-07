@@ -26,7 +26,7 @@ class ChartController
     }
     public function getItemByWeekAndType($week, $type)
     {
-        $data = $this->repository->getItemsAndType($week, $type);
+        $data = $this->repository->getDataByWeekAndType($week, $type);
         return response()->json($data);
     }
     public function getData(Request $request)
@@ -46,8 +46,33 @@ class ChartController
     public function active(Request $request){
         $input = $request->all();
         $data = $this->repository->makeModel()
-            ->whereIn('id', $input['id'])
+            ->whereIn('week', $input['week'])
+            ->whereIn('type', $input['type'])
             ->update(['is_active', $input['is_active']]);
+        return response()->json($data);
+    }
+    public function getActually(){
+        $input['orders'] = [
+            'week' =>'desc',
+            'type' => 'asc',
+            'area' => 'asc',
+            'rank' => 'asc',
+        ];
+        $input['limit'] = 90;
+        //$const = config('constQuery.charts.getCurrentChart');
+        $data = $this->repository->makeModel()
+            //->where('is_active', 1)
+            ->orders($input['orders'] )
+            ->relation(['id', 'name'])
+            ->limit(90)
+            ->get();
+        return response()->json($data);
+    }
+    public function setActive(Request $request){
+        $input = $request->all();
+        $data = $this->repository->makeModel()
+            ->where('week', $input['week'])
+            ->update(['is_active' => $input['is_active']]);
         return response()->json($data);
     }
 }

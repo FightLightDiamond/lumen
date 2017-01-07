@@ -4,6 +4,10 @@ import { u11Component } from './components/u11.component';
 @Component({
   selector: 'my-app',
   templateUrl: 'app/templates/app.component.html',
+  styleUrls : [
+      'app/styles/validate.css'
+  ]
+
 })
 
 export class AppComponent {

@@ -36,7 +36,7 @@
                 data-toggle="modal" data-target="#searchModal"
             >
                 {{ item.rank }}. {{item.item ? item.item.name : '----' }}
-                <i class="glyphicon {{item.is_active===1 || active == true ? '' : 'glyphicon-remove pull-right'}}"></i>
+                <i class="glyphicon {{item.is_active == 1 || active == true ? '' : 'glyphicon-remove pull-right'}}"></i>
             </li>
         </div>
     </div>
@@ -47,7 +47,7 @@
         <form class="modal-content" #chartsForm="ngForm">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="searchModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="searchModalLabel">{{typeNames[typeNo]}} title</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">

@@ -17,9 +17,9 @@ export class SongService
 
     }
 
-    SearchWithSinger(): Observable<any[]>
+    SearchWithSinger(params): Observable<any[]>
     {
-        var url = this.rootUrl + this.searchWithSingerUrl;
+        var url = this.rootUrl + this.searchWithSingerUrl + params;
         return this._http.get(url)
             .map(
                 (response: Response) => response.json()

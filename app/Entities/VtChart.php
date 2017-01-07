@@ -5,10 +5,12 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use App\MultiInheritance\ModelsTrait;
 
 class VtChart extends Model implements Transformable
 {
     use TransformableTrait;
+    use ModelsTrait;
 
     public $table = 'vt_charts';
     const CREATED_AT = 'created_at';
@@ -51,7 +53,7 @@ class VtChart extends Model implements Transformable
         }
     }
 
-    public function scopeFilter($query , $input){
+    public function scopeFilter($query, $input){
         if(isset($input['week']) && $input['week']!=""){
             $query->where($this->table.'.week', trim($input['week']));
         }
@@ -69,14 +71,18 @@ class VtChart extends Model implements Transformable
         return $query;
     }
 
-    public function scopeOrder($query, $input=NULL){
-        if($input===NULL) $query->orderBy('week', 'ASC');
-        if(isset($input['order_by'])) $query->orderBy($this->table.'.'.$input['order_by'], $input['order']);
+    public function scopeOrder($query, $input = NULL){
+        if($input === NULL) {
+            $query->orderBy('week', 'ASC');
+        }
+        if(isset($input['order_by']))
+        {
+            $query->orderBy($this->table.'.'.$input['order_by'], $input['order']);
+        }
         return $query;
     }
 
     public $checkbox = ['is_active'];
-
 
     public function setWeekIdAttribute($value)
     {

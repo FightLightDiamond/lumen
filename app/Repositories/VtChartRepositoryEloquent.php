@@ -33,7 +33,7 @@ class VtChartRepositoryEloquent extends BaseRepository implements VtChartReposit
         $now = Carbon::now();
         for ($type = 1; $type <= 3; $type++)
         {
-            for($area = 1; $area <=3; $area++)
+            for($area = 1; $area <= 3; $area++)
             {
                 for($rank = 1; $rank <= 10; $rank++)
                 {
@@ -54,7 +54,7 @@ class VtChartRepositoryEloquent extends BaseRepository implements VtChartReposit
             ->orderBy('week', 'desc')
             ->distinct()->pluck('week');
     }
-    public function getItemsAndType($week, $type) {
+    public function getDataByWeekAndType($week, $type) {
         return $this->makeModel()
             ->where('week', $week)
             ->where('type', $type)

@@ -23,8 +23,8 @@ export class WeekTypeChartsComponent {
     public _type: number;
     public typeName: string;
     public typeNames: any = { 1:'song', 2: 'video', 3: 'album'};
-    public items: any[];
     public areaNames: any = { 1:'VN', 2: 'ASIA', 3: 'U.S.UK'};
+    public items: any[];
     public charts: any[];
     public itemKey:number;
     public active: boolean = false;
@@ -65,11 +65,10 @@ export class WeekTypeChartsComponent {
         this.chartsService.GetWeekAndType(this._week, this._type)
             .subscribe(
                 data => {
-                    var result = [];
-                    result.push(data.slice(0,10));
-                    result.push(data.slice(10,20));
-                    result.push(data.slice(20,30));
-                    this.charts = result;
+                    this.charts = [];
+                    this.charts.push(data.slice(0,10));
+                    this.charts.push(data.slice(10,20));
+                    this.charts.push(data.slice(20,30));
                     console.log(this.charts);
                 }
             );
@@ -95,8 +94,11 @@ export class WeekTypeChartsComponent {
         this.chartsService.update(this.chartsId, formData)
             .subscribe(
                 data => {
-                    this.charts[this.areaNo][this.areaKey].item = this.items[this.itemKey];
-                    this.charts[this.areaNo][this.areaKey].item_id = this.items[this.itemKey].id;
+                    if(data)
+                    {
+                        this.charts[this.areaNo][this.areaKey].item = this.items[this.itemKey];
+                        this.charts[this.areaNo][this.areaKey].item_id = this.items[this.itemKey].id;
+                    }
                 }
             )
     }

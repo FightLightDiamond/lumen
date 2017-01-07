@@ -16,9 +16,9 @@ export class VideoService
         private _http: Http,
     ){}
 
-    SearchWithSinger(): Observable<any[]>
+    SearchWithSinger(params): Observable<any[]>
     {
-        return this._http.get(this.baseUrl + this.searchWithSingerUrl)
+        return this._http.get(this.baseUrl + this.searchWithSingerUrl, params)
             .map(
                 (response: Response) => response.json()
             );
