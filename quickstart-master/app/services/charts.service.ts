@@ -19,6 +19,7 @@ export class ChartsService {
     private updateUrl = 'charts/';
     private getActuallyUrl = 'charts/actually';
     private activeUrl = 'charts/active';
+
     constructor(private _http: Http) {
 
     }

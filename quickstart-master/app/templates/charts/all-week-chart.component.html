@@ -99,11 +99,15 @@
                             Name can not has more than 32 characters
                         </div>
                     </div>
-                    <button class="btn btn-primary"> Search</button>
+                    <p class="text-info">
+                        Please key down press enter to search
+                    </p>
+                    <div class="text-right">
+                        <button class="btn btn-primary" [disabled]="!itemName.valid" > Search</button>
+                    </div>
+
                 </div>
-                <p class="text-info">
-                    Please key down press enter to search
-                </p>
+
                 <!--Link-->
                 <nav aria-label="..." [hidden] = "hiddenItemLinks">
                     <ul class="pager">
@@ -136,7 +140,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" data-dismiss="modal" (click)="updateChart(chartsForm.value)" class="btn btn-primary">
+                <button type="button" [disabled]="!chartsForm.valid" data-dismiss="modal" (click)="updateChart(chartsForm.value)" class="btn btn-primary">
                     Done
                 </button>
             </div>

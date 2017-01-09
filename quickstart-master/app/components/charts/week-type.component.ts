@@ -60,8 +60,6 @@ export class WeekTypeChartsComponent {
     }
 
     private resetItems(){
-        const TYPE_NAMES: any = { 1:'song', 2: 'video', 3: 'album'};
-        const AREA_NAMES: any = { 1:'VN', 2: 'ASIA', 3: 'U.S.UK'};
         this.items = [];
     }
     private getByWeekAndType(){
