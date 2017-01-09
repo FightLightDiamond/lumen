@@ -2,12 +2,19 @@
  * Created by e on 1/4/17.
  */
 import { Component } from '@angular/core';
-import { ChartsService } from '../../services/charts.service';
-
 import { Subscription } from 'rxjs';
+/**
+ * Services
+ */
+import { ChartsService } from '../../services/charts.service';
 import { SongService } from '../../services/songs.service';
 import { VideoService } from '../../services/video.service';
 import { AlbumService } from '../../services/album.service';
+/**
+ * Config
+ */
+import { CHART_NAMES, PAGINATE } from '../../config/charts'
+import { error } from '../../config/errors'
 
 // import { CustomFormsModule } from 'ng2-validation'
 
@@ -15,17 +22,17 @@ import { AlbumService } from '../../services/album.service';
     selector: 'all-week-chart',
     templateUrl: 'app/templates/charts/all-week-chart.component.html',
     styleUrls : [
-        'app/styles/validate.css'
+        'app/styles/validate.css',
+        'app/styles/charts/week-type.component.css'
     ],
     providers: [ChartsService, SongService, VideoService, AlbumService],
 })
 
 export class AllWeekChartsComponent{
-    public areaNames: any = { 0:'VN', 1: 'ASIA', 2: 'U.S.UK'};
-    public typeNames: any = { 0:'Song', 1: 'Video', 2: 'Album'};
+    public areaNames: any = CHART_NAMES.AREAS;
+    public typeNames: any = CHART_NAMES.TYPES;
     public weeks : any[];
     public charts: any[][];
-
    // public subscription: Subscription;
     public _week: number;
     public typeNo: number;
@@ -36,6 +43,13 @@ export class AllWeekChartsComponent{
     public areaNo: number;
     public rankNo: number;
     public chartsId: number;
+    //Paginate
+    private hiddenItemLinks: boolean = true;
+    private showPreviousItemLinks: boolean = false;
+    private showNextItemLinks: boolean = false;
+    private currentPageItemLinks: number = 1;
+    private pointDefault: number = 1000;
+    private numberItem = PAGINATE.NUMBER_ITEM;
 
     constructor(
         private chartsService: ChartsService,
@@ -74,11 +88,11 @@ export class AllWeekChartsComponent{
     private buildCharts(res: any[][]){
         this.charts = [[], [], []];
         var index = 0;
-        var numberItem = 10;
+        var numberItem = this.numberItem;
         for(var i = 1; i <= 9; i++)
         {
             this.charts[index].push(
-                res.slice(i*numberItem - numberItem, i*numberItem)
+                res.slice(i * numberItem - numberItem, i * numberItem)
             );
             if(i%3 == 0)
             {
@@ -136,11 +150,6 @@ export class AllWeekChartsComponent{
                 }
             )
     }
-    private hiddenItemLinks: boolean = true;
-    private showPreviousItemLinks: boolean = false;
-    private showNextItemLinks: boolean = false;
-    private currentPageItemLinks: number = 1;
-    private pointDefault: number = 1000;
     searchItem(formData: any, numPage: number = 1){
         var params: string = '?name=' + formData.itemName + '& singer_name=' + formData.singerName + '&page='+numPage;
         if(this.typeNo == 0){
@@ -176,13 +185,13 @@ export class AllWeekChartsComponent{
     }
     private setItemLinks(data: any)
     {
-        if(data.to === 10) {
+        if(data.to === this.numberItem) {
             this.showNextItemLinks = true;
         } else {
             this.showNextItemLinks = false;
         }
 
-        if(data.to < 10 && data.current_page === 1) {
+        if(data.to < this.numberItem && data.current_page === 1) {
             this.hiddenItemLinks = true;
         } else {
             this.hiddenItemLinks = false;
@@ -220,8 +229,6 @@ export class AllWeekChartsComponent{
     }
 
     private error(){
-        alert('Hệ thống đang bị Hacker tấn công vui lòng thông báo kỹ thuật viên');
+        error()
     }
-
-
 }

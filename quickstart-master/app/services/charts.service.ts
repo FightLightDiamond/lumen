@@ -4,12 +4,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+/**
+ * Config
+ */
+import { BASE_URL } from '../config/app.config';
 
 @Injectable()
 
 export class ChartsService {
 
-    private baseUrl = 'http://127.0.0.1:8080/app/v1/';
     private getAllWeekUrl = 'charts/list-week/';
     private getWeekAndType = 'charts/items-by-week-and-type/';
     private createNewWeekUrl = 'charts/';
@@ -22,34 +25,31 @@ export class ChartsService {
 
     GetAllWeek(): Observable<any[]>
     {
-        var url = this.baseUrl + this.getAllWeekUrl;
+        var url = BASE_URL + this.getAllWeekUrl;
         return this._http.get(url)
             .map(
                 (res: Response) => res.json()
             );
     }
-
     CreateNewWeek(): Observable<any[]>
     {
-        var url = this.baseUrl + this.createNewWeekUrl;
+        var url = BASE_URL + this.createNewWeekUrl;
         return this._http.get(url)
             .map(
                 (res: Response) => res.json()
             );
     }
-
     GetWeekAndType(week: number, type: number): Observable<any[]>
     {
-        var url = this.baseUrl + this.getWeekAndType + week + '/' + type;
+        var url = BASE_URL + this.getWeekAndType + week + '/' + type;
         return this._http.get(url)
             .map(
                 (res: Response) => res.json()
             );
     }
-
     update(id:number, data: any): Observable<any[]>
     {
-        var url = this.baseUrl + this.updateUrl + id;
+        var url = BASE_URL + this.updateUrl + id;
         return this._http.put(url, data)
             .map(
                 (res: Response) => res.json()
@@ -57,7 +57,7 @@ export class ChartsService {
     }
     GetActually(): Observable<any[]>
     {
-        var url = this.baseUrl + this.getActuallyUrl;
+        var url = BASE_URL + this.getActuallyUrl;
         return this._http.get(url)
             .map(
                 (res: Response) =>res.json()
@@ -65,7 +65,7 @@ export class ChartsService {
     }
     SetActive(data:any): Observable<any>
     {
-        var url = this.baseUrl + this.activeUrl;
+        var url = BASE_URL + this.activeUrl;
         return this._http.post(url, data)
             .map(
                 (res: Response) => res.json()

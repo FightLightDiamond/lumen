@@ -4,12 +4,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+/**
+ * Config
+ */
+import { BASE_URL } from '../config/app.config';
 
 @Injectable()
 
 export class SongService
 {
-    private rootUrl = 'http://127.0.0.1:8080/app/v1/';
     private searchWithSingerUrl = 'songs/search-with-singer';
 
     constructor(private _http: Http)
@@ -19,7 +22,7 @@ export class SongService
 
     SearchWithSinger(params: string = ''): Observable<any[]>
     {
-        var url = this.rootUrl + this.searchWithSingerUrl + params;
+        var url = BASE_URL + this.searchWithSingerUrl + params;
         return this._http.get(url)
             .map(
                 (res: Response) => res.json()
