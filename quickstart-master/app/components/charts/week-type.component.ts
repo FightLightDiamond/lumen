@@ -17,6 +17,7 @@ import { AlbumService } from '../../services/album.service';
     ]
 })
 
+
 export class WeekTypeChartsComponent {
     public subscription: Subscription;
     public _week: number;
@@ -59,6 +60,8 @@ export class WeekTypeChartsComponent {
     }
 
     private resetItems(){
+        const TYPE_NAMES: any = { 1:'song', 2: 'video', 3: 'album'};
+        const AREA_NAMES: any = { 1:'VN', 2: 'ASIA', 3: 'U.S.UK'};
         this.items = [];
     }
     private getByWeekAndType(){
@@ -98,6 +101,7 @@ export class WeekTypeChartsComponent {
                     {
                         this.charts[this.areaNo][this.areaKey].item = this.items[this.itemKey];
                         this.charts[this.areaNo][this.areaKey].item_id = this.items[this.itemKey].id;
+                        console.log(data)
                     }
                 }
             )

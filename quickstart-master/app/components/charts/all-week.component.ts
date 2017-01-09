@@ -4,11 +4,12 @@
 import { Component } from '@angular/core';
 import { ChartsService } from '../../services/charts.service';
 
-
 import { Subscription } from 'rxjs';
 import { SongService } from '../../services/songs.service';
 import { VideoService } from '../../services/video.service';
 import { AlbumService } from '../../services/album.service';
+
+// import { CustomFormsModule } from 'ng2-validation'
 
 @Component({
     selector: 'all-week-chart',
@@ -55,6 +56,9 @@ export class AllWeekChartsComponent{
                     console.log("API get all week error!")
                 }
             );
+        this.getActually();
+    }
+    private getActually(){
         this.chartsService.GetActually()
             .subscribe(
                 (res: any) => {
@@ -91,6 +95,7 @@ export class AllWeekChartsComponent{
                     if(res === true){
                         var maxWeek = this.weeks[0];
                         this.weeks.unshift(++maxWeek);
+                        this.getActually();
                     }
                 }
             );
@@ -123,8 +128,8 @@ export class AllWeekChartsComponent{
             .subscribe(
                 data => {
                     if(data){
-                        this.charts[this.areaNo][this.typeNo][this.rankNo].item = this.itemRemember;
-                        this.charts[this.areaNo][this.typeNo][this.rankNo].item_id = this.itemRemember;
+                        this.charts[this.typeNo][this.areaNo][this.rankNo].item = this.itemRemember;
+                        this.charts[this.typeNo][this.areaNo][this.rankNo].item_id = this.itemRemember;
                     }else{
                         this.error();
                     }
@@ -135,6 +140,7 @@ export class AllWeekChartsComponent{
     private showPreviousItemLinks: boolean = false;
     private showNextItemLinks: boolean = false;
     private currentPageItemLinks: number = 1;
+    private pointDefault: number = 1000;
     searchItem(formData: any, numPage: number = 1){
         var params: string = '?name=' + formData.itemName + '& singer_name=' + formData.singerName + '&page='+numPage;
         if(this.typeNo == 0){
@@ -168,7 +174,7 @@ export class AllWeekChartsComponent{
             this.error();
         }
     }
-    private setItemLinks(data)
+    private setItemLinks(data: any)
     {
         if(data.to === 10) {
             this.showNextItemLinks = true;
@@ -196,7 +202,7 @@ export class AllWeekChartsComponent{
         this.itemRemember = itemRemember;
     }
     setActive(active: boolean){
-        var sure: boolean = confirm('You sure set active?');
+        var sure: boolean = confirm('Are you sure?');
         if(sure)
         {
             var data: any = { week: this.weeks[0], is_active: active };
@@ -205,13 +211,15 @@ export class AllWeekChartsComponent{
                     data => {
                         if(data){
                             this.active = active;
+                        } else {
+                            this.error();
                         }
                     }
                 );
         }
     }
 
-    error(){
+    private error(){
         alert('Hệ thống đang bị Hacker tấn công vui lòng thông báo kỹ thuật viên');
     }
 

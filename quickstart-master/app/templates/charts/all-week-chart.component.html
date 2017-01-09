@@ -36,17 +36,17 @@
 </div>
 <!--Chart Actually-->
 <h2>Chart Actually</h2>
-<div class="row" *ngFor="let areas of charts;  let areaNo = index;">
+<div class="row" *ngFor="let  types of charts;  let typeNo = index;">
     <div class="col-lg-12">
-        <h3>{{areaNames[areaNo]}}</h3>
+        <h3>{{ typeNames[typeNo] }}</h3>
     </div>
-    <div class="col-lg-4" *ngFor="let types of areas;  let typeNo = index;">
+    <div class="col-lg-4" *ngFor="let areas of types;  let areaNo = index;">
         <div class="list-group">
             <li href="#" class="list-group-item active">
-                {{typeNames[typeNo]}}
+                {{ areaNames[areaNo] }}
             </li>
             <li class="list-group-item"
-            *ngFor="let item of types;  let rankNo = index;"  (click)="selectedItemChart(typeNo, areaNo, rankNo, item.id)"
+            *ngFor="let item of areas;  let rankNo = index;"  (click)="selectedItemChart(typeNo, areaNo, rankNo, item.id)"
             data-toggle="modal" data-target="#searchModal"
             >
                 {{ item.rank }}. {{item.item ? item.item.name : '----' }}
@@ -104,17 +104,36 @@
                 <p class="text-info">
                     Please key down press enter to search
                 </p>
+                <!--Link-->
                 <nav aria-label="..." [hidden] = "hiddenItemLinks">
                     <ul class="pager">
                         <li><a (click)="searchItem(chartsForm.value, currentPageItemLinks - 1)" *ngIf="showPreviousItemLinks">Previous</a></li>
                         <li *ngIf="showNextItemLinks"><a (click)="searchItem(chartsForm.value, currentPageItemLinks + 1)">Next</a></li>
                     </ul>
                 </nav>
+                <!--Data-->
                 <ul class="list-group">
                     <li *ngFor="let item of items;  let i = index;" class="list-group-item">{{item.name}}
                         <input class="pull-right" (change)="rememberSelectedItem(item)" name="item_id" type="radio" [value]="item.id" ngModel>
                     </li>
                 </ul>
+                <div class="form-group">
+                    <label for="point">Point</label>
+                    <input type="number" class="form-control" name="point" id="point" placeholder="point" title="point" value="1000"
+                           ngModel #point="ngModel" required  pattern="^[1-9][0-9]{0,4}$" maxlength="5"
+                    >
+                </div>
+                <div *ngIf="point.errors && (point.dirty || point.touched)" class="alert alert-danger">
+                    <div [hidden]="!point.errors.required">
+                        Point is required
+                    </div>
+                    <div [hidden]="!point.errors.pattern">
+                        Point can not has more than 99999
+                    </div>
+                    <div [hidden]="!point.errors.maxlength">
+                        Point can not has more than 5 character
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" (click)="updateChart(chartsForm.value)" class="btn btn-primary">

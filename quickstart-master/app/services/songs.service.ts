@@ -17,12 +17,12 @@ export class SongService
 
     }
 
-    SearchWithSinger(params): Observable<any[]>
+    SearchWithSinger(params: string = ''): Observable<any[]>
     {
         var url = this.rootUrl + this.searchWithSingerUrl + params;
         return this._http.get(url)
             .map(
-                (response: Response) => response.json()
+                (res: Response) => res.json()
             )
     }
 }

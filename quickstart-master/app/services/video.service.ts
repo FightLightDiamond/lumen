@@ -16,11 +16,11 @@ export class VideoService
         private _http: Http,
     ){}
 
-    SearchWithSinger(params): Observable<any[]>
+    SearchWithSinger(params: string = ''): Observable<any[]>
     {
-        return this._http.get(this.baseUrl + this.searchWithSingerUrl, params)
+        return this._http.get(this.baseUrl + this.searchWithSingerUrl + params)
             .map(
-                (response: Response) => response.json()
+                (res: Response) => res.json()
             );
     }
 

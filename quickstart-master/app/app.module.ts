@@ -37,13 +37,18 @@ import { AlbumService} from './services/album.service';
  * Routing
  */
 import { appRoutes } from './routes/app.route';
+/**
+ * Validate
+ */
+//import { CustomFormsModule } from 'ng2-validation'
 
 @NgModule({
   imports:      [
       BrowserModule,
       FormsModule,
       HttpModule,
-      appRoutes
+      appRoutes,
+      //CustomFormsModule,
   ],
   declarations: [
       AppComponent,
