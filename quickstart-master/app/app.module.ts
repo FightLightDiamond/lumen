@@ -21,7 +21,7 @@ import {WeekTypeChartsComponent} from  './components/charts/week-type.component'
  * End Compnent
  */
 import {ExponentialStrengthPipe} from  './pipes/exponential-strength.pipe';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 /**
  * Service
@@ -38,6 +38,7 @@ import {appRoutes} from './routes/app.route';
 import {LoginService} from "./services/auth/login.service";
 import {CheckLoginGuard} from "./guards/check-login.guard";
 import {CheckSaveFormGuard} from "./guards/check-save-form.guard";
+import {RegisterComponent} from "./components/auth/register.component";
 /**
  * Validate
  */
@@ -49,6 +50,7 @@ import {CheckSaveFormGuard} from "./guards/check-save-form.guard";
       FormsModule,
       HttpModule,
       appRoutes,
+      ReactiveFormsModule
       //CustomFormsModule,
   ],
   declarations: [
@@ -70,6 +72,7 @@ import {CheckSaveFormGuard} from "./guards/check-save-form.guard";
       HomeComponent,
       NotFoundComponent,
       LoginComponent,
+      RegisterComponent
   ],
   providers: [
       EmployeeService,

@@ -16,6 +16,7 @@ import {WeekTypeChartsComponent} from  '../components/charts/week-type.component
 import {LoginComponent} from '../components/auth/login.component';
 import {CheckLoginGuard} from "../guards/check-login.guard";
 import {CheckSaveFormGuard} from "../guards/check-save-form.guard";
+import {RegisterComponent} from "../components/auth/register.component";
 
 const routing: Routes = [
     {
@@ -53,6 +54,9 @@ const routing: Routes = [
     },
     {
         path: 'login', component: LoginComponent
+    },
+    {
+        path: 'register', component: RegisterComponent
     },
 
     {

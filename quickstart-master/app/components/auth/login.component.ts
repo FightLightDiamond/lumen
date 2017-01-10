@@ -26,8 +26,6 @@ export class LoginComponent {
         } else {
             this.loginService.SetLogin(false);
         }
-        this.router.navigate(['/']);
-       // this.router.navigateByUrl(['/']);
-
+        //this.router.navigate(['/']);
     }
 }
