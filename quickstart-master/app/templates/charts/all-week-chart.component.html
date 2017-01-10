@@ -64,7 +64,7 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
+ <!--Modal-->
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel">
     <div class="modal-dialog" role="document">
         <form class="modal-content" #chartsForm="ngForm" (ngSubmit)="searchItem(chartsForm.value)">
@@ -115,6 +115,15 @@
                         <li *ngIf="showNextItemLinks"><a (click)="searchItem(chartsForm.value, currentPageItemLinks + 1)">Next</a></li>
                     </ul>
                 </nav>
+
+                <!--<nav>-->
+                    <!--<ul class="pager">-->
+                        <!--<li><a [routerLink] = "['/charts']" [queryParams]="{page: currentPageItemLinks - 1}"> << </a></li>-->
+                        <!--<li><a [routerLink] = "['/charts']" [queryParams]="{page: currentPageItemLinks - -1}"> >> </a></li>-->
+                    <!--</ul>-->
+                <!--</nav>-->
+
+
                 <!--Data-->
                 <ul class="list-group">
                     <li *ngFor="let item of items;  let i = index;" class="list-group-item">{{item.name}}
@@ -123,8 +132,8 @@
                 </ul>
                 <div class="form-group">
                     <label for="point">Point</label>
-                    <input type="number" class="form-control" name="point" id="point" placeholder="point" title="point" value="1000"
-                           ngModel #point="ngModel" required  pattern="^[1-9][0-9]{0,4}$" maxlength="5"
+                    <input type="number" class="form-control" name="point" id="point" placeholder="point" title="point"
+                           ngModel #point="ngModel" required  pattern="^[1-9][0-9]{0,4}$" maxlength="5" [(ngModel)]="pointDefault"
                     >
                 </div>
                 <div *ngIf="point.errors && (point.dirty || point.touched)" class="alert alert-danger">

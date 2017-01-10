@@ -18,10 +18,14 @@ class CreateVtSongsTable extends Migration
             $table->string('name');
             $table->string('file');
             $table->string('image');
+            $table->text('lyric');
             $table->string('is_active');
             $table->string('is_download');
             $table->integer('listen_no');
             $table->integer('download_no');
+            $table->integer('share_no');
+            $table->string('singer_name');
+            $table->mediumInteger('price');
             $table->timestamps();
 		});
 	}

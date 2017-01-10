@@ -1,4 +1,4 @@
-import {Component, ViewChild, OnInit} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { u11Component } from './components/u11.component';
 import {LoginService} from "./services/auth/login.service";
 
@@ -11,23 +11,25 @@ import {LoginService} from "./services/auth/login.service";
 
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Angular';
   public agree:number = 0;
   public disagree:number = 0;
   public names = ['Mr A', 'Mr B', 'Mr C', 'Mr D'];
-  private u11cpnt: u11Component;
-  public isLoggedin : boolean;
+
+ // public isLoggedin : boolean;
 
   @ViewChild(u11Component)
+
+  private u11cpnt: u11Component;
 
   constructor(private loginService: LoginService) {
 
   }
 
-  ngOnInit() {
-    this.isLoggedin = this.loginService.IsLogged;
-  }
+  // ngOnInit() {
+  //   //this.isLoggedin = this.loginService.IsLogged;
+  // }
 
   parentVote(agree:boolean) {
     if(agree == true) {
@@ -41,7 +43,8 @@ export class AppComponent implements OnInit {
     this.u11cpnt.setName('Change name in Parent');
   }
   logout() {
-    this.loginService.SetLogin(false)
-    this.isLoggedin = false;
+    this.loginService.SetLogin(false);
+   // this.isLoggedin = false;
+    alert('Logout success')
   }
 }

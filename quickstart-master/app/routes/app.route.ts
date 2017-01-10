@@ -15,6 +15,7 @@ import {AllWeekChartsComponent} from  '../components/charts/all-week.component';
 import {WeekTypeChartsComponent} from  '../components/charts/week-type.component';
 import {LoginComponent} from '../components/auth/login.component';
 import {CheckLoginGuard} from "../guards/check-login.guard";
+import {CheckSaveFormGuard} from "../guards/check-save-form.guard";
 
 const routing: Routes = [
     {
@@ -43,7 +44,8 @@ const routing: Routes = [
     },
 
     {
-        path: 'charts', component: AllWeekChartsComponent, canActivate: [CheckLoginGuard]
+        path: 'charts', component: AllWeekChartsComponent,
+        canActivate: [CheckLoginGuard], canDeactivate: [CheckSaveFormGuard]
     },
 
     {

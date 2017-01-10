@@ -18,7 +18,22 @@ class SongController
     {
         $this->repository = $repository;
     }
-    public function searchWithSinger(Request $request){
+    public function index() {
+
+    }
+    public function show($id) {
+
+    }
+    public function create() {
+
+    }
+    public function update($id) {
+
+    }
+    public function destroy($id) {
+
+    }
+    public function searchWithSinger(Request $request) {
         $input = $request->all();
         $data = $this->repository
             ->makeModel()

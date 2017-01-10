@@ -3,6 +3,7 @@
  */
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import {Router, ActivatedRoute} from '@angular/router';
 /**
  * Services
  */
@@ -55,11 +56,18 @@ export class AllWeekChartsComponent{
         private chartsService: ChartsService,
         private songService: SongService,
         private videoService: VideoService,
-        private albumService: AlbumService
-
+        private albumService: AlbumService,
+        private router: Router,
+        private activatedRouter: ActivatedRoute
     ){}
 
     ngOnInit(){
+        this.activatedRouter.queryParams.subscribe(
+            params => {
+                this.currentPageItemLinks = params['page'] || 1;
+            }
+        );
+
         this.chartsService.GetAllWeek()
             .subscribe(
                 (res: any) => {

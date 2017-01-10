@@ -37,6 +37,7 @@ import {AlbumService} from './services/album.service';
 import {appRoutes} from './routes/app.route';
 import {LoginService} from "./services/auth/login.service";
 import {CheckLoginGuard} from "./guards/check-login.guard";
+import {CheckSaveFormGuard} from "./guards/check-save-form.guard";
 /**
  * Validate
  */
@@ -77,7 +78,8 @@ import {CheckLoginGuard} from "./guards/check-login.guard";
       VideoService,
       AlbumService,
       LoginService,
-      CheckLoginGuard
+      CheckLoginGuard,
+      CheckSaveFormGuard
   ],
   bootstrap:    [ AppComponent ]
 })
