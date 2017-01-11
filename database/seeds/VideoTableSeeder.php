@@ -9,6 +9,6 @@
 class VideoTableSeeder extends \Illuminate\Database\Seeder
 {
     public function run(){
-        factory(\App\Entities\VtVideo::class, 20)->create();
+        factory(\App\Entities\Video::class, 20)->create();
     }
 }

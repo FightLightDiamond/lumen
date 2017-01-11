@@ -8,13 +8,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\VtSongRepository;
+use App\Repositories\SongRepository;
 use Illuminate\Http\Request;
 
 class SongController
 {
     protected $repository;
-    public function __construct(VtSongRepository $repository)
+    public function __construct(SongRepository $repository)
     {
         $this->repository = $repository;
     }

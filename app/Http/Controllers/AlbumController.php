@@ -9,12 +9,12 @@
 namespace App\Http\Controllers;
 
 
-use App\Repositories\VtAlbumRepository;
+use App\Repositories\AlbumRepository;
 
 class AlbumController
 {
     protected $repository;
-    public function __construct(VtAlbumRepository $repository)
+    public function __construct(AlbumRepository $repository)
     {
         $this->repository = $repository;
     }

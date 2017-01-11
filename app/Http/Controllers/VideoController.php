@@ -6,15 +6,15 @@
  * Time: 4:07 PM
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\FontEnd;
 
 
-use App\Repositories\VtVideoRepository;
+use App\Repositories\VideoRepository;
 
 class VideoController
 {
     protected $repository;
-    public function __construct(VtVideoRepository $repository)
+    public function __construct(VideoRepository $repository)
     {
         $this->repository = $repository;
     }

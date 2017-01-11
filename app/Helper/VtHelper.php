@@ -3,7 +3,7 @@
  * Description of VtHelper
  * @author pmdv_hoannv13
  */
-class VtHelper
+class Helper
 {
 
   const MOBILE_SIMPLE = '09x';
@@ -2054,7 +2054,7 @@ public static function getThumbUrl_SearchAlbumFlash($source, $width = null, $hei
 
     $output = str_replace($substr, 'xxx', $str);
 
-    return VtHelper::encodeOutput($output);
+    return Helper::encodeOutput($output);
   }
   public static function array_random($arr, $num = 1)
   {

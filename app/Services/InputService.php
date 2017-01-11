@@ -10,9 +10,9 @@ namespace App\Services;
 
 
 use App\Components\Constants\ConstView;
-use App\Models\VtAlbum;
-use App\Models\VtSong;
-use App\Models\VtVideo;
+use App\Models\Album;
+use App\Models\Song;
+use App\Models\Video;
 
 class InputService
 {

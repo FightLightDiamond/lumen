@@ -8,14 +8,14 @@
 
 namespace App\Providers;
 
-use App\Repositories\VtAlbumRepository;
-use App\Repositories\VtAlbumRepositoryEloquent;
-use App\Repositories\VtChartRepository;
-use App\Repositories\VtChartRepositoryEloquent;
-use App\Repositories\VtSongRepository;
-use App\Repositories\VtSongRepositoryEloquent;
-use App\Repositories\VtVideoRepository;
-use App\Repositories\VtVideoRepositoryEloquent;
+use App\Repositories\AlbumRepository;
+use App\Repositories\AlbumRepositoryEloquent;
+use App\Repositories\ChartRepository;
+use App\Repositories\ChartRepositoryEloquent;
+use App\Repositories\SongRepository;
+use App\Repositories\SongRepositoryEloquent;
+use App\Repositories\VideoRepository;
+use App\Repositories\VideoRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

@@ -9,13 +9,13 @@
 namespace App\Http\Controllers;
 
 
-use App\Repositories\VtChartRepository;
+use App\Repositories\ChartRepository;
 use Illuminate\Http\Request;
 
 class ChartController
 {
     protected $repository;
-    public function __construct(VtChartRepository $repository)
+    public function __construct(ChartRepository $repository)
     {
         $this->repository = $repository;
     }

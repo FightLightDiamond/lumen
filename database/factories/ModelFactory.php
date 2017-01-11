@@ -18,25 +18,25 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(\App\Entities\VtSong::class, function ($faker) {
+$factory->define(\App\Entities\Song::class, function ($faker) {
     return [
         'name' => $faker->name
     ];
 });
 
-$factory->define(\App\Entities\VtVideo::class, function ($faker) {
+$factory->define(\App\Entities\Video::class, function ($faker) {
     return [
         'name' => $faker->name
     ];
 });
 
-$factory->define(\App\Entities\VtAlbum::class, function ($faker) {
+$factory->define(\App\Entities\Album::class, function ($faker) {
     return [
         'name' => $faker->name
     ];
 });
 
-$factory->define(\App\Entities\VtChart::class, function ($faker) {
+$factory->define(\App\Entities\Chart::class, function ($faker) {
     return [
         'item_id' => rand(1, 20),
         'type' => rand(1, 3),
