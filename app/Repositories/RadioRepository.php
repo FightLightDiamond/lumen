@@ -10,5 +10,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface RadioRepository extends RepositoryInterface
 {
-    //
+    public function getData();
+    public function getDetail($identify);
 }

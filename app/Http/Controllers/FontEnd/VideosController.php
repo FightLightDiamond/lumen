@@ -35,14 +35,33 @@ class VideosController
         $this->bannerRepository = $bannerRepository;
     }
     public function index(){
-        $data['highlightVideos'] = $this->videoRepository->getHighLightVideos();
-        $data['hotVideos'] = $this->videoRepository->getHotVideos();
-        $data['newVideos'] = $this->videoRepository->getNewVideos();
+        $data['highlightVideos'] = $this->videoRepository->getHighLight();
+        $data['hotVideos'] = $this->videoRepository->getHot();
+        $data['newVideos'] = $this->videoRepository->getNew();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
-        $data['banners'] = $this->bannerRepository->bannerVideos();
+        return response()->json($data);
+    }
+    public function getByType($type)
+    {
+        $data['videos'] = $this->videoRepository->getByType($type);
+        $data['banners'] = $this->bannerRepository->getByPage('video');
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
-        $data['topics'] = $this->topicRepository->currentData();
-        $data['categories'] = $this->categoryRepository->currentData();
+        return response()->json($data);
+    }
+
+    public function getDetails($identify)
+    {
+        $data['videos'] = $this->videoRepository->getDetails($identify);
+        $singer_id = $data['videos']->singer()->oderby('id')->limit(1)->id;
+        $data['videoSingers'] = $this->videoRepository->getBySinger($singer_id);
+        $data['banners'] = $this->bannerRepository->getByPage('video');
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

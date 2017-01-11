@@ -10,5 +10,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface SingerRepository extends RepositoryInterface
 {
-    //
+    public function getData();
+    public function getSingerOfWeek();
+    public function getDetail($slug);
 }

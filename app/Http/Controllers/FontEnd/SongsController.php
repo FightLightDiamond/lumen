@@ -35,18 +35,34 @@ class SongsController
         $this->bannerRepository = $bannerRepository;
     }
     public function index() {
-        $data['highlightSongs'] = $this->songRepository->getHighLightSongs();
-        $data['hotSongs'] = $this->songRepository->getHotSongs();
-        $data['newSongs'] = $this->songRepository->getNewSongs();
-
-        $data['banners'] = $this->bannerRepository->bannerSongs();
-
-        $data['topics'] = $this->topicRepository->currentData();
-        $data['categories'] = $this->categoryRepository->currentData();
+        $data['highlightSongs'] = $this->songRepository->getHighLight();
+        $data['hotSongs'] = $this->songRepository->getHot();
+        $data['newSongs'] = $this->songRepository->getNew();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
-    public function getHotDetail() {
+    public function getByType($type)
+    {
+        $data['songs'] = $this->songRepository->getByType($type);
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
+        return response()->json($data);
+    }
+
+    public function getDetails($identify)
+    {
+        $data['songs'] = $this->songRepository->getDetails($identify);
+        $singer_id = $data['songs']->singer()->oderby('id')->limit(1)->id;
+        $data['songSingers'] = $this->songRepository->getBySinger($singer_id);
+        $data['banners'] = $this->bannerRepository->getByPage('song');
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
+
+        return response()->json($data);
     }
 }

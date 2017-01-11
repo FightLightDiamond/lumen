@@ -56,19 +56,15 @@ class HomeController
     }
 
     public function index(){
-        $data['flashHotHomes'] = $this->flashHotRepository->currentData();
-        $data['charts'] = $this->chartsRepository->currentData();
-
-        $data['songHots'] = $this->songRepository->songHots();
-        $data['videoHots'] = $this->videoRepository->videoHots();
-        $data['albumHots'] = $this->albumRepository->albumHots();
-
-        $data['news'] = $this->albumRepository->newsHome();
-
-        $data['banners'] = $this->bannerRepository->bannerHomes();
-
-        $data['topics'] = $this->topicRepository->currentData();
-        $data['categories'] = $this->categoryRepository->currentData();
+        $data['flashHotHomes'] = $this->flashHotRepository->getData();
+        $data['charts'] = $this->chartsRepository->getData();
+        $data['songHots'] = $this->songRepository->getHot();
+        $data['videoHots'] = $this->videoRepository->getHot();
+        $data['albumHots'] = $this->albumRepository->getHot();
+        $data['news'] = $this->newsRepository->getByPage();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

@@ -34,17 +34,39 @@ class AlbumsController
         $this->categoryRepository = $categoriesRepository;
         $this->bannerRepository = $bannerRepository;
     }
-    public function index(){
-        $data['highlightAlbums'] = $this->albumRepository->getHighLightAlbums();
-        $data['hotAlbums'] = $this->albumRepository->getHotAlbums();
-        $data['newAlbums'] = $this->albumRepository->getNewAlbums();
+    public function index()
+    {
+        $data['highlightAlbums'] = $this->albumRepository->getHighLight();
+        $data['hotAlbums'] = $this->albumRepository->getHot();
+        $data['newAlbums'] = $this->albumRepository->getNew();
         $data['videoAlbums'] = $this->albumRepository->getVideoAlbums();
-
-        $data['banners'] = $this->bannerRepository->bannerAlbums();
-
-        $data['topics'] = $this->topicRepository->currentData();
-        $data['categories'] = $this->categoryRepository->currentData();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
+
+    public function getByType($type)
+    {
+        $data['albums'] = $this->albumRepository->getByType($type);
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
+
+        return response()->json($data);
+    }
+
+    public function getDetails($identify)
+    {
+        $data['albums'] = $this->albumRepository->getDetails($identify);
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
+
+        return response()->json($data);
+    }
+    /**
+     * Danh sach cac album khac
+     */
 }

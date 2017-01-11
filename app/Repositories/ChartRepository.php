@@ -13,5 +13,7 @@ interface ChartRepository extends RepositoryInterface
     public function store();
     public function getListWeek($type, $area);
     public function getDataByWeekAndType($week, $type);
-    public function getData($input);
+    public function getData($input = []);
+
+    public function getDetail($type, $area);
 }

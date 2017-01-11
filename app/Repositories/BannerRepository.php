@@ -10,5 +10,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface BannerRepository extends RepositoryInterface
 {
-    //
+    public function getByPage($page = 'home');
 }

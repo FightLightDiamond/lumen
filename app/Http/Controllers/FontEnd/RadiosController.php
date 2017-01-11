@@ -36,11 +36,17 @@ class RadiosController
     }
     public function index(){
         $data['radios'] = $this->radioRepository->getData();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
-        $data['banners'] = $this->bannerRepository->bannerVideos();
-
-        $data['topics'] = $this->topicRepository->currentData();
-        $data['categories'] = $this->categoryRepository->currentData();
+        return response()->json($data);
+    }
+    public function getDetail($identify){
+        $data['radios'] = $this->radioRepository->getDetail($identify);
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

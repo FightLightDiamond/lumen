@@ -37,11 +37,20 @@ class SingersController
     public function index(){
         $data['singers'] = $this->singerRepository->getData();
         $data['singerOfWeek'] = $this->singerRepository->getSingerOfWeek();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
-        $data['banners'] = $this->bannerRepository->bannerSinger();
-
-        $data['topics'] = $this->topicRepository->currentData();
-        $data['categories'] = $this->categoryRepository->currentData();
+        return response()->json($data);
+    }
+    public function getDetail($slug){
+        $data['singer'] = $this->singerRepository->getDetail($slug);
+        $data['songSingers'] = $data['singer']->song()->paginate(10);
+        $data['videoSingers'] = $data['singer']->video()->paginate(10);
+        $data['albumSingers'] = $data['singer']->singer()->paginate(10);
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

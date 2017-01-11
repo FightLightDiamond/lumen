@@ -35,12 +35,20 @@ class NewsController
         $this->bannerRepository = $bannerRepository;
     }
     public function index(){
-        $data['radios'] = $this->newsRepository->getData();
+        $data['news'] = $this->newsRepository->getData();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
-        $data['banners'] = $this->bannerRepository->bannerNews();
+        return response()->json($data);
+    }
 
-        $data['topics'] = $this->topicRepository->currentData();
-        $data['categories'] = $this->categoryRepository->currentData();
+    public function getDetail($identify){
+        $data['news'] = $this->newsRepository->getDetail($identify);
+        $data['newsOther'] = $this->newsRepository->getOther();
+        $data['banners'] = $this->bannerRepository->getByPage();
+        $data['topics'] = $this->topicRepository->getData();
+        $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
