@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtTopicsTable extends Migration
+class CreateTopicsTable extends Migration
 {
 
 	/**

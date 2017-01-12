@@ -24,7 +24,30 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
         return Video::class;
     }
 
-    
+    public function getHot()
+    {
+
+    }
+    public function getNew()
+    {
+
+    }
+    public function getHighLight()
+    {
+
+    }
+    public function getByType($type)
+    {
+
+    }
+    public function getDetails($identify)
+    {
+
+    }
+    public function getBySinger($singer_id)
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

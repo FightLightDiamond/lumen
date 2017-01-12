@@ -24,7 +24,28 @@ class SongRepositoryEloquent extends BaseRepository implements SongRepository
         return Song::class;
     }
 
-    
+    public function getHot()
+    {
+
+    }
+    public function getNew()
+    {
+
+    }
+    public function getHighLight(){
+
+    }
+    public function getByType($type)
+    {
+
+    }
+    public function getDetails($identify){
+
+    }
+    public function getBySinger($singer_id)
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

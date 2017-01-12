@@ -24,7 +24,18 @@ class SingerRepositoryEloquent extends BaseRepository implements SingerRepositor
         return Singer::class;
     }
 
-    
+    public function getData()
+    {
+
+    }
+    public function getSingerOfWeek()
+    {
+
+    }
+    public function getDetail($slug)
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

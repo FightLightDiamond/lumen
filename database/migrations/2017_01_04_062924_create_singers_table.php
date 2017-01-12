@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtSingersTable extends Migration
+class CreateSingersTable extends Migration
 {
 
 	/**
@@ -19,6 +19,7 @@ class CreateVtSingersTable extends Migration
             $table->string('latin_alias_name');
             $table->string('real_name')->nullable();
             $table->string('latin_real_name');
+            $table->string('identify', 8)->unique();
             $table->string('image')->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->text('information')->nullable();

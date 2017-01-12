@@ -24,7 +24,22 @@ class NewsRepositoryEloquent extends BaseRepository implements NewsRepository
         return News::class;
     }
 
-    
+    public function getByPage()
+    {
+
+    }
+    public function getData()
+    {
+
+    }
+    public function getDetail($identify)
+    {
+
+    }
+    public function getOther()
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

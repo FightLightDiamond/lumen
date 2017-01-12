@@ -24,7 +24,10 @@ class CategoriesRepositoryEloquent extends BaseRepository implements CategoriesR
         return Categories::class;
     }
 
-    
+    public function getData()
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtAlbumsTable extends Migration
+class CreateAlbumsTable extends Migration
 {
 
 	/**
@@ -17,12 +17,14 @@ class CreateVtAlbumsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('latin_name');
+            $table->string('identify', 8)->unique();
             $table->string('image')->nullable();
             $table->boolean('is_active')->default(0);
             $table->integer('is_download')->default(0);
             $table->integer('listen_no')->default(0);
             $table->integer('download_no')->default(0);
             $table->timestamps();
+            $table->index('identify');
 		});
 	}
 

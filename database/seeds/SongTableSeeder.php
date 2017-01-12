@@ -9,6 +9,6 @@
 class SongTableSeeder extends \Illuminate\Database\Seeder
 {
     public function run(){
-        factory(\App\Entities\Song::class, 20)->create();
+        factory(\App\Entities\Song::class, 200)->create();
     }
 }

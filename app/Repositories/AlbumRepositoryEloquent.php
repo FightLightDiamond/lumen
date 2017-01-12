@@ -24,8 +24,30 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
         return Album::class;
     }
 
-    
+    public function getHighLight()
+    {
 
+    }
+    public function getHot()
+    {
+
+    }
+    public function getNew()
+    {
+
+    }
+    public function getVideoAlbums()
+    {
+
+    }
+    public function getByType($type)
+    {
+
+    }
+    public function getDetails($identify)
+    {
+
+    }
     /**
      * Boot up the repository, pushing criteria
      */

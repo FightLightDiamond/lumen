@@ -21,9 +21,9 @@ use Illuminate\Support\ServiceProvider;
 class RepositoryServiceProvider extends ServiceProvider
 {
     public function register() {
-        $this->app->bind(VtChartRepository::class, VtChartRepositoryEloquent::class);
-        $this->app->bind(VtSongRepository::class, VtSongRepositoryEloquent::class);
-        $this->app->bind(VtAlbumRepository::class, VtAlbumRepositoryEloquent::class);
-        $this->app->bind(VtVideoRepository::class, VtVideoRepositoryEloquent::class);
+        $this->app->bind(ChartRepository::class, ChartRepositoryEloquent::class);
+        $this->app->bind(SongRepository::class, SongRepositoryEloquent::class);
+        $this->app->bind(AlbumRepository::class, AlbumRepositoryEloquent::class);
+        $this->app->bind(VideoRepository::class, VideoRepositoryEloquent::class);
     }
 }

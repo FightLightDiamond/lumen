@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtVideosTable extends Migration
+class CreateVideosTable extends Migration
 {
 
 	/**
@@ -18,8 +18,9 @@ class CreateVtVideosTable extends Migration
             $table->string('name');
             $table->string('latin_name');
             $table->string('file');
+            $table->string('identify', 8)->unique();
             $table->string('image')->nullable();
-            $table->string('singer_name');
+            $table->string('singer_name')->nullable();
             $table->mediumInteger('price')->default(0);
             $table->boolean('is_active')->default(0);
             $table->integer('is_download')->default(0);
@@ -27,6 +28,7 @@ class CreateVtVideosTable extends Migration
             $table->integer('download_no')->default(0);
             $table->integer('share_no')->default(0);
             $table->timestamps();
+            $table->index('identify');
 		});
 	}
 

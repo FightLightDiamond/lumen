@@ -24,7 +24,10 @@ class BannerRepositoryEloquent extends BaseRepository implements BannerRepositor
         return Banner::class;
     }
 
-    
+    public function getByPage($page = 'home')
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

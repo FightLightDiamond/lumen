@@ -19,9 +19,9 @@ class ChartController
     {
         $this->repository = $repository;
     }
-    public function getListWeek($type = 1, $area = 1)
+    public function getListWeek()
     {
-        $data = $this->repository->getListWeek($type, $area);
+        $data = $this->repository->getListWeek();
         return response()->json($data);
     }
     public function getItemByWeekAndType($week, $type)

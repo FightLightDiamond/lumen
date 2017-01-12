@@ -24,7 +24,14 @@ class RadioRepositoryEloquent extends BaseRepository implements RadioRepository
         return Radio::class;
     }
 
-    
+    public function getData()
+    {
+
+    }
+    public function getDetail($identify)
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

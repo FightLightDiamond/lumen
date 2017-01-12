@@ -49,7 +49,7 @@ class ChartRepositoryEloquent extends BaseRepository implements ChartRepository
         }
         return $this->makeModel()->insert($items);
     }
-    public function getListWeek($type, $area) {
+    public function getListWeek() {
         return $this->makeModel()
             ->orderBy('week', 'desc')
             ->distinct()->pluck('week');
@@ -65,12 +65,16 @@ class ChartRepositoryEloquent extends BaseRepository implements ChartRepository
             }])
             ->get();
     }
-    public function getData($input){
+    public function getData($input = []){
         return $this->makeModel()
                 ->filter($input)
                 ->order($input)
                 ->relation(['id', 'name'])
                 ->get();
+    }
+    public function getDetail($type, $area)
+    {
+
     }
     /**
      * Boot up the repository, pushing criteria

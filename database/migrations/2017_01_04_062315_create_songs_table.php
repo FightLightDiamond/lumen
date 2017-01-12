@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtSongsTable extends Migration
+class CreateSongsTable extends Migration
 {
 
 	/**
@@ -17,6 +17,7 @@ class CreateVtSongsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('latin_name');
+            $table->string('identify', 8)->unique();
             $table->string('file');
             $table->string('image')->nullable();
             $table->text('lyric')->nullable();
@@ -28,6 +29,7 @@ class CreateVtSongsTable extends Migration
             $table->string('singer_name')->nullable();
             $table->mediumInteger('price')->default(0);
             $table->timestamps();
+            $table->index('identify');
 		});
 	}
 

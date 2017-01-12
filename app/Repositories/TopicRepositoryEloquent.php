@@ -24,7 +24,10 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
         return Topic::class;
     }
 
-    
+    public function getData()
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

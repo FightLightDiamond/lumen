@@ -24,7 +24,10 @@ class FlashHotRepositoryEloquent extends BaseRepository implements FlashHotRepos
         return FlashHot::class;
     }
 
-    
+    public function getData()
+    {
+
+    }
 
     /**
      * Boot up the repository, pushing criteria

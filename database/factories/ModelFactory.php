@@ -20,19 +20,22 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(\App\Entities\Song::class, function ($faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->name,
+        'identify' => str_random(8)
     ];
 });
 
 $factory->define(\App\Entities\Video::class, function ($faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->name,
+        'identify' => str_random(8)
     ];
 });
 
 $factory->define(\App\Entities\Album::class, function ($faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->name,
+        'identify' => str_random(8)
     ];
 });
 
