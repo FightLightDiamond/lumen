@@ -16,6 +16,7 @@ class CreateVtCopyrightProvidersTable extends Migration
 		Schema::create('copyright_providers', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('latin_name');
             $table->string('code');
             $table->string('is_active')->default(0);
             $table->timestamps();

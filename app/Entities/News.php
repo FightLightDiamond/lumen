@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,9 +10,10 @@ use Prettus\Repository\Traits\TransformableTrait;
 class News extends Model implements Transformable
 {
     use TransformableTrait;
-
+    use ModelsTrait;
     protected $fillable = [
         'title',
+        'latin_title',
         'intro',
         'content',
         'is_active',
@@ -51,20 +53,22 @@ class News extends Model implements Transformable
     public function scopeFilter($query, $input){
         if(isset($input['title']))
         {
-            $query->where('title', 'like', '%'.trim($input['title']).'%');
+            $query
+                ->where('title', 'like', '%'.trim($input['title']).'%')
+                ->orWhere('latin_title', 'like', '%'.trim($input['title']).'%');
         }
         return $query;
     }
 
-    public function scopeOrder($query, $input){
-        if(isset($input['order_by']))
-        {
-            $query->orderBy($input['order_by'], $input['order']);
-        }
-        if(!isset($input['order_by']))
-        {
-            $query->orderBy('id', 'DESC');
-        }
-        return $query;
-    }
+//    public function scopeOrder($query, $input){
+//        if(isset($input['order_by']))
+//        {
+//            $query->orderBy($input['order_by'], $input['order']);
+//        }
+//        if(!isset($input['order_by']))
+//        {
+//            $query->orderBy('id', 'DESC');
+//        }
+//        return $query;
+//    }
 }

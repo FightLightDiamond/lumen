@@ -16,6 +16,7 @@ class CreateVtDmTagsTable extends Migration
 		Schema::create('tags', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('latin_name');
             $table->string('is_active')->default(0);
             $table->timestamps();
 		});

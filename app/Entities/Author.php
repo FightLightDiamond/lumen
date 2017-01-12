@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,10 +10,13 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Author extends Model implements Transformable
 {
     use TransformableTrait;
+    use ModelsTrait;
 
     protected $fillable = [
         'alias_name',
         'real_name',
+        'latin_alias_name',
+        'latin_real_name',
         'gender',
         'information',
         'image',
@@ -35,11 +39,15 @@ class Author extends Model implements Transformable
     public function scopeFilter($query, $input)
     {
         if(isset($input['alias_name']) && $input['alias_name'] != '') {
-            $query->where('alias_name', 'LIKE', '%'.trim($input['alias_name']).'%');
+            $query
+                ->where('alias_name', 'LIKE', '%'.trim($input['alias_name']).'%')
+                ->orWhere('latin_alias_name', 'LIKE', '%'.trim($input['latin_alias_name']).'%');
         }
         if(isset($input['real_name']) && $input['real_name'] != '')
         {
-            $query->where('real_name', 'LIKE', '%'.trim($input['real_name']).'%');
+            $query
+                ->where('real_name', 'LIKE', '%'.trim($input['real_name']).'%')
+                ->orWhere('latin_real_name', 'LIKE', '%'.trim($input['latin_real_name']).'%');
         }
         if (isset($input['gender']) && $input['gender'] != '')
         {
@@ -56,11 +64,8 @@ class Author extends Model implements Transformable
 
     protected $upload = ['image_path' => 1];
     protected $pathUpload = ['image_path'=>'author'];
+    protected $checkbox = ['is_active'];
 
-    /**
-     * Config upload new version v1.1
-     * @var array
-     */
     protected $thumbImage = [
         'image_path' => [
             'images/images_thumb/f_sata11/singer' => [
@@ -71,9 +76,6 @@ class Author extends Model implements Transformable
             ]
         ]
     ];
-
-    protected $checkbox = ['is_active'];
-
     public function checkbox($input)
     {
         foreach ($this->checkbox as $value)

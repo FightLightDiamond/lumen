@@ -16,6 +16,7 @@ class CreateVtAlbumsTable extends Migration
 		Schema::create('albums', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('latin_name');
             $table->string('image')->nullable();
             $table->boolean('is_active')->default(0);
             $table->integer('is_download')->default(0);

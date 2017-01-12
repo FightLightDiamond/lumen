@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,9 +10,11 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Categories extends Model implements Transformable
 {
     use TransformableTrait;
+    use ModelsTrait;
 
     protected $fillable = [
         'name',
+        'latin_name',
         'image',
         'background_image',
         'is_active'
@@ -38,7 +41,9 @@ class Categories extends Model implements Transformable
     {
         if(isset($input['name']) && $input['name'] != '')
         {
-            $query->where('name', 'LIKE', '%'.trim($input['name']).'%');
+            $query
+                ->where('name', 'LIKE', '%'.trim($input['name']).'%')
+                ->orWhere('latin_name', 'LIKE', '%'.trim($input['latin_name']).'%');
         }
         if(isset($input['is_active'])&& $input['is_active']!='')
         {
@@ -46,8 +51,8 @@ class Categories extends Model implements Transformable
         }
         return $query;
     }
-
-    public function scopeOrder($query, $input){
+    public function scopeOrder($query, $input)
+    {
         if(isset($input['order_by']))
         {
             $query->orderBy($input['order_by'], $input['order']);

@@ -16,7 +16,9 @@ class CreateVtAuthorsTable extends Migration
 		Schema::create('authors', function(Blueprint $table) {
             $table->increments('id');
             $table->string('alias_name');
+            $table->string('latin_alias_name');
             $table->string('real_name')->nullable();
+            $table->string('latin_real_name')->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->text('information')->nullable();
             $table->string('image')->nullable();

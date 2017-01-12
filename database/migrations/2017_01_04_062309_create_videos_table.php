@@ -16,6 +16,7 @@ class CreateVtVideosTable extends Migration
 		Schema::create('videos', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('latin_name');
             $table->string('file');
             $table->string('image')->nullable();
             $table->string('singer_name');

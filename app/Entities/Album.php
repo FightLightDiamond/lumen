@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,9 +10,11 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Album extends Model implements Transformable
 {
     use TransformableTrait;
+    use ModelsTrait;
     public $table = 'albums';
     protected $fillable = [
         'name',
+        'latin_name',
         'image',
         'is_active',
         'listen_no',
@@ -19,13 +22,6 @@ class Album extends Model implements Transformable
     ];
 
     //=====================================RELATION======================================>
-
-    public function user_create(){
-        return $this->belongsTo(User::class, 'created_by');
-    }
-    public function user_update(){
-        return $this->belongsTo(User::class, 'updated_by');
-    }
 
     public function tag(){
         return $this->belongsToMany(Tag::class, 'album_tags', 'album_id', 'tag_id');
@@ -59,25 +55,25 @@ class Album extends Model implements Transformable
             $query->where(function($query) use($name)
             {
                 $query->where($this->table.'.name', 'LIKE', '%'.$name.'%')
-                    ->orWhere($this->table.'.name_unsign', 'LIKE', '%'.$name.'%');
+                    ->orWhere($this->table.'.latin_name', 'LIKE', '%'.$name.'%');
             });
         }
-        if(isset($input['singer']) && $input['singer'] != '')
+        if(isset($input['singer_name']) && $input['singer_name'] != '')
         {
             $singer = trim($input['singer']);
             $query->where(function($query)use($singer)
             {
-                $query->where($this->table.'.search_info', 'LIKE', '%'.$singer.'%')
-                    ->orWhere($this->table.'.search_info_unsign', 'LIKE', '%'.$singer.'%');
+                $query->where($this->table.'.singer_name', 'LIKE', '%'.$singer.'%')
+                    ->orWhere($this->table.'.latin_singer_name', 'LIKE', '%'.$singer.'%');
             });
         }
         if(isset($input['is_hot']) && $input['is_hot'] != '')
         {
-            $query->where('is_hot', $input['is_hot']);
+            $query->where($this->table.'is_hot', $input['is_hot']);
         }
-        if(isset($input['is_active'])&& $input['is_active']!='')
+        if(isset($input['is_active']) && $input['is_active'] != '')
         {
-            $query->where('is_active', $input['is_active']);
+            $query->where($this->table.'is_active', $input['is_active']);
         }
         return $query;
     }
@@ -103,11 +99,6 @@ class Album extends Model implements Transformable
         'image_path'=> 'album/image',
         'image_album'=>'album/image'
     ];
-
-    /**
-     * Config upload new version v1.1
-     * @var array
-     */
     protected $thumbImage = [
         'image_path' => [
             'images/images_thumb/f_sata11/album/image' => [
@@ -120,9 +111,7 @@ class Album extends Model implements Transformable
             ]
         ]
     ];
-
     protected $checkbox = ['is_hot', 'is_active', 'is_sub', 'is_preview'];
-
     public function checkbox($input)
     {
         foreach($this->checkbox as $value)
@@ -131,5 +120,4 @@ class Album extends Model implements Transformable
         }
         return $input;
     }
-
 }

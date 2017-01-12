@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,10 +10,13 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Singer extends Model implements Transformable
 {
     use TransformableTrait;
+    use ModelsTrait;
 
     protected $fillable = [
         'alias_name',
         'real_name',
+        'latin_alias_name',
+        'latin_real_name',
         'image',
         'gender',
         'information',
@@ -25,11 +29,15 @@ class Singer extends Model implements Transformable
     {
         if(isset($input['alias_name']) && $input['alias_name'] != '')
         {
-            $query->where('alias_name', 'LIKE', '%'.trim($input['alias_name']).'%');
+            $query
+                ->where('alias_name', 'LIKE', '%'.trim($input['alias_name']).'%')
+                ->orWhere('latin_alias_name', 'LIKE', '%'.trim($input['alias_name']).'%');
         }
         if(isset($input['real_name']) && $input['real_name'] != '')
         {
-            $query->where('real_name', 'LIKE', '%'.trim($input['real_name']).'%');
+            $query
+                ->where('real_name', 'LIKE', '%'.trim($input['real_name']).'%')
+                ->orWhere('latin_real_name', 'LIKE', '%'.trim($input['real_name']).'%');
         }
         if(isset($input['gender']) && $input['gender'] != '')
         {

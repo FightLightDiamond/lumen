@@ -16,6 +16,7 @@ class CreateVtIconsTable extends Migration
 		Schema::create('icons', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('latin_name');
             $table->string('image');
             $table->string('background_image');
             $table->string('is_active');

@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,18 +10,12 @@ use Prettus\Repository\Traits\TransformableTrait;
 class FlashHot extends Model implements Transformable
 {
     use TransformableTrait;
+    use ModelsTrait;
 
     protected $fillable = [
         'image', 'link', 'is_active'
     ];
 
-    public function scopeFilter($query, $input){
-        if(isset($input['title']) && $input['title'] != '')
-        {
-            $query->where('title', 'LIKE', '%'.trim($input['title']).'%');
-        }
-        return $query;
-    }
 
     public function scopeOrder($query, $input)
     {
@@ -30,7 +25,7 @@ class FlashHot extends Model implements Transformable
         }
         if(!isset($input['order_by']))
         {
-            $query->orderBy('published_time', 'DESC');
+            $query->orderBy('id', 'DESC');
         }
         return $query;
     }

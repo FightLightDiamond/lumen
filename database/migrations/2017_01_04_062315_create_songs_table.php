@@ -16,6 +16,7 @@ class CreateVtSongsTable extends Migration
 		Schema::create('songs', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('latin_name');
             $table->string('file');
             $table->string('image')->nullable();
             $table->text('lyric')->nullable();

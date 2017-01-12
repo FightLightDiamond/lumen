@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,9 +10,9 @@ use Prettus\Repository\Traits\TransformableTrait;
 class RingBackTone extends Model implements Transformable
 {
     use TransformableTrait;
-
+    use ModelsTrait;
     protected $fillable = [
-        'name', 'code', 'is_active'
+        'name', 'latin_name', 'code', 'is_active'
     ];
 
     protected  $checkbox = ['is_hot', 'is_active', 'status'];
@@ -29,11 +30,9 @@ class RingBackTone extends Model implements Transformable
     {
         if(isset($input['name']) && $input['name'] != '')
         {
-            $query->where('name', 'LIKE', '%'.trim($input['name']).'%');
-        }
-        if(isset($input['alias_name']) && $input['alias_name'] != '')
-        {
-            $query->where('name', 'LIKE', '%'.trim($input['alias_name']).'%');
+            $query
+                ->where('name', 'LIKE', '%'.trim($input['name']).'%')
+                ->orWhere('latin_name', 'LIKE', '%'.trim($input['name']).'%');
         }
         if(isset($input['code']) && $input['code'] != '')
         {

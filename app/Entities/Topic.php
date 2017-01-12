@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,14 +10,13 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Topic extends Model implements Transformable
 {
     use TransformableTrait;
-
+    use ModelsTrait;
     protected $fillable = [
-        'name', 'image', 'background_image', 'is_active'
+        'name', 'latin_name', 'image', 'background_image', 'is_active'
     ];
 
-    /**
-     * Relation
-     */
+    //===============================RELATION=======================================>
+
     public function song()
     {
         return $this->belongsToMany(Song::class, 'song_topics', 'topic_id', 'song_id');
@@ -30,16 +30,14 @@ class Topic extends Model implements Transformable
         return $this->belongsToMany(Album::class, 'album_topics', 'topic_id', 'album_id');
     }
 
-    /**
-     * Scope
-     * @param $query
-     * @param $input
-     * @return mixed
-     */
+    //===============================SCOPE========================================>
+
     public function scopeFilter($query, $input){
         if(isset($input['name']) && $input['name'] != '')
         {
-            $query->where('name', 'LIKE', '%'.trim($input['name']).'%');
+            $query
+                ->where('name', 'LIKE', '%'.trim($input['name']).'%')
+                ->orWhere('latin_name', 'LIKE', '%'.trim($input['name']).'%');
         }
         if(isset($input['is_active']) && $input['is_active'] != '')
         {
@@ -63,8 +61,9 @@ class Topic extends Model implements Transformable
         return $query;
     }
 
-    protected  $checkbox = ['is_hot', 'is_active'];
+    //==================================ACTION===================================>
 
+    protected  $checkbox = ['is_hot', 'is_active'];
     public function checkbox($input)
     {
         foreach($this->checkbox as $value)
@@ -73,8 +72,7 @@ class Topic extends Model implements Transformable
         }
         return $input;
     }
-
-//    protected   $upload = ['icon_path' => 1, 'image_path'=> 1];
-//    protected  $pathUpload = ['icon_path' => 'images', 'image_path' => 'images'];
+    protected   $upload = ['icon_path' => 1, 'image_path'=> 1];
+    protected  $pathUpload = ['icon_path' => 'images', 'image_path' => 'images'];
 
 }

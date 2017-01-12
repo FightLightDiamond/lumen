@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -9,10 +10,12 @@ use Prettus\Repository\Traits\TransformableTrait;
 class CopyrightProvider extends Model implements Transformable
 {
     use TransformableTrait;
+    use ModelsTrait;
 
     public $fillable = [
+        'code',
         'name',
-        'full_name',
+        'latin_name',
         'is_active',
         'profit_percent',
         'is_singer',
@@ -32,15 +35,17 @@ class CopyrightProvider extends Model implements Transformable
             $name = trim($input['name']);
             $query->where(function ($query) use ($name)
             {
-                $query->where($this->table . '.name', 'LIKE', '%' . $name . '%');
+                $query
+                    ->where($this->table . '.name', 'LIKE', '%' . $name . '%')
+                    ->where($this->table . '.latin_name', 'LIKE', '%' . $name . '%');
             });
         }
-        if (isset($input['full_name']) && $input['full_name'] != '')
+        if (isset($input['code']) && $input['code'] != '')
         {
-            $singer = trim($input['full_name']);
-            $query->where(function ($query) use ($singer)
+            $code = trim($input['code']);
+            $query->where(function ($query) use ($code)
             {
-                $query->where($this->table . '.full_name', 'LIKE', '%' . $singer . '%');
+                $query->where($this->table . '.code', 'LIKE', '%' . $code . '%');
             });
         }
         if (isset($input['is_singer']) && $input['is_singer'] != '')

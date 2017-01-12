@@ -16,7 +16,9 @@ class CreateVtSingersTable extends Migration
 		Schema::create('singers', function(Blueprint $table) {
             $table->increments('id');
             $table->string('alias_name');
+            $table->string('latin_alias_name');
             $table->string('real_name')->nullable();
+            $table->string('latin_real_name');
             $table->string('image')->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->text('information')->nullable();

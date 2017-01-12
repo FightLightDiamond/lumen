@@ -2044,7 +2044,7 @@ public static function getThumbUrl_SearchAlbumFlash($source, $width = null, $hei
   }
   public static function orderbyListenNo()
   {
-    $ids = Doctrine::getTable('VtSong')->getListIdsForSearch($name_unsign,$array_id);
+    $ids = Doctrine::getTable('VtSong')->getListIdsForSearch($latin_name,$array_id);
   }
   public static function hiddenNumberSubcriber($str)
   {

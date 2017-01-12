@@ -16,6 +16,7 @@ class CreateVtCategoriesTable extends Migration
 		Schema::create('categories', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('latin_name');
             $table->string('image')->nullable();
             $table->string('background_image')->nullable();
             $table->string('is_active')->default(0);
