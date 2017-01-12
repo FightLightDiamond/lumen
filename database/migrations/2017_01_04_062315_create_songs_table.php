@@ -17,15 +17,15 @@ class CreateVtSongsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('file');
-            $table->string('image');
-            $table->text('lyric');
-            $table->string('is_active');
-            $table->string('is_download');
-            $table->integer('listen_no');
-            $table->integer('download_no');
-            $table->integer('share_no');
-            $table->string('singer_name');
-            $table->mediumInteger('price');
+            $table->string('image')->nullable();
+            $table->text('lyric')->nullable();
+            $table->boolean('is_active')->default(0);
+            $table->integer('is_download')->default(0);
+            $table->integer('listen_no')->default(0);
+            $table->integer('download_no')->default(0);
+            $table->integer('share_no')->default(0);
+            $table->string('singer_name')->nullable();
+            $table->mediumInteger('price')->default(0);
             $table->timestamps();
 		});
 	}

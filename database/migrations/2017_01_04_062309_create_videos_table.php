@@ -17,11 +17,13 @@ class CreateVtVideosTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('file');
-            $table->string('image');
-            $table->string('is_active');
-            $table->string('is_download');
-            $table->integer('listen_no');
-            $table->integer('download_no');
+            $table->string('image')->nullable();
+            $table->string('singer_name');
+            $table->mediumInteger('price')->default(0);
+            $table->boolean('is_active')->default(0);
+            $table->integer('is_download')->default(0);
+            $table->integer('listen_no')->default(0);
+            $table->integer('download_no')->default(0);
             $table->timestamps();
 		});
 	}

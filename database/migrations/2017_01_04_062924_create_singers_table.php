@@ -16,9 +16,11 @@ class CreateVtSingersTable extends Migration
 		Schema::create('singers', function(Blueprint $table) {
             $table->increments('id');
             $table->string('alias_name');
-            $table->string('real_name');
-            $table->string('image');
-            $table->string('is_active');
+            $table->string('real_name')->nullable();
+            $table->string('image')->nullable();
+            $table->tinyInteger('gender')->nullable();
+            $table->text('information')->nullable();
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
 		});
 	}

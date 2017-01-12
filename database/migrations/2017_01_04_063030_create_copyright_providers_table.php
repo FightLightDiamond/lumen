@@ -17,7 +17,7 @@ class CreateVtCopyrightProvidersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('code');
-            $table->string('is_active');
+            $table->string('is_active')->default(0);
             $table->timestamps();
 		});
 	}

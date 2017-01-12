@@ -15,7 +15,9 @@ class CreateFlashHotsTable extends Migration
 	{
 		Schema::create('flash_hots', function(Blueprint $table) {
             $table->increments('id');
-
+            $table->string('image');
+            $table->string('link');
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
 		});
 	}
