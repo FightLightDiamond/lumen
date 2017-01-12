@@ -24,6 +24,7 @@ class CreateVtVideosTable extends Migration
             $table->integer('is_download')->default(0);
             $table->integer('listen_no')->default(0);
             $table->integer('download_no')->default(0);
+            $table->integer('share_no')->default(0);
             $table->timestamps();
 		});
 	}
