@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtRingBackTonesTable extends Migration
+class CreateVtAlbumsTable extends Migration
 {
 
 	/**
@@ -13,11 +13,14 @@ class CreateVtRingBackTonesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_ring_back_tones', function(Blueprint $table) {
+		Schema::create('albums', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('code');
+            $table->string('image');
             $table->string('is_active');
+            $table->string('is_download');
+            $table->integer('listen_no');
+            $table->integer('download_no');
             $table->timestamps();
 		});
 	}
@@ -29,7 +32,7 @@ class CreateVtRingBackTonesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_ring_back_tones');
+		Schema::drop('albums');
 	}
 
 }

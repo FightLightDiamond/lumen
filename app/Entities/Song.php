@@ -11,7 +11,7 @@ class Song extends Model implements Transformable
 {
     use TransformableTrait;
 
-    public $table = 'vt_songs';
+    public $table = 'songs';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -116,37 +116,37 @@ class Song extends Model implements Transformable
      */
     public function tag()
     {
-        return $this->belongsToMany(VtDmTag::class, 'vt_song_dm_tag', 'id', 'dm_tag_id');
+        return $this->belongsToMany(VtDmTag::class, 'song_dm_tag', 'id', 'dm_tag_id');
     }
 
     public function singer()
     {
-        return $this->belongsToMany(VtSinger::class, 'vt_song_singer', 'song_id', 'singer_id');
+        return $this->belongsToMany(VtSinger::class, 'song_singer', 'song_id', 'singer_id');
     }
 
     public function author()
     {
-        return $this->belongsToMany(VtAuthor::class, 'vt_song_author', 'song_id', 'author_id');
+        return $this->belongsToMany(VtAuthor::class, 'song_author', 'song_id', 'author_id');
     }
 
     public function RingBackTone()
     {
-        return $this->belongsToMany(VtRingBackTone::class, 'vt_song_ringbacktone', 'song_id', 'RingBacktone_id');
+        return $this->belongsToMany(VtRingBackTone::class, 'song_ringbacktone', 'song_id', 'RingBacktone_id');
     }
 
     public function topic()
     {
-        return $this->belongsToMany(VtTopic::class, 'vt_song_topic', 'song_id', 'topic_id');
+        return $this->belongsToMany(VtTopic::class, 'song_topic', 'song_id', 'topic_id');
     }
 
     public function category()
     {
-        return $this->belongsToMany(VtCategories::class, 'vt_song_category', 'song_id', 'category_id');
+        return $this->belongsToMany(VtCategories::class, 'song_category', 'song_id', 'category_id');
     }
 
     public function icon()
     {
-        return $this->belongsToMany(VtIcon::class, 'vt_song_icon', 'song_id', 'icon_id');
+        return $this->belongsToMany(VtIcon::class, 'song_icon', 'song_id', 'icon_id');
     }
 
     public function recordCopyright()

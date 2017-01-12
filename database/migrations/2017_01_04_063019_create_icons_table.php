@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtVideosTable extends Migration
+class CreateVtIconsTable extends Migration
 {
 
 	/**
@@ -13,15 +13,12 @@ class CreateVtVideosTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_videos', function(Blueprint $table) {
+		Schema::create('icons', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('file');
             $table->string('image');
+            $table->string('background_image');
             $table->string('is_active');
-            $table->string('is_download');
-            $table->integer('listen_no');
-            $table->integer('download_no');
             $table->timestamps();
 		});
 	}
@@ -33,7 +30,7 @@ class CreateVtVideosTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_videos');
+		Schema::drop('icons');
 	}
 
 }

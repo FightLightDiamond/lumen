@@ -58,13 +58,13 @@ class InputService
 
     public function getType($data){
         $type = NULL;
-        if($data->table == 'vt_song') {
+        if($data->table == 'song') {
             return 'audio';
         }
-        elseif($data->table == 'vt_video') {
+        elseif($data->table == 'video') {
             return 'video';
         }
-        elseif($data->table == 'vt_album') {
+        elseif($data->table == 'album') {
             return 'album';
         }
     }

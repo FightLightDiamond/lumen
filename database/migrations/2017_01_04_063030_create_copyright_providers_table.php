@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtAuthorsTable extends Migration
+class CreateVtCopyrightProvidersTable extends Migration
 {
 
 	/**
@@ -13,11 +13,10 @@ class CreateVtAuthorsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_authors', function(Blueprint $table) {
+		Schema::create('copyright_providers', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('alias_name');
-            $table->string('real_name');
-            $table->string('image');
+            $table->string('name');
+            $table->string('code');
             $table->string('is_active');
             $table->timestamps();
 		});
@@ -30,7 +29,7 @@ class CreateVtAuthorsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_authors');
+		Schema::drop('copyright_providers');
 	}
 
 }

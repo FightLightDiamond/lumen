@@ -78,8 +78,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    $sqlFormat = "select song_id as id FROM vt_bxh WHERE TYPE = 1 AND kichhoat = 1 AND song_id > 0
-    AND week_id =  (SELECT week_id FROM vt_bxh WHERE kichhoat = 1 AND TYPE = 1 AND song_id > 0 ORDER BY YEAR DESC, week_id DESC, id DESC LIMIT 1)
+    $sqlFormat = "select song_id as id FROM bxh WHERE TYPE = 1 AND kichhoat = 1 AND song_id > 0
+    AND week_id =  (SELECT week_id FROM bxh WHERE kichhoat = 1 AND TYPE = 1 AND song_id > 0 ORDER BY YEAR DESC, week_id DESC, id DESC LIMIT 1)
     AND YEAR = 2016 ORDER BY POINT DESC limit 20";
 
     <script>

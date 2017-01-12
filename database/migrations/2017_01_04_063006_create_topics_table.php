@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtIconsTable extends Migration
+class CreateVtTopicsTable extends Migration
 {
 
 	/**
@@ -13,7 +13,7 @@ class CreateVtIconsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_icons', function(Blueprint $table) {
+		Schema::create('topics', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('image');
@@ -30,7 +30,7 @@ class CreateVtIconsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_icons');
+		Schema::drop('topics');
 	}
 
 }

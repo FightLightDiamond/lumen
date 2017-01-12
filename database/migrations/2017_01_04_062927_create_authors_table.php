@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtDmTagsTable extends Migration
+class CreateVtAuthorsTable extends Migration
 {
 
 	/**
@@ -13,14 +13,12 @@ class CreateVtDmTagsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_dm_tags', function(Blueprint $table) {
+		Schema::create('authors', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('alias_name');
+            $table->string('real_name');
             $table->string('image');
             $table->string('is_active');
-            $table->string('is_download');
-            $table->integer('listen_no');
-            $table->integer('download_no');
             $table->timestamps();
 		});
 	}
@@ -32,7 +30,7 @@ class CreateVtDmTagsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_dm_tags');
+		Schema::drop('authors');
 	}
 
 }

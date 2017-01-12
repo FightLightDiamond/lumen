@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuotesTable extends Migration
+class CreateTableAlbumTopics extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateQuotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quotes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('quote');
-            $table->timestamps();
+        Schema::create('album_topics', function (Blueprint $table) {
+            $table->integer('album_id')->unsigned();
+            $table->integer('topic_id')->unsigned();
         });
     }
 
@@ -28,6 +26,6 @@ class CreateQuotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quotes');
+        Schema::dropIfExists('album_topics');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtAlbumsTable extends Migration
+class CreateVtVideosTable extends Migration
 {
 
 	/**
@@ -13,9 +13,10 @@ class CreateVtAlbumsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_albums', function(Blueprint $table) {
+		Schema::create('videos', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('file');
             $table->string('image');
             $table->string('is_active');
             $table->string('is_download');
@@ -32,7 +33,7 @@ class CreateVtAlbumsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_albums');
+		Schema::drop('videos');
 	}
 
 }

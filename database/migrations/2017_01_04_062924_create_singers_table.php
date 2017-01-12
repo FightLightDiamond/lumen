@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtTopicsTable extends Migration
+class CreateVtSingersTable extends Migration
 {
 
 	/**
@@ -13,11 +13,11 @@ class CreateVtTopicsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_topics', function(Blueprint $table) {
+		Schema::create('singers', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('alias_name');
+            $table->string('real_name');
             $table->string('image');
-            $table->string('background_image');
             $table->string('is_active');
             $table->timestamps();
 		});
@@ -30,7 +30,7 @@ class CreateVtTopicsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_topics');
+		Schema::drop('singers');
 	}
 
 }

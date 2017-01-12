@@ -10,7 +10,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 class Video extends Model
 {
-    public $table = 'vt_videos';
+    public $table = 'videos';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -165,25 +165,25 @@ class Video extends Model
         return $query;
     }
     public function tag(){
-        return $this->belongsToMany(VtDmTag::class, 'vt_video_dm_tag', 'id', 'dm_tag_id');
+        return $this->belongsToMany(VtDmTag::class, 'video_dm_tag', 'id', 'dm_tag_id');
     }
     public function singer(){
-        return $this->belongsToMany(VtSinger::class, 'vt_video_singer', 'video_id', 'singer_id');
+        return $this->belongsToMany(VtSinger::class, 'video_singer', 'video_id', 'singer_id');
     }
     public function author(){
-        return $this->belongsToMany(VtAuthor::class, 'vt_video_author', 'video_id', 'author_id');
+        return $this->belongsToMany(VtAuthor::class, 'video_author', 'video_id', 'author_id');
     }
     public function RingBackTone(){
-        return $this->belongsToMany(VtRingBackTone::class, 'vt_video_ringbacktone', 'video_id', 'RingBacktone_id');
+        return $this->belongsToMany(VtRingBackTone::class, 'video_ringbacktone', 'video_id', 'RingBacktone_id');
     }
     public function topic(){
-        return $this->belongsToMany(VtTopic::class, 'vt_video_topic', 'video_id', 'topic_id');
+        return $this->belongsToMany(VtTopic::class, 'video_topic', 'video_id', 'topic_id');
     }
     public function category(){
-        return $this->belongsToMany(VtCategories::class, 'vt_video_category', 'video_id', 'category_id');
+        return $this->belongsToMany(VtCategories::class, 'video_category', 'video_id', 'category_id');
     }
     public function icon(){
-        return $this->belongsToMany(VtIcon::class, 'vt_video_icon', 'video_id', 'icon_id');
+        return $this->belongsToMany(VtIcon::class, 'video_icon', 'video_id', 'icon_id');
     }
 
     /**Auto upload and checkbox

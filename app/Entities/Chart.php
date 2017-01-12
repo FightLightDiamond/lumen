@@ -12,7 +12,7 @@ class Chart extends Model implements Transformable
     use TransformableTrait;
     use ModelsTrait;
 
-    public $table = 'vt_charts';
+    public $table = 'charts';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtCopyrightProvidersTable extends Migration
+class CreateVtCategoriesTable extends Migration
 {
 
 	/**
@@ -13,10 +13,11 @@ class CreateVtCopyrightProvidersTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_copyright_providers', function(Blueprint $table) {
+		Schema::create('categories', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('code');
+            $table->string('image');
+            $table->string('background_image');
             $table->string('is_active');
             $table->timestamps();
 		});
@@ -29,7 +30,7 @@ class CreateVtCopyrightProvidersTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_copyright_providers');
+		Schema::drop('categories');
 	}
 
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVtCategoriesTable extends Migration
+class CreateVtSongsTable extends Migration
 {
 
 	/**
@@ -13,12 +13,19 @@ class CreateVtCategoriesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('vt_categories', function(Blueprint $table) {
+		Schema::create('songs', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('file');
             $table->string('image');
-            $table->string('background_image');
+            $table->text('lyric');
             $table->string('is_active');
+            $table->string('is_download');
+            $table->integer('listen_no');
+            $table->integer('download_no');
+            $table->integer('share_no');
+            $table->string('singer_name');
+            $table->mediumInteger('price');
             $table->timestamps();
 		});
 	}
@@ -30,7 +37,7 @@ class CreateVtCategoriesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('vt_categories');
+		Schema::drop('songs');
 	}
 
 }
