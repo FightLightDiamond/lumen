@@ -44,11 +44,12 @@ import {RegisterComponent} from "./components/auth/register.component";
  */
 //import {CustomFormsModule} from 'ng2-validation'
 
-import {VgCoreModule} from 'videogular2/core';
-import {VgControlsModule} from 'videogular2/controls';
-import {VgOverlayPlayModule} from 'videogular2/overlay-play';
-import {VgBufferingModule} from 'videogular2/buffering';
+// import {VgCoreModule} from 'videogular2/core';
+// import {VgControlsModule} from 'videogular2/controls';
+// import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+// import {VgBufferingModule} from 'videogular2/buffering';
 import {VideoComponent} from "./components/entertainments/videos.component";
+import {SongComponent} from "./components/entertainments/songs.component";
 
 
 @NgModule({
@@ -61,10 +62,10 @@ import {VideoComponent} from "./components/entertainments/videos.component";
 
       // CustomFormsModule,
 
-      VgCoreModule,
-      VgControlsModule,
-      VgOverlayPlayModule,
-      VgBufferingModule
+      // VgCoreModule,
+      // VgControlsModule,
+      // VgOverlayPlayModule,
+      // VgBufferingModule
   ],
   declarations: [
       AppComponent,
@@ -86,7 +87,8 @@ import {VideoComponent} from "./components/entertainments/videos.component";
       NotFoundComponent,
       LoginComponent,
       RegisterComponent,
-      VideoComponent
+      VideoComponent,
+      SongComponent
   ],
   providers: [
       EmployeeService,

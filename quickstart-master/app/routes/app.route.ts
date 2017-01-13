@@ -18,6 +18,7 @@ import {CheckLoginGuard} from "../guards/check-login.guard";
 import {CheckSaveFormGuard} from "../guards/check-save-form.guard";
 import {RegisterComponent} from "../components/auth/register.component";
 import {VideoComponent} from "../components/entertainments/videos.component";
+import {SongComponent} from "../components/entertainments/songs.component";
 
 const routing: Routes = [
     {
@@ -44,12 +45,10 @@ const routing: Routes = [
             }
         ]
     },
-
     {
         path: 'charts', component: AllWeekChartsComponent,
         canActivate: [CheckLoginGuard], canDeactivate: [CheckSaveFormGuard]
     },
-
     {
         path: 'charts/:week/:type', component: WeekTypeChartsComponent
     },
@@ -60,9 +59,11 @@ const routing: Routes = [
         path: 'register', component: RegisterComponent
     },
     {
+        path: 'songs', component: SongComponent
+    },
+    {
         path: 'videos', component: VideoComponent
     },
-
     {
         path: '**', component: NotFoundComponent
     }
