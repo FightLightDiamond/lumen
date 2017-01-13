@@ -59,7 +59,6 @@ class ChartController
             'rank' => 'asc',
         ];
         $input['limit'] = 90;
-        //$const = config('constQuery.charts.getCurrentChart');
         $data = $this->repository->makeModel()
             //->where('is_active', 1)
             ->orders($input['orders'] )
