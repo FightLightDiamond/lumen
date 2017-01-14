@@ -49,6 +49,10 @@ import {RegisterComponent} from "./components/auth/register.component";
 // import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 // import {VgBufferingModule} from 'videogular2/buffering';
 
+import {VideoComponent} from "./components/entertainments/videos.component";
+import {SongComponent} from "./components/entertainments/songs.component";
+
+
 @NgModule({
   imports:      [
       BrowserModule,
@@ -57,6 +61,7 @@ import {RegisterComponent} from "./components/auth/register.component";
       appRoutes,
       ReactiveFormsModule,
       //CustomFormsModule,
+
       // VgCoreModule,
       // VgControlsModule,
       // VgOverlayPlayModule,
@@ -81,7 +86,9 @@ import {RegisterComponent} from "./components/auth/register.component";
       HomeComponent,
       NotFoundComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      VideoComponent,
+      SongComponent
   ],
   providers: [
       EmployeeService,
