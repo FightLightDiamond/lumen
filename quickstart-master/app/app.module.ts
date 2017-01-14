@@ -44,14 +44,23 @@ import {RegisterComponent} from "./components/auth/register.component";
  */
 //import {CustomFormsModule} from 'ng2-validation'
 
+// import {VgCoreModule} from 'videogular2/core';
+// import {VgControlsModule} from 'videogular2/controls';
+// import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+// import {VgBufferingModule} from 'videogular2/buffering';
+
 @NgModule({
   imports:      [
       BrowserModule,
       FormsModule,
       HttpModule,
       appRoutes,
-      ReactiveFormsModule
+      ReactiveFormsModule,
       //CustomFormsModule,
+      // VgCoreModule,
+      // VgControlsModule,
+      // VgOverlayPlayModule,
+      // VgBufferingModule
   ],
   declarations: [
       AppComponent,
