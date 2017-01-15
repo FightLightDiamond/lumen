@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './app/main.ts',
     output: {
@@ -17,7 +17,11 @@ module.exports = {
         extensions: [
             '', '.js', '.ts'
         ]
-    }
-
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './index.html'
+      })
+    ]
 };
 
