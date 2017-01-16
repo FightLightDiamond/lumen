@@ -1,6 +1,0 @@
-{
-  "globalDependencies": {
-    "core-js": "registry:dt/core-js#0.9.7+20161130133742",
-    "es6-shim": "registry:dt/es6-shim#0.31.2+20160726072212"
-  }
-}
