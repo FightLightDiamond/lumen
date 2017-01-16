@@ -49,3 +49,15 @@ $factory->define(\App\Entities\Chart::class, function ($faker) {
         'point' => rand(1, 100)
     ];
 });
+
+$factory->define(\App\Entities\OfferSetups::class, function ($faker) {
+    return [
+        'imei' => str_random(10),
+        'phone_number' => rand(1111, 9999),
+        'net_news' => rand(0,1),
+        'mocha' => rand(0,1),
+        'keeng' => rand(0,1),
+        'code' => str_random(8),
+        'status' => rand(0,1)
+    ];
+});

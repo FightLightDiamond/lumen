@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VideoTableSeeder::class);
         $this->call(AlbumTableSeeder::class);
         $this->call(ChartsTableSeeder::class);
+        $this->call(OfferSetupTableSeeder::class);
         //$this->call('UsersTableSeeder');
     }
 }

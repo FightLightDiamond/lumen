@@ -71,6 +71,10 @@ $app->group(['prefix'=> 'app/v1', 'middleware' => 'cors'], function ($app){
     $app->group(['prefix' => 'albums'], function ($app) {
         $app->get('/search-with-singer', 'AlbumController@searchWithSinger');
     });
+
+    $app->group(['prefix' => 'offer-setup'], function ($app) {
+        $app->post('/set-information', 'Tools\OfferSetupsController@setInformation');
+    });
 });
 
 $app->get('memcached', function (){

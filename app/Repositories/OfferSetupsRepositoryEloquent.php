@@ -27,11 +27,11 @@ class OfferSetupsRepositoryEloquent extends BaseRepository implements OfferSetup
     public function saveInformation($input)
     {
         $offer = $this->makeModel()->where('imei', $input['imei'])->get();
-        if(count($offer) > 0)
+        if(count($offer) === 0)
         {
-            $this->create($input);
+            return $this->create($input);
         } else {
-            $this->update($input, $offer[0]->id);
+            return $this->update($input, $offer[0]->id);
         }
     }
 

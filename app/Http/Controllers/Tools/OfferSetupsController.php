@@ -1,7 +1,8 @@
 <?php
-namespace App\Http\Tools;
+namespace App\Http\Controllers\Tools;
 use App\Repositories\OfferSetupsRepository;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Created by PhpStorm.
@@ -16,9 +17,50 @@ class OfferSetupsController
     {
         $this->repository = $repository;
     }
-    public function getInformation(Request $request)
+    public function index(Request $request)
+    {
+        $data = $this->repository->paginate(10);
+        return response()->json($data);
+    }
+    public function setInformation(Request $request)
     {
         $input = $request->all();
-        $this->repository->saveInformation($input);
+        $validator = Validator::make($request->all(), [
+            'imei' => 'required|max:48',
+            'number_phone' => 'number',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        } else {
+            $data = $this->repository->saveInformation($input);
+            return response()->json($data);
+        }
+    }
+    public function checkOffer($id, Request $request)
+    {
+        $offer = $this->repository->find($id);
+        $data =  'OK';
+        if($offer)
+        {
+            $mocha = app('curl')->getData(config('offer.mocha'));
+            $mocha = app('curl')->getData(config('offer.net_news'));
+            $mocha = app('curl')->getData(config('offer.mocha'));
+            //return
+            //fun2
+            //return
+            //fun2
+            if(true)
+            {
+                $input = $request->all();
+                $input['code'] = str_random(10);
+                $data = $this->repository->update($input , $id);
+                if($data)
+                {
+                    $data = 'UPDATE_FAIL';
+                }
+            }
+
+        }
+        return response()->json($data);
     }
 }

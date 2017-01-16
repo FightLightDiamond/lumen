@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOfferSetupsTable extends Migration
+class CreateOfferSetupDetailsTable extends Migration
 {
 
 	/**
@@ -13,14 +13,10 @@ class CreateOfferSetupsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('offer_setups', function(Blueprint $table) {
+		Schema::create('offer_setup_details', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('phone_number')->unsigned();
-            $table->string('imei');
-            $table->boolean('net_news');
-            $table->boolean('mocha');
-            $table->boolean('keeng');
-            $table->string('code', 16);
+            $table->integer('offer_setup_id')->unsigned();
+            $table->tinyInteger('type');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 		});
@@ -33,7 +29,7 @@ class CreateOfferSetupsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('offer_setups');
+		Schema::drop('offer_setup_details');
 	}
 
 }
