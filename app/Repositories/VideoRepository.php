@@ -14,6 +14,5 @@ interface VideoRepository extends RepositoryInterface
     public function getNew();
     public function getHighLight();
     public function getByType($type);
-    public function getDetails($identify);
-    public function getBySinger($singer_id);
+    public function getByIdentify($identify);
 }

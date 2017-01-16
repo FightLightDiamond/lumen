@@ -124,15 +124,15 @@
                 <!--</nav>-->
 
                 <!--Data-->
-                <ul class="list-group">
+                <sul class="list-group">
                     <li *ngFor="let item of items;  let i = index;" class="list-group-item">{{item.name}}
                         <input class="pull-right" (change)="rememberSelectedItem(item)" name="item_id" type="radio" [value]="item.id" ngModel>
                     </li>
-                </ul>
+                </sul>
                 <div class="form-group">
                     <label for="point">Point</label>
                     <input type="number" class="form-control" name="point" id="point" placeholder="point" title="point"
-                           ngModel #point="ngModel" required  pattern="^[1-9][0-9]{0,4}$" maxlength="5" [(ngModel)]="pointDefault"
+                           ngModel #point="ngModel" required  pattern="^[1-9][0-9]{0,4}$" maxlength="5" [ngModel]="pointDefault"
                     >
                 </div>
                 <div *ngIf="point.errors && (point.dirty || point.touched)" class="alert alert-danger">

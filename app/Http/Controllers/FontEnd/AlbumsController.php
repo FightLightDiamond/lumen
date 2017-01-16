@@ -57,9 +57,9 @@ class AlbumsController
         return response()->json($data);
     }
 
-    public function getDetails($identify)
+    public function getByIdentify($identify)
     {
-        $data['albums'] = $this->albumRepository->getDetails($identify);
+        $data['albums'] = $this->albumRepository->getByIdentify($identify);
         $data['banners'] = $this->bannerRepository->getByPage();
         $data['topics'] = $this->topicRepository->getData();
         $data['categories'] = $this->categoryRepository->getData();

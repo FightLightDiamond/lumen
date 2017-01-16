@@ -54,9 +54,9 @@ class VideosController
         return response()->json($data);
     }
 
-    public function getDetails($identify)
+    public function getByIdentify($identify)
     {
-        $data['videos'] = $this->videoRepository->getDetails($identify);
+        $data['videos'] = $this->videoRepository->getByIdentify($identify);
         $singer_id = $data['videos']->singer()->oderby('id')->limit(1)->id;
         $data['videoSingers'] = $this->videoRepository->getBySinger($singer_id);
         $data['banners'] = $this->bannerRepository->getByPage('video');

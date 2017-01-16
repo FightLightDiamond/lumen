@@ -44,7 +44,7 @@ class AlbumRepositoryEloquent extends BaseRepository implements AlbumRepository
     {
 
     }
-    public function getDetails($identify)
+    public function getByIdentify($identify)
     {
 
     }

@@ -6,7 +6,7 @@
  * Time: 4:07 PM
  */
 
-namespace App\Http\Controllers\FontEnd;
+namespace App\Http\Controllers;
 
 
 use App\Repositories\VideoRepository;

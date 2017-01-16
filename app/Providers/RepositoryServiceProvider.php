@@ -12,6 +12,8 @@ use App\Repositories\AlbumRepository;
 use App\Repositories\AlbumRepositoryEloquent;
 use App\Repositories\ChartRepository;
 use App\Repositories\ChartRepositoryEloquent;
+use App\Repositories\OfferSetupsRepository;
+use App\Repositories\OfferSetupsRepositoryEloquent;
 use App\Repositories\SongRepository;
 use App\Repositories\SongRepositoryEloquent;
 use App\Repositories\VideoRepository;
@@ -25,5 +27,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SongRepository::class, SongRepositoryEloquent::class);
         $this->app->bind(AlbumRepository::class, AlbumRepositoryEloquent::class);
         $this->app->bind(VideoRepository::class, VideoRepositoryEloquent::class);
+        $this->app->bind(OfferSetupsRepository::class, OfferSetupsRepositoryEloquent::class);
     }
 }

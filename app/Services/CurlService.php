@@ -11,12 +11,11 @@ namespace App\Services;
 
 class Curl
 {
-    private $domain = 'http://localhost:3000/';
     private $timeout = 10;
 
     public function getData($path)
     {
-        $url =  $this->domain.$path;
+        $url = $path;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

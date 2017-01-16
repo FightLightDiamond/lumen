@@ -2,11 +2,10 @@
 
 namespace App\Repositories;
 
+use App\MultiInheritance\RepositoriesTrait;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\VideoRepository;
 use App\Entities\Video;
-use App\Validators\VideoValidator;
 
 /**
  * class VideoRepositoryEloquent
@@ -14,6 +13,7 @@ use App\Validators\VideoValidator;
  */
 class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
 {
+    use RepositoriesTrait;
     /**
      * Specify Model class name
      *
@@ -37,14 +37,6 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
 
     }
     public function getByType($type)
-    {
-
-    }
-    public function getDetails($identify)
-    {
-
-    }
-    public function getBySinger($singer_id)
     {
 
     }

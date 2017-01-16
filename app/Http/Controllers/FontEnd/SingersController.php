@@ -13,6 +13,7 @@ use App\Repositories\BannerRepository;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\SingerRepository;
 use App\Repositories\TopicRepository;
+use Illuminate\Support\Facades\DB;
 
 class SingersController
 {
@@ -54,4 +55,28 @@ class SingersController
 
         return response()->json($data);
     }
+    public function paginateSong($singer_id){
+        DB::table('song_singer')->where('singer_id', $singer_id)
+            ->with('song')
+            ->simplePaginate(10);
+        $this->singerRepository->makeModel();
+
+        DB::table('song_singer')
+            ->where('song_singe.singer_id', $singer_id)
+            ->rightJoin('songs', function ($join)
+            {
+                $join->on('songs.id', '=', 'song_singer.id')
+                    ->where('songs.is_active', 1);
+            })
+            ->simplePaginate(10);
+
+        DB::table('songs')->where('songs.is_active', 1)
+            ->leftJoin('song_singer', function ($join) use($singer_id)
+            {
+                $join->on('songs.id', '=', 'song_singer.id')
+                    ->where('song_singe.singer_id', $singer_id);
+            })
+            ->simplePaginate(10);
+    }
+
 }

@@ -11,5 +11,8 @@ namespace App\MultiInheritance;
 
 trait RepositoriesTrait
 {
-
+    public function getByIdentify($identify)
+    {
+        return $this->makeModel()->where('identify', $identify)->limit(1)->get();
+    }
 }

@@ -9,6 +9,6 @@
 class ChartsTableSeeder extends \Illuminate\Database\Seeder
 {
     public function run(){
-        factory(\App\Entities\Chart::class, 100)->create();
+       // factory(\App\Entities\Chart::class, 100)->create();
     }
 }

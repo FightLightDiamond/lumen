@@ -54,9 +54,9 @@ class SongsController
         return response()->json($data);
     }
 
-    public function getDetails($identify)
+    public function getByIdentify($identify)
     {
-        $data['songs'] = $this->songRepository->getDetails($identify);
+        $data['songs'] = $this->songRepository->getByIdentify($identify);
         $singer_id = $data['songs']->singer()->oderby('id')->limit(1)->id;
         $data['songSingers'] = $this->songRepository->getBySinger($singer_id);
         $data['banners'] = $this->bannerRepository->getByPage('song');

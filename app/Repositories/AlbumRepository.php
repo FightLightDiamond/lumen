@@ -15,5 +15,5 @@ interface AlbumRepository extends RepositoryInterface
     public function getNew();
     public function getVideoAlbums();
     public function getByType($type);
-    public function getDetails($identify);
+    public function getByIdentify($identify);
 }
