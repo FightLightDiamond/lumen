@@ -15,7 +15,10 @@ class CreateBannersTable extends Migration
 	{
 		Schema::create('banners', function(Blueprint $table) {
             $table->increments('id');
-
+            $table->string('name', 128);
+            $table->string('code', 64);
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned();
             $table->timestamps();
 		});
 	}

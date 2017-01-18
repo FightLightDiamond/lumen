@@ -2,16 +2,14 @@
 
 namespace App\Entities;
 
-use App\MultiInheritance\ModelsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Banner extends Model implements Transformable
+class BannerDetail extends Model implements Transformable
 {
     use TransformableTrait;
-    use ModelsTrait;
 
-    protected $fillable = ['name', 'code', 'created_at', 'created_by'];
+    protected $fillable = [];
 
 }

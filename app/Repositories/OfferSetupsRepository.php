@@ -11,4 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface OfferSetupsRepository extends RepositoryInterface
 {
     public function saveInformation($input);
+    public function statistic($date = NULL);
 }

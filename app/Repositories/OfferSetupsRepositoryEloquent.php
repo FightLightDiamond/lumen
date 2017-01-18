@@ -35,6 +35,21 @@ class OfferSetupsRepositoryEloquent extends BaseRepository implements OfferSetup
         }
     }
 
+    public function statistic($date = NULL)
+    {   if($date === NULL) $date = date('Y-M-d');
+        $totalSetup = $this->makeModel()
+            ->where('created_at', '>', $date.' 00:00')
+            ->where('created_at', '<', $date.' 59:59')
+            ->count();
+        $finishSetup = $this->makeModel()
+            ->where('created_at', '>', $date.' 00:00')
+            ->where('created_at', '<', $date.' 59:59')
+            ->where('status', 1)
+            ->count();
+        $wrongSetup = $totalSetup - $finishSetup;
+        return compact('totalSetup', 'finishSetup', 'wrongSetup');
+    }
+
     /**
      * Boot up the repository, pushing criteria
      */
