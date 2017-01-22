@@ -115,6 +115,14 @@ class Song extends Model implements Transformable
     }
 
     //====================================ACTION============================================>
+    protected $upload = [
+        'file' => 0,
+        'image' => 1,
+    ];
+    protected $pathUpload = [
+        'file' => '/audio',
+        'image' => '/image',
+    ];
 
     protected $thumbImage = [
         'image_path' => [

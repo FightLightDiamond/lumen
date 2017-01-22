@@ -27,6 +27,12 @@ class SongController
     public function create() {
 
     }
+    public function store(Request $request) {
+        $input = $request->all();
+       // var_dump($input['file']);
+        $this->repository->makeModel()->uploads($input);
+        return response()->json($input['cuong']);
+    }
     public function update($id) {
 
     }

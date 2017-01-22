@@ -21,7 +21,7 @@ class UploadService
         $path = $path.$filename;
         chmod($path, 0666);
         $this->imageThumb($path, $filename, $thumbPath, $thumbSize);
-        $path = str_replace(env('PREFIX_UPLOAD'),"" , $path);
+        //$path = str_replace(env('PREFIX_UPLOAD'),"" , $path);
        // event(new LogUploadEvent($path));
         return $path;
     }
@@ -49,7 +49,7 @@ class UploadService
             mkdir($path, 755, true);
         }
         $input->move($path, $filename);
-        $path = $path.$filename;
+        $path = $path.'/'.$filename;
         chmod($path, 0666);
 
         //$path = str_replace(env('PREFIX_UPLOAD'),"" , $path);

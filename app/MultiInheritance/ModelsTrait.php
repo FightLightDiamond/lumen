@@ -54,12 +54,12 @@ trait ModelsTrait
         }
         return $input;
     }
-    public function uploads($input, Request $request)
+    public function uploads($input)
     {
         $folder = '';
         foreach($this->upload as $name => $key)
         {
-            if($request->file($name)){
+            if(isset($input[$name])){
                 $this->removeFileExits($name);
                 $input = $this->processUploads($input, $folder, $name, $key);
             } else {
@@ -89,17 +89,36 @@ trait ModelsTrait
     }
     private function generatePath($folder, $key){
         $basePath = storage_path('uploads');
-        if($key == 1) {
-            $folder .= 'image/';
-        } else {
-            $folder .= 'files/';
-        }
-        $uploadPath = $basePath . $folder . '/'. date('Y') . '/'. date('m') . '/'. date('d');
-        if(!file_exists($uploadPath))
+        if(!file_exists($basePath))
         {
-            mkdir($uploadPath, 666, true);
+            mkdir($basePath, 0777, true);
         }
-        return $uploadPath;
+//        if($key == 1) {
+//            $folder .= '/image';
+//        } else {
+//            $folder .= '/files';
+//        }
+        $basePath = $basePath . $folder;
+        if(!file_exists($basePath))
+        {
+            mkdir($basePath, 0777, true);
+        }
+        $basePath = $basePath  . '/'. date('Y');
+        if(!file_exists($basePath))
+        {
+            mkdir($basePath, 0777, true);
+        }
+        $basePath = $basePath  . '/'. date('m');
+        if(!file_exists($basePath))
+        {
+            mkdir($basePath, 0777, true);
+        }
+        $basePath = $basePath  . '/'. date('d');
+        if(!file_exists($basePath))
+        {
+            mkdir($basePath, 0777, true);
+        }
+        return $basePath;
     }
     private function removeFileExits($name)
     {
