@@ -18,38 +18,31 @@ $app->get('/', function () use ($app) {
 
 $app->post('/auth/login', 'AuthController@postLogin');
 
-$app->group(['middleware' => 'auth:api'], function($app)
-{
-    $app->get('/test', function() {
+$app->group(['middleware' => 'auth:api'], function ($app) {
+    $app->get('/test', function () {
         return response()->json([
             'message' => 'Hello World!',
         ]);
     });
-    $app->get('/logout', function (){
+    $app->get('/logout', function () {
         \Tymon\JWTAuth\Facades\JWTAuth::invalidate(\Tymon\JWTAuth\Facades\JWTAuth::getToken());
     });
 });
 
-$app->get('/token', function (){
+$app->get('/token', function () {
     $user = \App\User::first();
     return $token = \Tymon\JWTAuth\Facades\JWTAuth::fromUser($user);
 });
 
-$app->get('/get-token', function (){
+$app->get('/get-token', function () {
     return \Tymon\JWTAuth\Facades\JWTAuth::getToken();
 });
 
-$app->get('/user', function (){
+$app->get('/user', function () {
     return $user = \Tymon\JWTAuth\Facades\JWTAuth::parseToken()->authenticate();
 });
 
-$app->group(['prefix'=> 'app/v1', 'middleware' => 'cors'], function ($app){
-    $app->get('/quote', 'QuoteController@index');
-    $app->get('/quote/{id}', 'QuoteController@show');
-    $app->post('/quote', 'QuoteController@store');
-    $app->put('/quote/{id}', 'QuoteController@update');
-    $app->delete('/quote/{id}', 'QuoteController@destroy');
-
+$app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
     $app->group(['prefix' => 'charts'], function ($app) {
         $app->get('/list-week', 'ChartController@getListWeek');
         $app->get('/items-by-week-and-type/{week}/{type}', 'ChartController@getItemByWeekAndType');
@@ -75,9 +68,13 @@ $app->group(['prefix'=> 'app/v1', 'middleware' => 'cors'], function ($app){
     $app->group(['prefix' => 'offer-setup'], function ($app) {
         $app->post('/set-information', 'Tools\OfferSetupsController@setInformation');
     });
+
+    $app->post('post-api', function (\Illuminate\Http\Request $request) {
+        return response()->json($request->all()['key']);
+    });
 });
 
-$app->get('memcached', function (){
+$app->get('memcached', function () {
     \Illuminate\Support\Facades\Cache::put("xx", "trte", 30);
     var_dump(\Illuminate\Support\Facades\Cache::get("xx"));
 });

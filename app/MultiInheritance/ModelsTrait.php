@@ -15,21 +15,26 @@ trait ModelsTrait
 {
     //=====================RELATION============================>
 
-    public function user_create()
+    public function user_created()
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-    public function user_update()
+
+    public function user_updated()
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
-    public function created_by(){
-        if(isset($this->user_create))
+
+    public function created_by()
+    {
+        if (isset($this->user_create))
             return $this->user_create->email;
         return '--';
     }
-    public function updated_by(){
-        if(isset($this->user_update))
+
+    public function updated_by()
+    {
+        if (isset($this->user_update))
             return $this->user_update->email;
         return '--';
     }
@@ -38,28 +43,27 @@ trait ModelsTrait
 
     public function scopeOrders($query, $input = [])
     {
-        foreach ($input as $field => $value)
-        {
-            $query->orderBy($this->table.'.'.$field, $value);
+        foreach ($input as $field => $value) {
+            $query->orderBy($this->table . '.' . $field, $value);
         }
         return $query;
     }
 
     //========================ACTION============================>
 
-    public function checkbox($input){
-        foreach($this->checkbox as $value)
-        {
+    public function checkbox($input)
+    {
+        foreach ($this->checkbox as $value) {
             (isset($input[$value]) && $input[$value] != '0') ? $input[$value] = 1 : $input[$value] = 0;
         }
         return $input;
     }
+
     public function uploads($input, Request $request)
     {
         $folder = '';
-        foreach($this->upload as $name => $key)
-        {
-            if($request->file($name)){
+        foreach ($this->upload as $name => $key) {
+            if ($request->file($name)) {
                 $this->removeFileExits($name);
                 $input = $this->processUploads($input, $folder, $name, $key);
             } else {
@@ -68,17 +72,16 @@ trait ModelsTrait
         }
         return $input;
     }
+
     public function processUploads($input, $folder, $name, $key)
     {
-        if(isset($this->pathUpload)) {
+        if (isset($this->pathUpload)) {
             $folder = $this->pathUpload[$name];
         }
         $link = $this->generatePath($folder, $key);
-        if($key === 0)
-        {
+        if ($key === 0) {
             $input[$name] = app('upload')->file($input[$name], $link);
-        }
-        else {
+        } else {
             $input[$name] = app('upload')->images(
                 $input[$name],
                 $link,
@@ -87,39 +90,41 @@ trait ModelsTrait
         }
         return $input;
     }
-    private function generatePath($folder, $key){
+
+    private function generatePath($folder, $key)
+    {
         $basePath = storage_path('uploads');
-        if($key == 1) {
+        if ($key == 1) {
             $folder .= 'image/';
         } else {
             $folder .= 'files/';
         }
-        $uploadPath = $basePath . $folder . '/'. date('Y') . '/'. date('m') . '/'. date('d');
-        if(!file_exists($uploadPath))
-        {
+        $uploadPath = $basePath . $folder . '/' . date('Y') . '/' . date('m') . '/' . date('d');
+        if (!file_exists($uploadPath)) {
             mkdir($uploadPath, 666, true);
         }
         return $uploadPath;
     }
+
     private function removeFileExits($name)
     {
-        if(isset($this->$name) && $this->$name != ''){
+        if (isset($this->$name) && $this->$name != '') {
             try {
                 unlink($this->$name);
-            } catch(\Exception $e) {
+            } catch (\Exception $e) {
 
             }
         }
     }
-    private function removeFile(){
-        foreach($this->upload as $value)
-        {
-            try{
-                if(($this->upload != '') && ($this->upload != NUll))
-                {
+
+    private function removeFile()
+    {
+        foreach ($this->upload as $value) {
+            try {
+                if (($this->upload != '') && ($this->upload != NUll)) {
                     unlink($this->$value);
                 }
-            }catch(\Exception $e){
+            } catch (\Exception $e) {
 
             }
         }

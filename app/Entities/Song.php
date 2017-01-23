@@ -37,38 +37,47 @@ class Song extends Model implements Transformable
     {
         return $this->belongsToMany(Tag::class, 'song_dm_tag', 'id', 'dm_tag_id');
     }
+
     public function singer()
     {
         return $this->belongsToMany(Singer::class, 'song_singer', 'song_id', 'singer_id');
     }
+
     public function author()
     {
         return $this->belongsToMany(Author::class, 'song_author', 'song_id', 'author_id');
     }
+
     public function RingBackTone()
     {
-        return $this->belongsToMany(RingBackTone::class, 'song_ringbacktone', 'song_id', 'RingBacktone_id');
+        return $this->belongsToMany(RingBackTone::class, 'song_ring_back_tone', 'song_id', 'ring_back_tone_id');
     }
+
     public function topic()
     {
         return $this->belongsToMany(Topic::class, 'song_topic', 'song_id', 'topic_id');
     }
+
     public function category()
     {
         return $this->belongsToMany(Categories::class, 'song_category', 'song_id', 'category_id');
     }
+
     public function icon()
     {
         return $this->belongsToMany(Icon::class, 'song_icon', 'song_id', 'icon_id');
     }
+
     public function recordCopyright()
     {
         return $this->belongsTo(CopyrightProvider::class, 'record_copyright');
     }
+
     public function authorCopyRight()
     {
         return $this->belongsTo(CopyrightProvider::class, 'author_copyright');
     }
+
     public function video()
     {
         return $this->belongsTo(Video::class);
@@ -78,24 +87,21 @@ class Song extends Model implements Transformable
 
     public function scopeOrder($query, $input)
     {
-        if (isset($input['order_by']))
-        {
+        if (isset($input['order_by'])) {
             $query->orderBy($this->table . '.' . $input['order_by'], $input['order']);
         }
-        if (!isset($input['order_by']))
-        {
+        if (!isset($input['order_by'])) {
             $query->orderBy($this->table . '.updated_at', 'DESC');
         }
         return $query;
     }
+
     public function scopeFilter($query, $input)
     {
-        if (isset($input['is_active']) && ($input['is_active']) !== '')
-        {
+        if (isset($input['is_active']) && ($input['is_active']) !== '') {
             $query->where($this->table . '.is_active', $input['is_active']);
         }
-        if (isset($input['name']) && ($input['name'] != ''))
-        {
+        if (isset($input['name']) && ($input['name'] != '')) {
             $name = trim($input['name']);
             $query->where(function ($query) use ($name) {
                 $query->where($this->table . '.name', 'LIKE', $name . '%')
@@ -103,8 +109,7 @@ class Song extends Model implements Transformable
                     ->orderBy('name', 'ASC');
             });
         }
-        if (isset($input['singer_name']) && $input['singer_name'] != '')
-        {
+        if (isset($input['singer_name']) && $input['singer_name'] != '') {
             $singer = trim($input['singer_name']);
             $query->where(function ($query) use ($singer) {
                 $query->where($this->table . '.singer_name', 'LIKE', '%' . $singer . '%')

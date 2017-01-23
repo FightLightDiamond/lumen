@@ -2,11 +2,10 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\SongRepository;
 use App\Entities\Song;
-use App\Validators\SongValidator;
 
 /**
  * class SongRepositoryEloquent
@@ -28,19 +27,69 @@ class SongRepositoryEloquent extends BaseRepository implements SongRepository
     {
 
     }
+
     public function getNew()
     {
 
     }
-    public function getHighLight(){
+
+    public function getHighLight()
+    {
 
     }
+
     public function getByType($type)
     {
 
     }
-    public function getByIdentify($identify){
 
+    public function getByIdentify($identify)
+    {
+
+    }
+
+    //-----------------------------CURL----------------------------------
+    public function paginateAdvance($input)
+    {
+        $this->makeModel()
+            ->filter($input)
+            ->order($input)
+            ->with('user_created')
+            ->with('user_updated')
+            ->simplePaginate($input['numberRows']);
+    }
+
+    public function store($input)
+    {
+        $model = $this->makeModel();
+        $input['created_by'] = Auth::user()->id;
+        $input = $this->standardized($input, $model);
+        return $this->create($input);
+    }
+
+    public function change($input, $model)
+    {
+        $input['updated_by'] = Auth::user()->id;
+        $input = $this->standardized($input, $model);
+        return $this->update($input, $model);
+    }
+
+    public function isActive($input)
+    {
+
+    }
+
+    public function isDownload($input)
+    {
+
+    }
+
+    //------------------------------Help------------------------------------
+    private function standardized($input, $model)
+    {
+        $input = $model->uploads($input);
+        $input = $model->checkbox($input);
+        return $input;
     }
 
     /**

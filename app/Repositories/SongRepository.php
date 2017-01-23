@@ -10,9 +10,26 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface SongRepository extends RepositoryInterface
 {
+    //---------------------GET DATA----------------------
     public function getHot();
+
     public function getNew();
+
     public function getHighLight();
+
     public function getByType($type);
+
     public function getByIdentify($identify);
+
+    //--------------------CURD---------------------------
+
+    public function paginateAdvance($input);
+
+    public function store($input);
+
+    public function change($input, $model);
+
+    public function isActive($input);
+
+    public function isDownload($input);
 }
