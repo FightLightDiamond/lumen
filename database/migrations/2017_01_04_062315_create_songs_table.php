@@ -28,6 +28,8 @@ class CreateSongsTable extends Migration
             $table->integer('share_no')->default(0);
             $table->string('singer_name')->nullable();
             $table->mediumInteger('price')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
             $table->index('identify');
 		});

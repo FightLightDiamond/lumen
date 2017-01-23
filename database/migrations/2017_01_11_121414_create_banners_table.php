@@ -19,6 +19,8 @@ class CreateBannersTable extends Migration
             $table->string('code', 64);
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned();
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 		});
 	}

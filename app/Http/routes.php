@@ -55,6 +55,8 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
 
     $app->group(['prefix' => 'songs'], function ($app) {
         $app->get('/search-with-singer', 'SongController@searchWithSinger');
+        $app->get('', 'SongController@index');
+        $app->post('', 'SongController@store');
     });
 
     $app->group(['prefix' => 'videos'], function ($app) {

@@ -20,6 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->string('image')->nullable();
             $table->string('background_image')->nullable();
             $table->string('is_active')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 		});
 	}

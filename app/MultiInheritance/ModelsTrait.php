@@ -94,16 +94,32 @@ trait ModelsTrait
     private function generatePath($folder, $key)
     {
         $basePath = storage_path('uploads');
-        if ($key == 1) {
-            $folder .= 'image/';
-        } else {
-            $folder .= 'files/';
+
+        if (!file_exists($basePath)) {
+            mkdir($basePath, 0777, true);
         }
-        $uploadPath = $basePath . $folder . '/' . date('Y') . '/' . date('m') . '/' . date('d');
-        if (!file_exists($uploadPath)) {
-            mkdir($uploadPath, 666, true);
+//        if($key == 1) {
+//            $folder .= '/image';
+//        } else {
+//            $folder .= '/files';
+//        }
+        $basePath = $basePath . $folder;
+        if (!file_exists($basePath)) {
+            mkdir($basePath, 0777, true);
         }
-        return $uploadPath;
+        $basePath = $basePath . '/' . date('Y');
+        if (!file_exists($basePath)) {
+            mkdir($basePath, 0777, true);
+        }
+        $basePath = $basePath . '/' . date('m');
+        if (!file_exists($basePath)) {
+            mkdir($basePath, 0777, true);
+        }
+        $basePath = $basePath . '/' . date('d');
+        if (!file_exists($basePath)) {
+            mkdir($basePath, 0777, true);
+        }
+        return $basePath;
     }
 
     private function removeFileExits($name)

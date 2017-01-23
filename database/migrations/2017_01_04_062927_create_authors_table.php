@@ -23,6 +23,8 @@ class CreateAuthorsTable extends Migration
             $table->text('information')->nullable();
             $table->string('image')->nullable();
             $table->string('is_active')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 		});
 	}

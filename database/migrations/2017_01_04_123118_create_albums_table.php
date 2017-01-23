@@ -23,6 +23,8 @@ class CreateAlbumsTable extends Migration
             $table->integer('is_download')->default(0);
             $table->integer('listen_no')->default(0);
             $table->integer('download_no')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
             $table->index('identify');
 		});

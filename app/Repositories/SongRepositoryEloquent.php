@@ -51,11 +51,12 @@ class SongRepositoryEloquent extends BaseRepository implements SongRepository
     //-----------------------------CURL----------------------------------
     public function paginateAdvance($input)
     {
+        if (!isset($input['numberRows'])) $input['numberRows'] = 10;
         $this->makeModel()
             ->filter($input)
             ->order($input)
-            ->with('user_created')
-            ->with('user_updated')
+//            ->with('user_created')
+//            ->with('user_updated')
             ->simplePaginate($input['numberRows']);
     }
 

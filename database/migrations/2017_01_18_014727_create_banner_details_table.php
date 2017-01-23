@@ -25,6 +25,8 @@ class CreateBannerDetailsTable extends Migration
             $table->tinyInteger('province');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 		});
 	}

@@ -18,6 +18,8 @@ class CreateFlashHotsTable extends Migration
             $table->string('image');
             $table->string('link');
             $table->boolean('is_active')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 		});
 	}

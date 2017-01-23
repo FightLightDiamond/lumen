@@ -19,6 +19,8 @@ class CreateRingBackTonesTable extends Migration
             $table->string('latin_name');
             $table->string('code');
             $table->string('is_active')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
 		});
 	}

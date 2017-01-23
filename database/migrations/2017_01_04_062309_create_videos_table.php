@@ -27,6 +27,8 @@ class CreateVideosTable extends Migration
             $table->integer('listen_no')->default(0);
             $table->integer('download_no')->default(0);
             $table->integer('share_no')->default(0);
+            $table->integer('created_by')->unsigned()->nullable();
+            $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();
             $table->index('identify');
 		});
