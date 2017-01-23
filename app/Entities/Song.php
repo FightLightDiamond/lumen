@@ -28,7 +28,10 @@ class Song extends Model implements Transformable
         'share_no',
         'singer_name',
         'latin_singer_name',
-        'price'
+        'price',
+        'identify',
+        'created_by',
+        'updated_by',
     ];
 
     //==================================RELATION========================================>

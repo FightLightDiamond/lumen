@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\LogUploadEvent;
+use App\Listeners\LogUploadListener;
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
-
+use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -15,5 +17,13 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        LogUploadEvent::class => [
+            LogUploadListener::class
+        ],
     ];
+
+//    public function boot(DispatcherContract $events)
+//    {
+//        //parent::boot($events);
+//    }
 }

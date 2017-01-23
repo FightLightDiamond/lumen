@@ -9,7 +9,7 @@
 namespace App\MultiInheritance;
 
 use App\Entities\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 trait ModelsTrait
 {
@@ -59,11 +59,11 @@ trait ModelsTrait
         return $input;
     }
 
-    public function uploads($input, Request $request)
+    public function uploads($input)
     {
         $folder = '';
         foreach ($this->upload as $name => $key) {
-            if ($request->file($name)) {
+            if (Input::file($name)) {
                 $this->removeFileExits($name);
                 $input = $this->processUploads($input, $folder, $name, $key);
             } else {

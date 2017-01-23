@@ -52,7 +52,7 @@ class SongRepositoryEloquent extends BaseRepository implements SongRepository
     public function paginateAdvance($input)
     {
         if (!isset($input['numberRows'])) $input['numberRows'] = 10;
-        $this->makeModel()
+        return $this->makeModel()
             ->filter($input)
             ->order($input)
 //            ->with('user_created')
@@ -63,14 +63,15 @@ class SongRepositoryEloquent extends BaseRepository implements SongRepository
     public function store($input)
     {
         $model = $this->makeModel();
-        $input['created_by'] = Auth::user()->id;
+        $input['identify'] = app('input')->identify($model);
+        //$input['created_by'] = Auth::user()->id;
         $input = $this->standardized($input, $model);
         return $this->create($input);
     }
 
     public function change($input, $model)
     {
-        $input['updated_by'] = Auth::user()->id;
+        //$input['updated_by'] = Auth::user()->id;
         $input = $this->standardized($input, $model);
         return $this->update($input, $model);
     }

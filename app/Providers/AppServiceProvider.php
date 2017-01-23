@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\FormatService;
+use App\Services\InputService;
 use App\Services\UploadService;
 use Illuminate\Support\ServiceProvider;
 use Tymon\JWTAuth\Providers\LumenServiceProvider;
@@ -21,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
         //$this->app->register(\Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
         $this->app->bind('upload', UploadService::class);
         $this->app->bind('format', FormatService::class);
+        $this->app->bind('input', InputService::class);
     }
 }
