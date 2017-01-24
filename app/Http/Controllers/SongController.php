@@ -51,9 +51,13 @@ class SongController
         }
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        $data = $this->repository->delete($id);
+        if($request->has('skip')) {
+            $data = $this->repository->destroy($id, $request->get('skip'));
+        } else {
+            $data = $this->repository->delete($id);
+        }
         return response()->json($data);
     }
 

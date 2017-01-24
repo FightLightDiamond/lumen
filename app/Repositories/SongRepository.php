@@ -29,6 +29,8 @@ interface SongRepository extends RepositoryInterface
 
     public function change($input, $model);
 
+    public function destroy($id, $skip = 0);
+
     public function isActive($input);
 
     public function isDownload($input);

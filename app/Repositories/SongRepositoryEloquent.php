@@ -76,6 +76,19 @@ class SongRepositoryEloquent extends BaseRepository implements SongRepository
         return $this->update($input, $model);
     }
 
+    public function destroy($id, $skip = 0)
+    {
+        $result = $this->delete($id);
+        if ($result) {
+            if ($skip !== 0) {
+                $data = $this->makeModel()->skip($skip)->take(1)->get();
+                return $data;
+            }
+            return $result;
+        }
+        return false;
+    }
+
     public function isActive($input)
     {
 

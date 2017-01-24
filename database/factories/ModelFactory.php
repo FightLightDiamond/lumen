@@ -14,6 +14,7 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
+        'file' => 'http://hot6.medias.keeng.vn/mp3/sata10/audio/2016/05/11/3adc387e86040d6f5e10f197e79613d87ef633f9.mp3',
         'email' => $faker->email,
     ];
 });
@@ -21,6 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(\App\Entities\Song::class, function ($faker) {
     return [
         'name' => $faker->name,
+        'file' => 'http://keengmp3obj.1d2173fe.viettel-cdn.vn/bucket-media-keeng/sata07/video/2017/01/06/hgPLtlVTKDcS1fejBD1E586eff02e1896.mp4',
         'identify' => str_random(8)
     ];
 });
