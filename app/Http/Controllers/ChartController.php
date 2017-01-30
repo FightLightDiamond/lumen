@@ -62,7 +62,7 @@ class ChartController
         $data = $this->repository->makeModel()
             //->where('is_active', 1)
             ->orders($input['orders'] )
-            ->relation(['id', 'name'])
+            ->relation(['id', 'name', 'image', 'listen_no'])
             ->limit(90)
             ->get();
         return response()->json($data);

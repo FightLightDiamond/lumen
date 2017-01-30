@@ -36,6 +36,22 @@ class SingerRepositoryEloquent extends BaseRepository implements SingerRepositor
     {
 
     }
+    public function store($input)
+    {
+        $input = $this->standardized($input, $this->model());
+        return $this->create($input);
+    }
+    public function change($input, $model)
+    {
+        $input = $this->standardized($input, $model);
+        return $this->update($input, $model->id);
+    }
+    private function standardized($input, $model)
+    {
+        $input = $model->uploads($input);
+        $input = $model->checkbox($input);
+        return $input;
+    }
 
     /**
      * Boot up the repository, pushing criteria

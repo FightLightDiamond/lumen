@@ -63,7 +63,8 @@ class Chart extends Model implements Transformable
             [
                 'item' => function ($query) use($selector)
                 {
-                    $query->select($selector);
+                    $query->select($selector)
+                    ->with('singer');
                 }
             ]
         );

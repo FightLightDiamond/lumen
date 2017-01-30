@@ -13,4 +13,7 @@ interface SingerRepository extends RepositoryInterface
     public function getData();
     public function getSingerOfWeek();
     public function getDetail($slug);
+
+    public function store($input);
+    public function change($input, $model);
 }
