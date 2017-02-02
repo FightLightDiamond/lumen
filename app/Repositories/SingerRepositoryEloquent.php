@@ -38,7 +38,7 @@ class SingerRepositoryEloquent extends BaseRepository implements SingerRepositor
     }
     public function store($input)
     {
-        $input = $this->standardized($input, $this->model());
+        $input = $this->standardized($input, $this->makeModel());
         return $this->create($input);
     }
     public function change($input, $model)
@@ -48,6 +48,7 @@ class SingerRepositoryEloquent extends BaseRepository implements SingerRepositor
     }
     private function standardized($input, $model)
     {
+        $input['identify'] = app('input')->identify($model);
         $input = $model->uploads($input);
         $input = $model->checkbox($input);
         return $input;
