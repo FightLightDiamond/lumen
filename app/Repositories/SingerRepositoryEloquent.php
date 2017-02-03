@@ -38,7 +38,8 @@ class SingerRepositoryEloquent extends BaseRepository implements SingerRepositor
     }
     public function store($input)
     {
-        $input = $this->standardized($input, $this->model());
+        $input = $this->standardized($input, $this->makeModel());
+        $input['identify'] = app('input')->identify($this->makeModel());
         return $this->create($input);
     }
     public function change($input, $model)

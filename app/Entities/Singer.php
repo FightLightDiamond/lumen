@@ -20,7 +20,8 @@ class Singer extends Model implements Transformable
         'image',
         'gender',
         'information',
-        'is_active'
+        'is_active',
+        'identify'
     ];
 
     //======================SCOPE=========================>
