@@ -49,6 +49,7 @@ class SingerRepositoryEloquent extends BaseRepository implements SingerRepositor
     }
     private function standardized($input, $model)
     {
+        $input['identify'] = app('input')->identify($model);
         $input = $model->uploads($input);
         $input = $model->checkbox($input);
         return $input;

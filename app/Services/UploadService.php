@@ -6,9 +6,7 @@
  * Time: 10:12 PM
  */
 namespace App\Services;
-
 use App\Events\LogUploadEvent;
-use App\Helper\LinkHelper;
 use Intervention\Image\Facades\Image;
 
 class UploadService
@@ -16,13 +14,10 @@ class UploadService
     public function file($input, $path)
     {
         $originalName = $input->getClientOriginalName();
-        $filename = app('format')->formatNameFile($originalName);
-        if (!file_exists($path)) {
-            mkdir($path, 755, true);
-        }
-        $input->move($path, $filename);
-        $path = $path .'/'. $filename;
-        chmod($path, 0666);
+        $formatName = app('format')->formatNameFile($originalName);
+        $input->move($path, $formatName);
+        $path = $path .'/'. $formatName;
+        chmod($path, 0777);
        // $path = str_replace(env('PREFIX_UPLOAD'), "", $path);
         //event(new LogUploadEvent($path, "FILE"));
         return $path;
@@ -30,52 +25,49 @@ class UploadService
 
     public function images($input, $path, $thumbImage)
     {
-
-        $filename = app('format')->formatNameFile($input->getClientOriginalName());
-        if (!file_exists($path)) {
-            mkdir($path, 0755, true);
-        }
-        $input->move($path, $filename);
-        $path = $path .'/'. $filename;
-        chmod($path, 0666);
-
-        $this->thumbImages($path, $filename, $thumbImage);
-
-        $path = str_replace(env('PREFIX_UPLOAD'), "", $path);
+        $pathUploaded = $this->file($input, $path);
+        //$this->thumbImages($path, $pathUploaded, $formatName, $thumbImage);
+        //chmod($path, 0777);
+       // $path = str_replace(env('PREFIX_UPLOAD'), "", $path);
         //event(new LogUploadEvent($path));
-        return $path;
+        return $pathUploaded;
     }
 
-    private function thumbImages($path, $filename, $thumbImage)
+    private function thumbImages($path, $pathUploaded, $formatName, $thumbImage)
     {
-        $arrayThumb = explode('.', $filename);
+        $arrayThumb = explode('.', $formatName);
         foreach ($thumbImage as $folder => $sizes) {
             foreach ($sizes as $size) {
-                $this->processRender($path, $size, $arrayThumb, $folder);
+                $this->processRender($path, $pathUploaded, $size, $arrayThumb, $folder);
             }
         }
     }
 
-    private function processRender($path, $size, $arrayThumb, $folder)
+    private function processRender($path, $pathUploaded, $size, $arrayThumb, $folder)
     {
-        $pathThumb = $this->buildThumbPath($size, $arrayThumb, $folder);
-        Image::make($path)->resize($size[0], $size[1])->save($pathThumb);
-        chmod($pathThumb, 0666);
-        // event(new LogUploadEvent($pathThumb, 'THUMB', 0666));
+        $pathThumb = $this->buildThumbPath($path, $size, $arrayThumb, $folder);
+        echo $pathThumb."<br>";
+        echo $size[0].'-'.$size[1].'<br>';
+        Image::make($pathUploaded)->resize($size[0], $size[1])->save($pathThumb);
+        chmod($pathThumb, 0777);
+        // event(new LogUploadEvent($pathThumb, 'THUMB', 0777));
     }
 
-    private function buildThumbPath($size, $arrayThumb, $folder)
+    private function buildThumbPath($path, $size, $arrayThumb, $folder)
     {
         $sizer = '_' . implode('_', $size) . '.';
-        $fileName = implode($sizer, $arrayThumb);
-        return LinkHelper::generatePath($folder, 1) . $fileName;
+        $formatName = implode($sizer, $arrayThumb);
+        if (!file_exists($path.$folder)) {
+            mkdir($path.$folder, 0777, true);
+        }
+        return $path.$folder. $formatName;
     }
 
-    public function rendThumb($path, $filename, $size, $folder)
+    private function rendThumb($path, $formatName, $size, $folder)
     {
-        $arrayThumb = explode('.', $filename);
-        $pathThumb = $this->buildThumbPath($size, $arrayThumb, $folder);
+        $arrayThumb = explode('.', $formatName);
+        $pathThumb = $this->buildThumbPath($path, $size, $arrayThumb, $folder);
         Image::make($path)->resize($size[0], $size[1])->save($pathThumb);
-        chmod($pathThumb, 0666);
+        chmod($pathThumb, 0777);
     }
 }

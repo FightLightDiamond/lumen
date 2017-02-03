@@ -50,15 +50,15 @@ class Singer extends Model implements Transformable
     //======================ACTION=========================
 
     protected $upload = [
-        'image_path' => 1,
+        'image' => 1,
     ];
     protected $pathUpload = [
-        'image_path' => '/singer',
+        'image' => '/singer',
     ];
 
     protected $thumbImage = [
-        'image_path' => [
-            '/images_thumb/singer' => [
+        'image' => [
+            '/images_thumb/singer/' => [
                 [103, 103], [310, 310]
             ]
         ]

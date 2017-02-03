@@ -23,9 +23,14 @@ class SingerController
 
     public function index(Request $request)
     {
+        $orders = [
+          'id'=> 'DESC'
+        ];
         $input = $request->all();
+
         if (!isset($input['per_page'])) $input['per_page'] = 8;
         $data = $this->repository->makeModel()
+            ->orders($orders)
             ->filter($input)
             ->paginate($input['per_page']);
         return response()->json($data);
