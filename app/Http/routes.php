@@ -59,14 +59,17 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
     $app->group(['prefix' => 'singers'], function ($app) {
         $app->get('', 'SingerController@index');
         $app->post('', 'SingerController@store');
-        $app->get('/:id', 'SingerController@index');
-        $app->post('/:id', 'SingerController@index');
-        $app->delete('/:id', 'SingerController@index');
+        $app->get('/{id}', 'SingerController@find');
+        $app->put('/{id}', 'SingerController@update');
+        $app->delete('/{id}', 'SingerController@destroy');
     });
     $app->group(['prefix' => 'songs'], function ($app) {
         $app->get('/search-with-singer', 'SongController@searchWithSinger');
         $app->get('', 'SongController@index');
         $app->post('', 'SongController@store');
+        $app->get('/{id}', 'SongController@find');
+        $app->put('/{id}', 'SongController@update');
+        $app->delete('/{id}', 'SongController@destroy');
     });
     $app->group(['prefix' => 'videos'], function ($app) {
         $app->get('/search-with-singer', 'VideoController@searchWithSinger');

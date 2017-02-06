@@ -51,7 +51,7 @@ class SingerController
         $input = $request->all();
         $result = $this->repository->find($id);
         if ($result) {
-            $data = $this->repository->change($input, $data);
+            $data = $this->repository->change($input, $result);
             if ($data) {
                 return response()->json($data);
             }
@@ -69,9 +69,9 @@ class SingerController
         return response()->json('Not found item', 200);
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        $data = $this->repository->delete($id);
+        $data = $this->repository->destroy($id, $request->get('skip'));
         if ($data) {
             return response()->json($data);
         }

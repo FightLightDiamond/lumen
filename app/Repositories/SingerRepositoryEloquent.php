@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\MultiInheritance\RepositoriesTrait;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Entities\Singer;
@@ -12,6 +13,7 @@ use App\Entities\Singer;
  */
 class SingerRepositoryEloquent extends BaseRepository implements SingerRepository
 {
+    use RepositoriesTrait;
     /**
      * Specify Model class name
      *
@@ -52,7 +54,6 @@ class SingerRepositoryEloquent extends BaseRepository implements SingerRepositor
         $input = $model->checkbox($input);
         return $input;
     }
-
     /**
      * Boot up the repository, pushing criteria
      */

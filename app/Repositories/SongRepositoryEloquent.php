@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\MultiInheritance\RepositoriesTrait;
 use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -13,6 +14,7 @@ use App\Entities\Song;
  */
 class SongRepositoryEloquent extends BaseRepository implements SongRepository
 {
+    use RepositoriesTrait;
     /**
      * Specify Model class name
      *
