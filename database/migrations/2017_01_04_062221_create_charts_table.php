@@ -22,6 +22,8 @@ class CreateChartsTable extends Migration
             $table->tinyInteger('area')->unsigned();
             $table->tinyInteger('type')->unsigned();
             $table->tinyInteger('is_active')->unsigned();
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned();
             $table->timestamps();
 		});
 	}

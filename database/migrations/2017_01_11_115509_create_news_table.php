@@ -22,6 +22,7 @@ class CreateNewsTable extends Migration
             $table->boolean('is_active')->default(0);
             $table->boolean('emotional')->default(0);
             $table->boolean('hot')->default(0);
+            $table->integer('view')->default(0);
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->timestamps();

@@ -21,7 +21,9 @@ class Singer extends Model implements Transformable
         'gender',
         'information',
         'is_active',
-        'identify'
+        'identify',
+        'created_by',
+        'updated_by'
     ];
 
     //======================SCOPE=========================>

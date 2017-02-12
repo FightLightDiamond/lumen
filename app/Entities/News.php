@@ -18,7 +18,8 @@ class News extends Model implements Transformable
         'content',
         'is_active',
         'emotional',
-        'hot'
+        'hot',
+        'view'
     ];
 
     public function tag(){

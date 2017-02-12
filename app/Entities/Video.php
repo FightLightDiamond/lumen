@@ -31,7 +31,9 @@ class Video extends Model implements Transformable
         'listen_no',
         'listen_no',
         'download_no',
-        'share_no'
+        'share_no',
+        'created_by',
+        'updated_by'
     ];
 
     //===============================RELATION=======================================>
