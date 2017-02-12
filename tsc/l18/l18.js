@@ -18,9 +18,8 @@ var Person = (function () {
 var Employee = (function (_super) {
     __extends(Employee, _super);
     function Employee(name) {
-        var _this = _super.call(this, name) || this;
+        _super.call(this, name);
         console.log(name + ' Employee constructor');
-        return _this;
     }
     Employee.prototype.getId = function () {
         return _super.prototype.getId.call(this);

@@ -61,7 +61,7 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
         $app->post('', 'SingerController@store');
         $app->get('/{id}', 'SingerController@find');
         $app->put('/{id}', 'SingerController@update');
-        $app->delete('/{id}', 'SingerController@destroy');
+        $app->delete('/{id}', 'SingerController@destroy') ;
     });
     $app->group(['prefix' => 'songs'], function ($app) {
         $app->get('/search-with-singer', 'SongController@searchWithSinger');
