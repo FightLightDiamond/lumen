@@ -27,7 +27,7 @@ trait RepositoriesTrait
                     ->skip($skip)->take(1)
                     ->orderBy('id', 'DESC')
                     ->get();
-                if($data) {
+                if(count($data) === 1) {
                     return $data[0];
                 } return false;
             }

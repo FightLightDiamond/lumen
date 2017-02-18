@@ -15,7 +15,6 @@ class UploadService
     private $fileName = null;
     private $basePath = null;
     private $pathUploaded = null;
-    private $hiddenFolder = '/var/www/html/lumen-api/storage/uploads';
     public function file($input, $basePath)
     {
         $this->basePath = $basePath;
@@ -24,7 +23,7 @@ class UploadService
         $input->move($basePath, $this->fileName);
         $this->pathUploaded = $basePath . '/' . $this->fileName;
         chmod($this->pathUploaded, 0777);
-        $path = str_replace($this->hiddenFolder, "", $this->pathUploaded);
+        $path = str_replace(env('CUT_FOLDER_UPLOAD'), "", $this->pathUploaded);
         //event(new LogUploadEvent($path, "FILE"));
         return $path;
     }

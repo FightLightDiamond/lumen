@@ -1,14 +1,13 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'start' ]
-2 info using npm@3.5.2
-3 info using node@v4.2.6
+1 verbose cli [ '/usr/bin/nodejs', '/usr/local/bin/npm', 'start' ]
+2 info using npm@4.1.1
+3 info using node@v7.5.0
 4 verbose stack Error: ENOENT: no such file or directory, open '/var/www/html/lumen/package.json'
-4 verbose stack     at Error (native)
 5 verbose cwd /var/www/html/lumen
-6 error Linux 4.4.0-59-generic
-7 error argv "/usr/bin/nodejs" "/usr/bin/npm" "start"
-8 error node v4.2.6
-9 error npm  v3.5.2
+6 error Linux 4.4.0-62-generic
+7 error argv "/usr/bin/nodejs" "/usr/local/bin/npm" "start"
+8 error node v7.5.0
+9 error npm  v4.1.1
 10 error path /var/www/html/lumen/package.json
 11 error code ENOENT
 12 error errno -2
