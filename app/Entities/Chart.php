@@ -24,47 +24,40 @@ class Chart extends Model implements Transformable
         'point',
         'rank',
         'is_active'
-        ];
+    ];
 
-    public function item(){
-        if($this->type  === 1)
-        {
+    public function item()
+    {
+        if ($this->type === 1) {
             return $this->belongsTo(Song::class, 'item_id');
-        }
-        else if ($this->type  === 2)
-        {
+        } else if ($this->type === 2) {
             return $this->belongsTo(Video::class, 'item_id');
-        }
-        else
-            {
+        } else {
             return $this->belongsTo(Album::class, 'item_id');
         }
     }
 
-    public function scopeFilter($query, $input){
-        if(isset($input['week']) && $input['week'] != "")
-        {
-            $query->where($this->table.'.week', trim($input['week']));
+    public function scopeFilter($query, $input)
+    {
+        if (isset($input['week']) && $input['week'] != "") {
+            $query->where($this->table . '.week', trim($input['week']));
         }
-        if(isset($input['area']) && $input['area'] != "")
-        {
-            $query->where($this->table.'.area', trim($input['area']));
+        if (isset($input['area']) && $input['area'] != "") {
+            $query->where($this->table . '.area', trim($input['area']));
         }
-        if(isset($input['type']))
-        {
+        if (isset($input['type'])) {
             $query->where('type', $input['type']);
         }
         return $query;
     }
 
-    public function scopeRelation($query , $selector = '*')
+    public function scopeRelation($query, $selector = '*')
     {
         $query->with(
             [
-                'item' => function ($query) use($selector)
-                {
+                'item' => function ($query) use ($selector) {
                     $query->select($selector)
-                    ->with('singer');
+                        ->with('singer');
                 }
             ]
         );
@@ -73,13 +66,11 @@ class Chart extends Model implements Transformable
 
     public function scopeOrder($query, $input = NULL)
     {
-        if($input === NULL)
-        {
+        if ($input === NULL) {
             $query->orderBy('week', 'ASC');
         }
-        if(isset($input['order_by']))
-        {
-            $query->orderBy($this->table.'.'.$input['order_by'], $input['order']);
+        if (isset($input['order_by'])) {
+            $query->orderBy($this->table . '.' . $input['order_by'], $input['order']);
         }
         return $query;
     }
@@ -90,10 +81,12 @@ class Chart extends Model implements Transformable
     {
         $this->attributes['week'] = (trim($value));
     }
+
     public function setYearAttribute($value)
     {
         $this->attributes['year'] = (trim($value));
     }
+
     public function setItemIdAttribute($value)
     {
         $this->attributes['item_id'] = (trim($value));
@@ -103,14 +96,17 @@ class Chart extends Model implements Transformable
     {
         $this->attributes['type'] = (trim($value));
     }
+
     public function setPointAttribute($value)
     {
         $this->attributes['point'] = (trim($value));
     }
+
     public function setRankAttribute($value)
     {
         $this->attributes['rank'] = (trim($value));
     }
+
     public function setIsActiveAttribute($value)
     {
         $this->attributes['is_active'] = (trim($value));

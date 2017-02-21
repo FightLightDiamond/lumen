@@ -18,6 +18,7 @@ use App\Repositories\NewsRepository;
 use App\Repositories\SongRepository;
 use App\Repositories\TopicRepository;
 use App\Repositories\VideoRepository;
+use Illuminate\Http\Request;
 
 class HomeController
 {
@@ -55,9 +56,10 @@ class HomeController
         $this->bannerRepository = $bannerRepository;
     }
 
-    public function index(){
+    public function index(Request $request){
+        $input = $request->all();
         $data['flashHotHomes'] = $this->flashHotRepository->getData();
-        $data['charts'] = $this->chartsRepository->getData();
+        $data['charts'] = $this->chartsRepository->getData($input);
         $data['songHots'] = $this->songRepository->getHot();
         $data['videoHots'] = $this->videoRepository->getHot();
         $data['albumHots'] = $this->albumRepository->getHot();

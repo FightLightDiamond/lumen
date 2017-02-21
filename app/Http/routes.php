@@ -77,9 +77,10 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
     $app->group(['prefix' => 'offer-setup'], function ($app) {
         $app->post('/set-information', 'Tools\OfferSetupsController@setInformation');
     });
-    $app->post('post-api', function (\Illuminate\Http\Request $request) {
-        return response()->json($request->all()['key']);
-    });
+});
+
+$app->group(['prefix' => 'web/v1', 'middleware' => 'cors', 'namespace' => 'FontEnd'], function ($app) {
+    $app->get('/home', 'HomeController@index');
 });
 
 $app->get('memcached', function () {
