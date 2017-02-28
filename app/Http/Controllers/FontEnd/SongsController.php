@@ -57,12 +57,16 @@ class SongsController
     public function getByIdentify($identify)
     {
         $data['songs'] = $this->songRepository->getByIdentify($identify);
-        $singer_id = $data['songs']->singer()->oderby('id')->limit(1)->id;
+        $singer_id = $data['songs']->singer[0]->id;
         $data['songSingers'] = $this->songRepository->getBySinger($singer_id);
         $data['banners'] = $this->bannerRepository->getByPage('song');
         $data['topics'] = $this->topicRepository->getData();
         $data['categories'] = $this->categoryRepository->getData();
 
         return response()->json($data);
+    }
+    public function detail($identify) {
+        $data = $this->songRepository->getByIdentify($identify);
+        dd($data[0]->singer[0]->id);
     }
 }

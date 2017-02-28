@@ -60,7 +60,7 @@ class Song extends Model implements Transformable
     }
     public function singer()
     {
-        return $this->belongsToMany(Singer::class, 'song_singer', 'song_id', 'singer_id');
+        return $this->belongsToMany(Singer::class, 'song_singers', 'song_id', 'singer_id');
     }
     public function author()
     {
@@ -107,10 +107,13 @@ class Song extends Model implements Transformable
     }
     public function scopeFilter($query, $input)
     {
-        if (isset($input['is_active']) && ($input['is_active']) !== '') {
+        if(isset($input['identify']) && $input['identify'] !== '') {
+            $query->where('identify', $input['identify']);
+        }
+        if (isset($input['is_active']) && $input['is_active'] !== '') {
             $query->where($this->table . '.is_active', $input['is_active']);
         }
-        if (isset($input['name']) && ($input['name'] != '')) {
+        if (isset($input['name']) && ($input['name'] !== '')) {
             $name = trim($input['name']);
             $query->where(function ($query) use ($name) {
                 $query->where($this->table . '.name', 'LIKE', $name . '%')

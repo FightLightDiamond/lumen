@@ -47,7 +47,15 @@ class SongRepositoryEloquent extends BaseRepository implements SongRepository
 
     public function getByIdentify($identify)
     {
-
+        $selector = ['id', 'alias_name', 'image'];
+        return $this->makeModel()
+            ->where('identify', $identify)
+            ->with([
+                'singer' => function($query) use ($selector){
+                    $query->select($selector);
+                }
+            ])
+            ->get();
     }
 
     //-----------------------------CURL----------------------------------

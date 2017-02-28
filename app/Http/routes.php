@@ -81,6 +81,7 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
 
 $app->group(['prefix' => 'web/v1', 'middleware' => 'cors', 'namespace' => 'FontEnd'], function ($app) {
     $app->get('/home', 'HomeController@index');
+    $app->get('/song-detail/{identify}', 'SongsController@detail');
 });
 
 $app->get('memcached', function () {
