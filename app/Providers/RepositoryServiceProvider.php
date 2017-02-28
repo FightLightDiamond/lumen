@@ -20,6 +20,8 @@ use App\Repositories\SongRepository;
 use App\Repositories\SongRepositoryEloquent;
 use App\Repositories\VideoRepository;
 use App\Repositories\VideoRepositoryEloquent;
+use App\Repositories\VocabularyRepository;
+use App\Repositories\VocabularyRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -31,5 +33,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SongRepository::class, SongRepositoryEloquent::class);
         $this->app->bind(OfferSetupsRepository::class, OfferSetupsRepositoryEloquent::class);
         $this->app->bind(VideoRepository::class, VideoRepositoryEloquent::class);
+        $this->app->bind(VocabularyRepository::class, VocabularyRepositoryEloquent::class);
     }
 }
