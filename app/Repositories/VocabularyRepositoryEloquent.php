@@ -24,7 +24,25 @@ class VocabularyRepositoryEloquent extends BaseRepository implements VocabularyR
         return Vocabulary::class;
     }
 
-    
+    public function store($input) {
+        $input = $this->standardized($input, $this->makeModel());
+        return $this->create($input);
+
+    }
+    public function change($input, $model) {
+        $input = $this->standardized($input, $model);
+        return $this->update($input, $model);
+    }
+    public function destroy($id, $skip = 0) {
+        $this->delete($id);
+    }
+
+    private function standardized($input, $model)
+    {
+        $input = $model->uploads($input);
+        $input = $model->checkbox($input);
+        return $input;
+    }
 
     /**
      * Boot up the repository, pushing criteria

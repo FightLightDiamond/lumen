@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Input;
 
 trait ModelsTrait
 {
+    public $uploads = ['image' => 1];
+    public $checkbox = ['is_active'];
+    protected $pathUpload = [
+        'image' => '/image',
+    ];
+
     //=====================RELATION============================>
 
     public function user_created()
@@ -145,4 +151,5 @@ trait ModelsTrait
             }
         }
     }
+
 }

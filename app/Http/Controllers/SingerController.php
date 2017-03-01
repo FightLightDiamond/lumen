@@ -28,7 +28,9 @@ class SingerController
         ];
         $input = $request->all();
 
-        if (!isset($input['per_page'])) $input['per_page'] = 8;
+        if (!isset($input['per_page'])) {
+            $input['per_page'] = 8;
+        }
         $data = $this->repository->makeModel()
             ->orders($orders)
             ->filter($input)

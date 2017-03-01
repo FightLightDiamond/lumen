@@ -10,5 +10,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface VocabularyRepository extends RepositoryInterface
 {
-    //
+    public function store($input);
+    public function change($input, $model);
+    public function destroy($id, $skip = 0);
 }

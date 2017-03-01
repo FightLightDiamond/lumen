@@ -69,4 +69,11 @@ $factory->define(\App\Entities\Video::class, function ($faker) {
         'identify' => str_random(8)
     ];
 });
+$factory->define(\App\Entities\Vocabulary::class, function ($faker) {
+    return [
+        'word' => $faker->name,
+        'mean' => $faker->name,
+        'link' => 'http://lorempixel.com/200/200/',
+    ];
+});
 

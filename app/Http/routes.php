@@ -56,6 +56,9 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
         $app->get('actually', 'ChartController@getActually');
         $app->post('active', 'ChartController@setActive');
     });
+    $app->group(['prefix' => 'offer-setup'], function ($app) {
+        $app->post('/set-information', 'Tools\OfferSetupsController@setInformation');
+    });
     $app->group(['prefix' => 'singers'], function ($app) {
         $app->get('', 'SingerController@index');
         $app->post('', 'SingerController@store');
@@ -74,8 +77,12 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
     $app->group(['prefix' => 'videos'], function ($app) {
         $app->get('/search-with-singer', 'VideoController@searchWithSinger');
     });
-    $app->group(['prefix' => 'offer-setup'], function ($app) {
-        $app->post('/set-information', 'Tools\OfferSetupsController@setInformation');
+    $app->group(['prefix' => 'learn', 'namespace' => 'Learn'], function ($app) {
+        $app->get('vocabulary', 'SongController@index');
+        $app->post('vocabulary', 'SongController@create');
+        $app->put('vocabulary/{id}', 'SongController@update');
+        $app->delete('vocabulary/{id}', 'SongController@destroy');
+        $app->get('vocabulary/{id}', 'SongController@find');
     });
 });
 
