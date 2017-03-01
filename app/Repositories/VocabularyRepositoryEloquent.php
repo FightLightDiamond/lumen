@@ -33,14 +33,23 @@ class VocabularyRepositoryEloquent extends BaseRepository implements VocabularyR
         $input = $this->standardized($input, $model);
         return $this->update($input, $model);
     }
-    public function destroy($id, $skip = 0) {
-        $this->delete($id);
+    public function destroy($id, $skip = 0)
+    {
+        $result = $this->delete($id);
+        if ($result) {
+            if ($skip !== 0) {
+                $data = $this->makeModel()->skip($skip)->take(1)->get();
+                return $data[0];
+            }
+            return $result;
+        }
+        return false;
     }
 
     private function standardized($input, $model)
     {
-        $input = $model->uploads($input);
-        $input = $model->checkbox($input);
+       // $input = $model->uploads($input);
+        //$input = $model->checkbox($input);
         return $input;
     }
 

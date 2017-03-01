@@ -15,7 +15,7 @@ class Vocabulary extends Migration
     {
         Schema::create('vocabularies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('word');
+            $table->string('word')->unique();
             $table->string('mean');
             $table->text('description')->nullable();
             $table->string('image')->nullable();

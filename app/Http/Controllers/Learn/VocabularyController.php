@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Learn;
 use App\Repositories\VocabularyRepository;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 /**
  * Created by PhpStorm.
@@ -17,18 +17,23 @@ class VocabularyController
         $this->repository = $repository;
     }
     public function index() {
-        $this->repository->paginate(10);
+        $data = $this->repository
+            ->makeModel()
+            ->orderBy('id', 'DESC')->paginate(8);
+        return response()->json($data);
     }
     public function create(Request $request) {
         $input = $request->all();
-        return $this->repository->create($input);
+        return $this->repository->store($input);
     }
     public function update($id, Request $request) {
         $input = $request->all();
         return $this->repository->update($input, $id);
     }
-    public function destroy($id) {
-        return $this->repository->destroy($id);
+
+    public function destroy($id, Request $request) {
+        $data =  $this->repository->destroy($id, $request->get('take'));
+        return response()->json($data);
     }
     public function find() {
 

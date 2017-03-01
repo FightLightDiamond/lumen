@@ -78,11 +78,11 @@ $app->group(['prefix' => 'app/v1', 'middleware' => 'cors'], function ($app) {
         $app->get('/search-with-singer', 'VideoController@searchWithSinger');
     });
     $app->group(['prefix' => 'learn', 'namespace' => 'Learn'], function ($app) {
-        $app->get('vocabulary', 'SongController@index');
-        $app->post('vocabulary', 'SongController@create');
-        $app->put('vocabulary/{id}', 'SongController@update');
-        $app->delete('vocabulary/{id}', 'SongController@destroy');
-        $app->get('vocabulary/{id}', 'SongController@find');
+        $app->get('vocabulary', 'VocabularyController@index');
+        $app->post('vocabulary', 'VocabularyController@create');
+        $app->put('vocabulary/{id}', 'VocabularyController@update');
+        $app->delete('vocabulary/{id}', 'VocabularyController@destroy');
+        $app->get('vocabulary/{id}', 'VocabularyController@find');
     });
 });
 
