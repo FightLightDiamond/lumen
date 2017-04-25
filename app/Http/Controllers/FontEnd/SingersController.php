@@ -8,7 +8,7 @@
 
 namespace app\Http\Controllers\FontEnd;
 
-
+use App\Helper\Constant;
 use App\Repositories\BannerRepository;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\SingerRepository;
@@ -36,22 +36,22 @@ class SingersController
         $this->bannerRepository = $bannerRepository;
     }
     public function index(){
-        $data['singers'] = $this->singerRepository->getData();
-        $data['singerOfWeek'] = $this->singerRepository->getSingerOfWeek();
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::SINGERS] = $this->singerRepository->getData();
+        $data[Constant::SINGER_OF_WEEK] = $this->singerRepository->getSingerOfWeek();
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
     public function getDetail($slug){
-        $data['singer'] = $this->singerRepository->getDetail($slug);
+        $data[Constant::SINGERS] = $this->singerRepository->getDetail($slug);
         $data['songSingers'] = $data['singer']->song()->paginate(10);
         $data['videoSingers'] = $data['singer']->video()->paginate(10);
         $data['albumSingers'] = $data['singer']->singer()->paginate(10);
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

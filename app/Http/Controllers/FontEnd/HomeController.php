@@ -8,7 +8,7 @@
 
 namespace app\Http\Controllers\FontEnd;
 
-
+use App\Helper\Constant;
 use App\Repositories\AlbumRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CategoriesRepository;
@@ -18,6 +18,7 @@ use App\Repositories\NewsRepository;
 use App\Repositories\SongRepository;
 use App\Repositories\TopicRepository;
 use App\Repositories\VideoRepository;
+use Illuminate\Http\Request;
 
 class HomeController
 {
@@ -31,17 +32,12 @@ class HomeController
     protected $chartsRepository;
     protected $bannerRepository;
 
-    public function __construct
-    (
-        NewsRepository $newsRepository,
-        SongRepository $songRepository,
+    public function __construct( NewsRepository $newsRepository, SongRepository $songRepository,
         VideoRepository $videoRepository,
         AlbumRepository $albumRepository,
         FlashHotRepository $flashHotRepository,
         TopicRepository $topicRepository,
-        CategoriesRepository $categoriesRepository,
-        ChartRepository $chartRepository,
-        BannerRepository $bannerRepository
+        CategoriesRepository $categoriesRepository
     )
     {
         $this->newsRepository = $newsRepository;
@@ -51,20 +47,21 @@ class HomeController
         $this->flashHotRepository = $flashHotRepository;
         $this->topicRepository = $topicRepository;
         $this->categoryRepository = $categoriesRepository;
-        $this->chartsRepository = $chartRepository;
-        $this->bannerRepository = $bannerRepository;
     }
 
-    public function index(){
-        $data['flashHotHomes'] = $this->flashHotRepository->getData();
-        $data['charts'] = $this->chartsRepository->getData();
-        $data['songHots'] = $this->songRepository->getHot();
-        $data['videoHots'] = $this->videoRepository->getHot();
-        $data['albumHots'] = $this->albumRepository->getHot();
-        $data['news'] = $this->newsRepository->getByPage();
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+    public function index( ChartRepository $chartRepository, BannerRepository $bannerRepository, Request $input)
+    {
+        $this->chartsRepository = $chartRepository;
+        $this->bannerRepository = $bannerRepository;
+        $data[Constant::FLASH_HOT_HOMES] = $this->flashHotRepository->getData();
+        $data[Constant::CHARTS] = $this->chartsRepository->getData($input);
+        $data[Constant::SONG_HOTS] = $this->songRepository->getHot();
+        $data[Constant::VIDEO_HOTS] = $this->videoRepository->getHot();
+        $data[Constant::ALBUM_HOTS] = $this->albumRepository->getHot();
+        $data[Constant::NEWS] = $this->newsRepository->getByPage();
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

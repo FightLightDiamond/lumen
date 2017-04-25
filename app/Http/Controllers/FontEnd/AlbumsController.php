@@ -9,6 +9,7 @@
 namespace app\Http\Controllers\FontEnd;
 
 
+use App\Helper\Constant;
 use App\Repositories\AlbumRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CategoriesRepository;
@@ -36,33 +37,33 @@ class AlbumsController
     }
     public function index()
     {
-        $data['highlightAlbums'] = $this->albumRepository->getHighLight();
-        $data['hotAlbums'] = $this->albumRepository->getHot();
-        $data['newAlbums'] = $this->albumRepository->getNew();
-        $data['videoAlbums'] = $this->albumRepository->getVideoAlbums();
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::HIGHLIGHT_ALBUMS] = $this->albumRepository->getHighLight();
+        $data[Constant::HOT_SONGS] = $this->albumRepository->getHot();
+        $data[Constant::NEW_ALBUMS] = $this->albumRepository->getNew();
+        $data[Constant::VIDEO_ALBUMS] = $this->albumRepository->getVideoAlbums();
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
 
     public function getByType($type)
     {
-        $data['albums'] = $this->albumRepository->getByType($type);
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::ALBUMS] = $this->albumRepository->getByType($type);
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
 
     public function getByIdentify($identify)
     {
-        $data['albums'] = $this->albumRepository->getByIdentify($identify);
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::ALBUMS] = $this->albumRepository->getByIdentify($identify);
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

@@ -8,70 +8,84 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Helper\Constant;
 use App\Repositories\ChartRepository;
 use Illuminate\Http\Request;
 
 class ChartController
 {
     protected $repository;
+
     public function __construct(ChartRepository $repository)
     {
         $this->repository = $repository;
     }
+
     public function getListWeek()
     {
         $data = $this->repository->getListWeek();
         return response()->json($data);
     }
+
     public function getItemByWeekAndType($week, $type)
     {
         $data = $this->repository->getDataByWeekAndType($week, $type);
         return response()->json($data);
     }
+
     public function getData(Request $request)
     {
         $input = $request->all();
         $data = $this->repository->getData($input);
         return response()->json($data);
     }
-    public function create(){
+
+    public function create()
+    {
         $data = $this->repository->store();
         return response()->json($data);
     }
-    public function update($id, Request $request){
+
+    public function update($id, Request $request)
+    {
         $data = $this->repository->update($request->all(), $id);
         return response()->json($data);
     }
-    public function active(Request $request){
+
+    public function active(Request $request)
+    {
         $input = $request->all();
         $data = $this->repository->makeModel()
-            ->whereIn('week', $input['week'])
-            ->whereIn('type', $input['type'])
-            ->update(['is_active', $input['is_active']]);
+            ->whereIn(Constant::WEEK, $input[Constant::WEEK])
+            ->whereIn(Constant::TYPE, $input[Constant::TYPE])
+            ->update([Constant::IS_ACTIVE, $input[Constant::IS_ACTIVE]]);
         return response()->json($data);
     }
-    public function getActually(){
-        $input['orders'] = [
-            'week' =>'desc',
-            'type' => 'asc',
-            'area' => 'asc',
-            'rank' => 'asc',
+
+    public function getActually()
+    {
+        $input[Constant::ORDERS] = [
+            Constant::WEEK => Constant::DESC,
+            Constant::TYPE => Constant::ASC,
+            Constant::AREA => Constant::ASC,
+            Constant::RANK => Constant::ASC,
         ];
-        $input['limit'] = 90;
+        $input[Constant::LIMIT] = 90;
         $data = $this->repository->makeModel()
-            //->where('is_active', 1)
-            ->orders($input['orders'] )
-            ->relation(['id', 'name', 'image', 'listen_no'])
+            //->where(Constant::IS_ACTIVE, 1)
+            ->orders($input[Constant::ORDERS])
+            ->relation([Constant::ID, Constant::NAME, Constant::IMAGE, Constant::LISTEN_NO])
             ->limit(90)
             ->get();
         return response()->json($data);
     }
-    public function setActive(Request $request){
+
+    public function setActive(Request $request)
+    {
         $input = $request->all();
         $data = $this->repository->makeModel()
-            ->where('week', $input['week'])
-            ->update(['is_active' => $input['is_active']]);
+            ->where(Constant::WEEK, $input[Constant::WEEK])
+            ->update([Constant::IS_ACTIVE => $input[Constant::IS_ACTIVE]]);
         return response()->json($data);
     }
 }

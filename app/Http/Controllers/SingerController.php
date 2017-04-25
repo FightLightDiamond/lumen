@@ -9,13 +9,13 @@
 namespace app\Http\Controllers;
 
 
+use App\Helper\Constant;
 use App\Repositories\SingerRepository;
 use Illuminate\Http\Request;
 
 class SingerController
 {
     public $repository;
-
     public function __construct(SingerRepository $repository)
     {
         $this->repository = $repository;
@@ -24,15 +24,17 @@ class SingerController
     public function index(Request $request)
     {
         $orders = [
-          'id'=> 'DESC'
+          Constant::ID => Constant::DESC
         ];
         $input = $request->all();
 
-        if (!isset($input['per_page'])) $input['per_page'] = 8;
+        if (!isset($input[Constant::PER_PAGE])) {
+            $input[Constant::PER_PAGE] = 8;
+        }
         $data = $this->repository->makeModel()
             ->orders($orders)
             ->filter($input)
-            ->paginate($input['per_page']);
+            ->paginate($input[Constant::PER_PAGE]);
         return response()->json($data);
     }
 
@@ -71,7 +73,7 @@ class SingerController
 
     public function destroy($id, Request $request)
     {
-        $data = $this->repository->destroy($id, $request->get('skip'));
+        $data = $this->repository->destroy($id, $request->get(Constant::SKIP));
         if ($data) {
             return response()->json($data);
         }

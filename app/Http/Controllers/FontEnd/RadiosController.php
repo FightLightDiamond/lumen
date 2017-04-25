@@ -9,6 +9,7 @@
 namespace app\Http\Controllers\FontEnd;
 
 
+use App\Helper\Constant;
 use App\Repositories\BannerRepository;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\RadioRepository;
@@ -35,18 +36,18 @@ class RadiosController
         $this->bannerRepository = $bannerRepository;
     }
     public function index(){
-        $data['radios'] = $this->radioRepository->getData();
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::RADIOS] = $this->radioRepository->getData();
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
     public function getDetail($identify){
-        $data['radios'] = $this->radioRepository->getDetail($identify);
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::RADIOS] = $this->radioRepository->getDetail($identify);
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }

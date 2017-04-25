@@ -8,6 +8,7 @@
 
 namespace app\Http\Controllers\FontEnd;
 
+use App\Helper\Constant;
 use App\Repositories\AlbumRepository;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\SongRepository;
@@ -38,29 +39,37 @@ class SearchController
         $this->categoryRepository = $categoryRepository;
         $this->topicRepository = $topicRepository;
     }
-    public function index(Request $request) {
+
+    public function index(Request $request)
+    {
         $input = $request->all();
-        $data['songs'] = $this->songRepository->search($input);
-        $data['videos'] = $this->songRepository->search($input);
-        $data['albums'] = $this->songRepository->search($input);
-       // $data['data'] = app('fullTextSearch')->search('$input');
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+        $data[Constant::SONGS] = $this->songRepository->search($input);
+        $data[Constant::VIDEOS] = $this->songRepository->search($input);
+        $data[Constant::ALBUMS] = $this->songRepository->search($input);
+        // $data['data'] = app('fullTextSearch')->search('$input');
+        $data[Constant::ALBUMS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
         return response()->json($data);
     }
-    public function getSongSearch(Request $request){
+
+    public function getSongSearch(Request $request)
+    {
         $input = $request->all();
-        $data['songs'] = $this->songRepository->search($input);
+        $data[Constant::SONGS] = $this->songRepository->search($input);
         return response()->json($data);
     }
-    public function getVideoSearch(Request $request){
+
+    public function getVideoSearch(Request $request)
+    {
         $input = $request->all();
-        $data['videos'] = $this->songRepository->search($input);
+        $data[Constant::VIDEOS] = $this->songRepository->search($input);
         return response()->json($data);
     }
-    public function getAlbumSearch(Request $request){
+
+    public function getAlbumSearch(Request $request)
+    {
         $input = $request->all();
-        $data['albums'] = $this->songRepository->search($input);
+        $data[Constant::ALBUMS] = $this->songRepository->search($input);
         return response()->json($data);
     }
 }

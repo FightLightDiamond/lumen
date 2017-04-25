@@ -9,17 +9,21 @@
 namespace App\Http\Controllers;
 
 
+use App\Helper\Constant;
 use App\Repositories\VideoRepository;
 
 class VideoController
 {
     protected $repository;
+
     public function __construct(VideoRepository $repository)
     {
         $this->repository = $repository;
     }
-    public function searchWithSinger(){
-        $data = $this->repository->simplePaginate(10, ['id', 'name']);
+
+    public function searchWithSinger()
+    {
+        $data = $this->repository->simplePaginate(10, [Constant::ID, Constant::NAME]);
         return response()->json($data);
     }
 }

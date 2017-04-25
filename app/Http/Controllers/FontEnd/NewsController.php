@@ -8,7 +8,7 @@
 
 namespace app\Http\Controllers\FontEnd;
 
-
+use App\Helper\Constant;
 use App\Repositories\BannerRepository;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\NewsRepository;
@@ -34,21 +34,24 @@ class NewsController
         $this->categoryRepository = $categoriesRepository;
         $this->bannerRepository = $bannerRepository;
     }
-    public function index(){
-        $data['news'] = $this->newsRepository->getData();
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+
+    public function index()
+    {
+        $data[Constant::NEWS] = $this->newsRepository->getData();
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
 
-    public function getDetail($identify){
-        $data['news'] = $this->newsRepository->getDetail($identify);
-        $data['newsOther'] = $this->newsRepository->getOther();
-        $data['banners'] = $this->bannerRepository->getByPage();
-        $data['topics'] = $this->topicRepository->getData();
-        $data['categories'] = $this->categoryRepository->getData();
+    public function getDetail($identify)
+    {
+        $data[Constant::NEWS] = $this->newsRepository->getDetail($identify);
+        $data[Constant::NEWS_OTHER] = $this->newsRepository->getOther();
+        $data[Constant::BANNERS] = $this->bannerRepository->getByPage();
+        $data[Constant::TOPICS] = $this->topicRepository->getData();
+        $data[Constant::CATEGORIES] = $this->categoryRepository->getData();
 
         return response()->json($data);
     }
